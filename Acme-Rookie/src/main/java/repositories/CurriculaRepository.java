@@ -1,0 +1,27 @@
+
+package repositories;
+
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import domain.Curricula;
+
+@Repository
+public interface CurriculaRepository extends JpaRepository<Curricula, Integer> {
+
+	@Query("select distinct(c) from Curricula c where c.rookie.id = ?1 AND c.copy = false")
+	Collection<Curricula> findAllNoCopy(final int rookieId);
+
+	@Query("select distinct(c) from Application a join a.curricula c where a.id = ?1")
+	Collection<Curricula> findAllApplication(final int applicationId);
+
+	@Query("select c from Curricula c where c.rookie.id = ?1")
+	Collection<Curricula> getCurriculasOfRookie(int idRookie);
+
+	@Query("select distinct(c) from Curricula c where c.rookie.id = ?1 AND c.copy = true")
+	Collection<Curricula> findAllCopy(int rookieId);
+
+}

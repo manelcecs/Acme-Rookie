@@ -1,0 +1,111 @@
+
+package controllers.rookie;
+
+import java.text.ParseException;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import security.LoginService;
+import security.UserAccount;
+import services.FinderService;
+import services.PositionService;
+import services.RookieService;
+import controllers.AbstractController;
+import domain.Finder;
+import domain.Position;
+import domain.Rookie;
+
+@Controller
+@RequestMapping("/finder/rookie")
+public class FinderRookieController extends AbstractController {
+
+	@Autowired
+	private RookieService	rookieService;
+
+	@Autowired
+	private FinderService	finderService;
+
+	@Autowired
+	private PositionService	positionService;
+
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() throws ParseException {
+		final ModelAndView result;
+
+		final UserAccount principal = LoginService.getPrincipal();
+		final Rookie rookie = this.rookieService.findByPrincipal(principal);
+
+		final Finder finder = rookie.getFinder();
+
+		result = this.createEditModelAndView(finder);
+		result.addObject("requestURI", "finder/rookie/edit.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(Finder finder, final BindingResult binding) throws ParseException {
+		ModelAndView result;
+
+		final Finder finderBD = this.rookieService.findByPrincipal(LoginService.getPrincipal()).getFinder();
+
+		finder = this.finderService.reconstruct(finder, binding);
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(finder);
+		else
+			try {
+				if (!this.finderService.cacheFinder(finderBD, finder))
+					this.finderService.save(finder);
+
+				result = new ModelAndView("redirect:edit.do");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(finder, "finder.commit.error");
+			}
+		this.configValues(result);
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "clear")
+	public ModelAndView clear() throws ParseException {
+		ModelAndView result;
+		final Finder finder = this.rookieService.findByPrincipal(LoginService.getPrincipal()).getFinder();
+		try {
+			this.finderService.clear(finder);
+			result = new ModelAndView("redirect:edit.do");
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(finder, "finder.commit.error");
+		}
+		this.configValues(result);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Finder finder) {
+
+		final ModelAndView result;
+
+		result = this.createEditModelAndView(finder, null);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Finder finder, final String messageCode) {
+		final ModelAndView result;
+
+		result = new ModelAndView("finder/edit");
+
+		final Collection<Position> positions = this.positionService.getPositions(finder.getId());
+		result.addObject("finder", finder);
+		result.addObject("positions", positions);
+
+		result.addObject("message", messageCode);
+
+		this.configValues(result);
+		return result;
+	}
+}
