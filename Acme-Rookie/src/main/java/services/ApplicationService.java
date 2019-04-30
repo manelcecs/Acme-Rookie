@@ -1,6 +1,7 @@
 
 package services;
 
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -91,7 +92,7 @@ public class ApplicationService {
 		return this.applicationRepository.save(application);
 	}
 
-	public Application changeStauts(final int idApplication, final String status) {
+	public Application changeStauts(final int idApplication, final String status) throws ParseException {
 		final Application application = this.findOne(idApplication);
 		final Company company = this.companyService.findByPrincipal(LoginService.getPrincipal());
 

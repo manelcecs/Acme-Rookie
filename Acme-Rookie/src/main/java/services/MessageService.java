@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -20,6 +21,7 @@ import security.Authority;
 import security.LoginService;
 import utiles.AuthorityMethods;
 import domain.Actor;
+import domain.AdminConfig;
 import domain.Administrator;
 import domain.Application;
 import domain.Company;
@@ -191,7 +193,7 @@ public class MessageService {
 		return s;
 	}
 
-	public void notificationNewPositionMatchFinder(final Position position) {
+	public void notificationNewPositionMatchFinder(final Position position) throws ParseException {
 
 		final Collection<Rookie> rookies = this.rookieService.findAll();
 		final Collection<Rookie> rookiesToNotify = new ArrayList<>();
@@ -225,64 +227,73 @@ public class MessageService {
 		}
 
 		if (rookiesToNotify.size() > 0) {
-			final Message message = this.create();
-
-			try {
-				message.setMoment(this.getDateNow());
-			} catch (final ParseException e) {
-				e.printStackTrace();
-			}
 
 			final Administrator sender = this.administratorService.getOne();
-			message.setSender(sender);
-			message.setSubject("System Notification | Notificacion del sistema");
-			message.setBody("There is a new position that matches the parameters of your finder:" + position.getTitle() + " | " + "Hay una nueva posición que coincide con los parametros de su buscador:" + position.getTitle());
-			message.setPriority("HIGH");
-			final Collection<String> tags = new ArrayList<>();
-			tags.add("SYSTEM");
-			message.setTags(tags);
-
 			final Collection<Actor> recipients = new ArrayList<>();
 			recipients.addAll(rookiesToNotify);
-			message.setRecipients(recipients);
+			final String body = "There is a new position that matches the parameters of your finder:" + position.getTitle() + " | " + "Hay una nueva posición que coincide con los parametros de su buscador:" + position.getTitle();
+			final Message notification = this.initializeNotification(sender, recipients, body);
 
-			final Collection<MessageBox> messageBoxes = new ArrayList<>();
-			for (final Rookie recipient : rookiesToNotify)
-				messageBoxes.add(this.messageBoxService.findOriginalBox(recipient.getId(), "Notification Box"));
-
-			message.setMessageBoxes(messageBoxes);
-
-			this.messageRepository.save(message);
+			this.messageRepository.save(notification);
 		}
 
 	}
 
-	public void notificationChangeStatus(final Application applicationSave, final Company company) {
-		final Message message = this.create();
-		message.setSender(company);
-		try {
-			message.setMoment(this.getDateNow());
-		} catch (final ParseException e) {
-		}
-
-		message.setSubject("System Notification | Notificacion del sistema");
-		message.setBody("Your application " + applicationSave.getId() + " has been: " + applicationSave.getStatus() + " | " + "Your application " + applicationSave.getId() + " has been: " + applicationSave.getStatus());
-		message.setPriority("HIGH");
-		final Collection<String> tags = new ArrayList<>();
-		tags.add("SYSTEM");
-		message.setTags(tags);
-
+	public void notificationChangeStatus(final Application applicationSave, final Company company) throws ParseException {
 		final Collection<Actor> recipients = new ArrayList<>();
 		recipients.add(applicationSave.getRookie());
-		message.setRecipients(recipients);
-		final Collection<MessageBox> messageBoxes = new ArrayList<>();
-		messageBoxes.add(this.messageBoxService.findOriginalBox(applicationSave.getRookie().getId(), "Notification Box"));
 
-		message.setMessageBoxes(messageBoxes);
-		this.messageRepository.save(message);
+		final String body = "Your application " + applicationSave.getId() + " has been: " + applicationSave.getStatus() + " | " + "Tu solicitud" + applicationSave.getId() + " ha sido: " + applicationSave.getStatus();
+
+		final Message notification = this.initializeNotification(company, recipients, body);
+
+		this.messageRepository.save(notification);
+	}
+
+	public void notificationRebranding() throws ParseException {
+		Assert.isTrue(utiles.AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		final AdminConfig config = this.adminConfigService.getAdminConfig();
+		Assert.isTrue(config.getNameChanged());
+
+		final Actor sender = this.administratorService.getOne();
+		//FIXME: ¿ENVIAR NOTIFICACION A LOS ADMINS TAMBIEN?
+		final Collection<Actor> recipients = this.actorService.findNonEliminatedActors();
+		final String systemName = config.getSystemName();
+		//FIXME: CODIFICACION
+		final String body = "We inform you that the name of the system has been changed. Now we are: " + systemName + "! | Le informamos que el nombre del sistema ha cambiado. ¡Ahora somos: " + systemName + "!";
+
+		final Message notification = this.initializeNotification(sender, recipients, body);
+
+		this.messageRepository.save(notification);
+
+		config.setNameChanged(false);
+
+		this.adminConfigService.save(config);
 	}
 
 	//Utilities
+	private Message initializeNotification(final Actor sender, final Collection<Actor> recipients, final String body) throws ParseException {
+		final Message notification = this.create();
+
+		notification.setSubject("System Notification | Notificacion del sistema");
+		final Collection<String> tags = new ArrayList<>();
+		tags.add("SYSTEM");
+		notification.setTags(tags);
+		notification.setPriority("HIGH");
+		notification.setBody(body);
+		notification.setRecipients(recipients);
+		notification.setSender(sender);
+		notification.setMoment(this.getDateNow());
+
+		final Collection<MessageBox> messageBoxes = new ArrayList<>();
+		for (final Actor recipient : recipients)
+			messageBoxes.add(this.messageBoxService.findOriginalBox(recipient.getId(), "Notification Box"));
+
+		notification.setMessageBoxes(messageBoxes);
+
+		return notification;
+	}
+
 	private String allTextFromAMessage(final Message message) {
 		String text = message.getBody() + " " + message.getSubject();
 		if (message.getTags() != null)

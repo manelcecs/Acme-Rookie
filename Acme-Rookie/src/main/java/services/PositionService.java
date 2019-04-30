@@ -1,6 +1,7 @@
 
 package services;
 
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Date;
 
@@ -148,7 +149,7 @@ public class PositionService {
 		return this.positionRepository.getPositionsOfCompany(idCompany);
 	}
 
-	public Position changeDraft(final Position position) {
+	public Position changeDraft(final Position position) throws ParseException {
 
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("COMPANY"));
 		final UserAccount principal = LoginService.getPrincipal();

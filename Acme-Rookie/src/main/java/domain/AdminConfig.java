@@ -116,6 +116,34 @@ public class AdminConfig extends DomainEntity {
 		this.bannerURL = bannerURL;
 	}
 
+	@Range(min = 0, max = 100)
+	@NotNull
+	public Double getVAT() {
+		return this.VAT;
+	}
+
+	public void setVAT(final Double VAT) {
+		this.VAT = VAT;
+	}
+
+	public boolean getNameChanged() {
+		return this.nameChanged;
+	}
+
+	public void setNameChanged(final boolean nameChanged) {
+		this.nameChanged = nameChanged;
+	}
+
+	@Min(0)
+	@NotNull
+	public Integer getFlagRate() {
+		return this.flagRate;
+	}
+
+	public void setFlagRate(final Integer flagRate) {
+		this.flagRate = flagRate;
+	}
+
 	public AdminConfigForm castToForm() {
 		final AdminConfigForm adminConfigForm = new AdminConfigForm();
 		adminConfigForm.setBannerURL(this.getBannerURL());
@@ -125,34 +153,11 @@ public class AdminConfig extends DomainEntity {
 		adminConfigForm.setSystemName(this.getSystemName());
 		adminConfigForm.setWelcomeMessageEN(this.getWelcomeMessageEN());
 		adminConfigForm.setWelcomeMessageES(this.getWelcomeMessageES());
+		adminConfigForm.setFlagRate(this.getFlagRate());
+		adminConfigForm.setVAT(this.getVAT());
+
 		return adminConfigForm;
 
-	}
-
-	@Range(min = 0, max = 100)
-	public Double getVAT() {
-		return this.VAT;
-	}
-
-	public void setVAT(final Double VAT) {
-		this.VAT = VAT;
-	}
-
-	public boolean isNameChanged() {
-		return this.nameChanged;
-	}
-
-	public void setNameChanged(final boolean nameChanged) {
-		this.nameChanged = nameChanged;
-	}
-
-	@Min(0)
-	public Integer getFlagRate() {
-		return this.flagRate;
-	}
-
-	public void setFlagRate(final Integer flagRate) {
-		this.flagRate = flagRate;
 	}
 
 }

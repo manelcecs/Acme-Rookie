@@ -10,9 +10,34 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
+<hr>
+
+<jstl:if test="${nameChanged}">
+	<h3>
+		<spring:message code="administrator.process.notifyRebranding" />
+	</h3>
+
+	<acme:button code="administrator.process.notifyRebrandingDo" type="button" url="administrator/notifyRebranding.do" />
+</jstl:if>
+
+
+<hr>
+
+
+<h3>
+	<spring:message code="administrator.process.computeScore" />
+</h3>
+
+<acme:button code="administrator.process.compute" type="button" url="administrator/computeScore.do" />
+
+
+<hr>
+
+
 <h3>
 	<spring:message code="administrator.process.spam" />
 </h3>
+
 <acme:button code="administrator.process.updateSpam" type="button" url="administrator/updateSpam.do" />
 
 <br>
