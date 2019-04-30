@@ -14,7 +14,7 @@
 
 	<acme:button url="actor/edit.do" type="button" code="actor.edit" />
 	<br />
-	
+
 </jstl:if>
 
 
@@ -56,6 +56,15 @@
 			</jstl:if>
 
 		</security:authorize>
+
+		<hr/>
+		<b><spring:message code="company.score" /></b>
+		<jstl:if test="${ company.score eq null}">
+			<jstl:out value="N/A" />
+		</jstl:if>
+		<jstl:if test="${ company.score != null }">
+			<jstl:out value="${company.score }" />
+		</jstl:if>
 
 		<br />
 
@@ -139,7 +148,8 @@
 
 <!-- Social profiles table -->
 <b><spring:message code="actor.socialProfile" /></b>
-<display:table pagesize="5" name="${socialProfiles}" id="profile" requestURI="${requestURI}">
+<display:table pagesize="5" name="${socialProfiles}" id="profile"
+	requestURI="${requestURI}">
 	<display:column titleKey="actor.socialProfiles.name">
 		<jstl:out value="${ profile.nick}" />
 	</display:column>
@@ -150,10 +160,14 @@
 		<jstl:out value="${ profile.link}" />
 	</display:column>
 	<display:column titleKey="actor.socialProfiles.edit">
-		<acme:button url="/socialProfile/edit.do?socialProfileId=${profile.id}" type="button" code="actor.socialProfiles.edit"/>
+		<acme:button
+			url="/socialProfile/edit.do?socialProfileId=${profile.id}"
+			type="button" code="actor.socialProfiles.edit" />
 	</display:column>
 	<display:column titleKey="actor.socialProfiles.delete">
-		<acme:button url="/socialProfile/delete.do?socialProfileId=${profile.id}" type="button" code="actor.socialProfiles.delete"/>
+		<acme:button
+			url="/socialProfile/delete.do?socialProfileId=${profile.id}"
+			type="button" code="actor.socialProfiles.delete" />
 	</display:column>
 </display:table>
 <br />

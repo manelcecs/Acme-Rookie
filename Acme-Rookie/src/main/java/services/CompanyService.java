@@ -53,6 +53,8 @@ public class CompanyService {
 		res.setBanned(false);
 		res.setMessageBoxes(this.messageBoxService.initializeNewUserBoxes());
 
+		res.setScore(null);
+
 		return res;
 	}
 
@@ -136,17 +138,6 @@ public class CompanyService {
 		return result;
 	}
 
-	public Collection<Company> findAll() {
-		return this.companyRepository.findAll();
-	}
-
-	//DASHBOARD----------------------------------------------------
-
-	public Collection<Company> getCompaniesWithMoreOffersOfPositions() {
-		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.companyRepository.getCompaniesWithMoreOffersOfPositions();
-	}
-
 	public Company reconstruct(final Company company, final BindingResult binding) {
 
 		if (!this.validateEmail(company.getEmail()))
@@ -177,6 +168,17 @@ public class CompanyService {
 			throw new ValidationException();
 
 		return result;
+	}
+
+	public Collection<Company> findAll() {
+		return this.companyRepository.findAll();
+	}
+
+	//DASHBOARD----------------------------------------------------
+
+	public Collection<Company> getCompaniesWithMoreOffersOfPositions() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.companyRepository.getCompaniesWithMoreOffersOfPositions();
 	}
 
 	public Boolean validateEmail(final String email) {
