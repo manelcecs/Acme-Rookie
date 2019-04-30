@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -29,6 +30,9 @@ public class AdminConfig extends DomainEntity {
 	private String				welcomeMessageES;
 	private String				countryCode;
 	private String				bannerURL;
+	private Double				VAT;
+	private boolean				nameChanged;
+	private Integer				flagRate;
 
 
 	@Range(min = 1, max = 24)
@@ -123,6 +127,32 @@ public class AdminConfig extends DomainEntity {
 		adminConfigForm.setWelcomeMessageES(this.getWelcomeMessageES());
 		return adminConfigForm;
 
+	}
+
+	@Range(min = 0, max = 100)
+	public Double getVAT() {
+		return this.VAT;
+	}
+
+	public void setVAT(final Double VAT) {
+		this.VAT = VAT;
+	}
+
+	public boolean isNameChanged() {
+		return this.nameChanged;
+	}
+
+	public void setNameChanged(final boolean nameChanged) {
+		this.nameChanged = nameChanged;
+	}
+
+	@Min(0)
+	public Integer getFlagRate() {
+		return this.flagRate;
+	}
+
+	public void setFlagRate(final Integer flagRate) {
+		this.flagRate = flagRate;
 	}
 
 }

@@ -37,7 +37,7 @@ public class Audit extends DomainEntity {
 		this.draft = draft;
 	}
 
-	@Range(min = 1, max = 100)
+	@Range(min = 0, max = 10)
 	public Integer getScore() {
 		return this.score;
 	}
