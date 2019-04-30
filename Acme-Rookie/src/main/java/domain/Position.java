@@ -46,6 +46,7 @@ public class Position extends DomainEntity {
 	//Relationship
 	private Company				company;
 	private Ticker				ticker;
+	private Auditor				auditor;
 
 
 	@NotBlank
@@ -153,6 +154,16 @@ public class Position extends DomainEntity {
 
 	public void setTicker(final Ticker ticker) {
 		this.ticker = ticker;
+	}
+
+	@Valid
+	@ManyToOne(optional = true)
+	public Auditor getAuditor() {
+		return this.auditor;
+	}
+
+	public void setAuditor(final Auditor auditor) {
+		this.auditor = auditor;
 	}
 
 }
