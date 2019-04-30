@@ -67,10 +67,55 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd "
 
 		<property name="creditCard" ref="creditcard0" />
 
-		<!-- Creo que la asociación de socilProfile está mal -->
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox001" />
+				<ref bean="messageBox002" />
+				<ref bean="messageBox003" />
+				<ref bean="messageBox004" />
+				<ref bean="messageBox005" />
+			</list>
+		</property>
 
 		<property name="userAccount" ref="userAccount1" />
 
+	</bean>
+	
+	<bean id="messageBox001" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox002" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox003" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox004" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox005" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
 	</bean>
 	
 	<bean id="adminConfig" class="domain.AdminConfig">
@@ -81,6 +126,9 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd "
 		<property name="cacheFinder" value="1" />
 		<property name="welcomeMessageEN" value="Welcome to Acme Rookie! We're IT rookie’s favourite job marketplace!" />
 		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="VAT" value="21.0" />
+		<property name="nameChanged" value="true" />
+		<property name="flagRate" value="10000" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>

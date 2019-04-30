@@ -44,6 +44,9 @@ public class CompanyService {
 	private MessageBoxService		messageBoxService;
 
 	@Autowired
+	private AuditService			auditService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -191,4 +194,11 @@ public class CompanyService {
 		return valid;
 	}
 
+//	public void computeScore() {
+//		final Integer max = this.auditService.maxScoreOfCompanies();
+//		Integer min = this.auditService.minScoreOfCompanies();
+//		
+//		
+//
+//	}
 }

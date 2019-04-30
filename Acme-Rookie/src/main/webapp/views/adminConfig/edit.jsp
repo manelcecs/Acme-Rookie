@@ -29,6 +29,8 @@
 		<acme:textbox code="adminConfig.edit.welcomeMessageES" path="welcomeMessageES"/>
 		<acme:textbox code="adminConfig.edit.countryCode" path="countryCode"/>
 		<acme:textbox code="adminConfig.edit.bannerURL" path="bannerURL"/>
+		<acme:inputNumber code="adminConfig.edit.flagRate" path="flagRate"/>
+		<acme:inputNumber code="adminConfig.edit.VAT" path="VAT"/>
 		<acme:textbox code="adminConfig.edit.spamWord" path="spamWord"/>
 		
 		<acme:submit name="save" code="adminConfig.edit.save"/>

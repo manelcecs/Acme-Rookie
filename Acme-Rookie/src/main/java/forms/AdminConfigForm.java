@@ -1,6 +1,7 @@
 
 package forms;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -19,6 +20,8 @@ public class AdminConfigForm {
 	private String	welcomeMessageES;
 	private String	countryCode;
 	private String	bannerURL;
+	private Double	VAT;
+	private Integer	flagRate;
 
 
 	@Range(min = 1, max = 24)
@@ -99,6 +102,26 @@ public class AdminConfigForm {
 
 	public void setBannerURL(final String bannerURL) {
 		this.bannerURL = bannerURL;
+	}
+
+	@Min(0)
+	@NotNull
+	public Integer getFlagRate() {
+		return this.flagRate;
+	}
+
+	public void setFlagRate(final Integer flagRate) {
+		this.flagRate = flagRate;
+	}
+
+	@Range(min = 0, max = 100)
+	@NotNull
+	public Double getVAT() {
+		return this.VAT;
+	}
+
+	public void setVAT(final Double vAT) {
+		this.VAT = vAT;
 	}
 
 }

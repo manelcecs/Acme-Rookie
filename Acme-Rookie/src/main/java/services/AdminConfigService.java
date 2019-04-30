@@ -44,6 +44,9 @@ public class AdminConfigService {
 
 		adminConfig = this.getAdminConfig();
 
+		if (!adminConfig.getSystemName().trim().equals(adminConfigForm.getSystemName().trim()))
+			adminConfig.setNameChanged(true);
+
 		adminConfig.setBannerURL(adminConfigForm.getBannerURL());
 		adminConfig.setCacheFinder(adminConfigForm.getCacheFinder());
 		adminConfig.setCountryCode(adminConfigForm.getCountryCode());
@@ -51,6 +54,8 @@ public class AdminConfigService {
 		adminConfig.setSystemName(adminConfigForm.getSystemName());
 		adminConfig.setWelcomeMessageEN(adminConfigForm.getWelcomeMessageEN());
 		adminConfig.setWelcomeMessageES(adminConfigForm.getWelcomeMessageES());
+		adminConfig.setFlagRate(adminConfigForm.getFlagRate());
+		adminConfig.setVAT(adminConfigForm.getVAT());
 
 		final Collection<String> spamWords = adminConfig.getSpamWords();
 

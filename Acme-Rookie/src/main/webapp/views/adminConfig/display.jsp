@@ -22,6 +22,8 @@
 		<display:table name="adminConfig" id="adminConfig">
 			<display:column titleKey="adminConfig.display.cacheFinder" ><acme:text value="${adminConfig.cacheFinder}"/></display:column>
 			<display:column titleKey="adminConfig.display.resultsFinder" ><acme:text value="${adminConfig.resultsFinder}"/></display:column>
+			<display:column titleKey="adminConfig.display.VAT" ><acme:text value="${adminConfig.VAT}"/></display:column>
+			<display:column titleKey="adminConfig.display.flagRate" ><acme:text value="${adminConfig.flagRate}"/></display:column>
 			<display:column titleKey="adminConfig.display.systemName" ><acme:text value="${adminConfig.systemName}"/></display:column>
 			<display:column titleKey="adminConfig.display.countryCode" ><acme:text value="${adminConfig.countryCode}"/></display:column>
  			<display:column titleKey="adminConfig.display.bannerURL" ><acme:link value="${adminConfig.bannerURL}"/></display:column>
