@@ -136,11 +136,11 @@ public class AdminConfig extends DomainEntity {
 
 	@Min(0)
 	@NotNull
-	public Integer getFlatRate() {
+	public Integer getflatRate() {
 		return this.flatRate;
 	}
 
-	public void setFlatRate(final Integer flatRate) {
+	public void setflatRate(final Integer flatRate) {
 		this.flatRate = flatRate;
 	}
 
@@ -153,7 +153,7 @@ public class AdminConfig extends DomainEntity {
 		adminConfigForm.setSystemName(this.getSystemName());
 		adminConfigForm.setWelcomeMessageEN(this.getWelcomeMessageEN());
 		adminConfigForm.setWelcomeMessageES(this.getWelcomeMessageES());
-		adminConfigForm.setFlatRate(this.getFlatRate());
+		adminConfigForm.setFlatRate(this.getflatRate());
 		adminConfigForm.setVAT(this.getVAT());
 
 		return adminConfigForm;
