@@ -32,7 +32,7 @@ public class AdminConfig extends DomainEntity {
 	private String				bannerURL;
 	private Double				VAT;
 	private boolean				nameChanged;
-	private Integer				flatRate;
+	private Double				flatRate;
 
 
 	@Range(min = 1, max = 24)
@@ -136,11 +136,11 @@ public class AdminConfig extends DomainEntity {
 
 	@Min(0)
 	@NotNull
-	public Integer getFlatRate() {
+	public Double getFlatRate() {
 		return this.flatRate;
 	}
 
-	public void setFlatRate(final Integer flatRate) {
+	public void setFlatRate(final Double flatRate) {
 		this.flatRate = flatRate;
 	}
 
@@ -159,5 +159,4 @@ public class AdminConfig extends DomainEntity {
 		return adminConfigForm;
 
 	}
-
 }

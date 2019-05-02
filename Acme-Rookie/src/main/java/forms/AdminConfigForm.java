@@ -21,7 +21,7 @@ public class AdminConfigForm {
 	private String	countryCode;
 	private String	bannerURL;
 	private Double	VAT;
-	private Integer	flatRate;
+	private Double	flatRate;
 
 
 	@Range(min = 1, max = 24)
@@ -106,11 +106,11 @@ public class AdminConfigForm {
 
 	@Min(0)
 	@NotNull
-	public Integer getFlatRate() {
+	public Double getFlatRate() {
 		return this.flatRate;
 	}
 
-	public void setFlatRate(final Integer flatRate) {
+	public void setFlatRate(final Double flatRate) {
 		this.flatRate = flatRate;
 	}
 

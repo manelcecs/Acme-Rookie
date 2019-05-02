@@ -3828,7 +3828,7 @@
 		<property name="flatRateApplied" value="5000" />
 		
 		<property name="provider" ref="provider1" />
-		<property name="position" >
+		<property name="positions" >
 		<list>
 			<ref bean="position33"/>
 			<ref bean="position00"/>
@@ -3844,7 +3844,7 @@
 		<property name="flatRateApplied" value="6000" />
 		
 		<property name="provider" ref="provider0" />
-		<property name="position" >
+		<property name="positions" >
 		<list>
 			<ref bean="position33"/>
 			<ref bean="position32"/>
@@ -3853,12 +3853,5 @@
 		
 	</bean>
 	
-	
-	
-	
-
-
-
-
 </beans>
 
