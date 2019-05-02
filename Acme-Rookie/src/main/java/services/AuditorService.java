@@ -62,7 +62,7 @@ public class AuditorService {
 		Assert.isTrue(auditor != null);
 
 		if (auditor.getId() == 0) {
-			Assert.isTrue(!AuthorityMethods.checkIsSomeoneLogged());
+			Assert.isTrue(AuthorityMethods.checkIsSomeoneLogged());
 			final UserAccount userAccount = auditor.getUserAccount();
 
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
