@@ -56,6 +56,9 @@
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
+		
+		<!-- PROVIDER SPONSORSHIP -->
+		<security:intercept-url pattern="/sponsorship/provider/**" access="hasRole('PROVIDER')"/>
 
 		<!-- ADMINISTRATOR REGISTER/EDIT-->
 		<security:intercept-url pattern="/administrator/administrator/register.do" access="hasRole('ADMINISTRATOR')" /> 

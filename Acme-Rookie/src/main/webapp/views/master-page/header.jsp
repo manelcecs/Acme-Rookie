@@ -53,6 +53,13 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('PROVIDER')">
+			<li>
+				<a class="fNiv" href="sponsorship/provider/list.do"><spring:message code="master.page.sponsorship.list" /></a>
+			</li>
+			
+		</security:authorize>
+		
 		<security:authorize access="hasRole('COMPANY')">
 			<li><a class="fNiv"><spring:message	code="master.page.positions" /></a>
 				<ul>

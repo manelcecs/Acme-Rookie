@@ -399,6 +399,7 @@
 		<!-- Propios de Company -->
 
 		<property value="Micro-Star International" name="companyName" />
+		<property value="0.75" name="score" />
 
 	</bean>
 	
@@ -3149,7 +3150,708 @@
 				<value>ha sido seleccionado</value>
 			</list>
 		</property>
+		<property name="flatRate" value="3000" />
+		<property name="VAT" value="21" />
 	</bean>
 
+
+	<!-- Acme rookie data -->
+
+	<bean class="domain.Position" id="position32">
+		<property value="Position that will have some audits" name="title" />
+		<property value="Here you can see some audits"
+			name="description" />
+		<property value="12/31/2020" name="deadline" />
+		<property value="Developer" name="profileRequired" />
+
+		<property name="skillsRequired">
+			<list>
+				<value>Phishing</value>
+			</list>
+		</property>
+
+		<property name="technologiesRequired">
+			<list>
+				<value>Wireshark</value>
+			</list>
+		</property>
+
+		<property value="4500" name="salaryOffered" />
+		<property value="false" name="draft" />
+		<property value="false" name="cancelled" />
+
+		<property name="company" ref="company0" />
+		<property name="ticker" ref="ticker32" />
+		
+		<property name="auditor" ref="auditor0"/>
+	</bean>
+
+	<bean class="domain.Ticker" id="ticker32">
+		<property name="identifier" value="MSIX-6817" />
+	</bean>
+
+	<bean class="domain.Problem" id="problem44">
+		<property value="Test Wireless Enruter" name="title" />
+		<property value="No Idea what to write here" name="statement" />
+		<property value="Try to check if packets are well encrypted" name="hint" />
+		
+		<property name="attachments">
+			<list>
+				<value>http://tinder.com</value>
+				<value>http://ungaunga.com</value>
+			</list>
+		</property>
+		
+		<property value="false" name="draft" />
+		<property name="position" ref="position32" />
+		
+	</bean>
+	<bean class="domain.Problem" id="problem45">
+		<property value="Bluetooth" name="title" />
+		<property value="NoIDEA" name="statement" />
+		<property value="Check conection endurance" name="hint" />
+		
+		<property name="attachments">
+			<list>
+				<value>http://hbo3.com</value>
+			</list>
+		</property>
+		
+		<property value="false" name="draft" />
+		<property name="position" ref="position32" />
+	</bean>
+
+	
+	<bean class="domain.Auditor" id="auditor0">
+
+		<!-- Valores de Actor -->
+
+		<property value="Pepe" name="name" />
+
+		<property name="surnames">
+			<list>
+				<value>Viyuela</value>
+			</list>
+		</property>
+
+		<property value="00000000050-A" name="vatNumber" />
+
+		<property value="pepeViyu@gmail.com" name="email" />
+
+		<property value="+00 000-1234567" name="phoneNumber" />
+
+		<property value="Av. Main Principal" name="address" />
+
+		<property value="false" name="spammer" />
+
+		<property value="false" name="banned" />
+		
+		<property name="creditCard" ref="creditCard57" />
+
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox090" />
+				<ref bean="messageBox091" />
+				<ref bean="messageBox092" />
+				<ref bean="messageBox093" />
+				<ref bean="messageBox094" />
+			</list>
+		</property>
+
+		<property name="userAccount" ref="userAccount59" />
+
+	</bean>
+
+	<bean id="messageBox090" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox091" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox092" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox093" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox094" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount59" class="security.UserAccount">
+		<property name="username" value="auditor0" />
+		<property name="password" value="82f9e67f5739301e94774d82c2ab12fe" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.CreditCard" id="creditCard57">
+
+		<property value="auditor0" name="holder" />
+
+		<property value="VISA" name="make" />
+
+		<property value="12" name="expirationMonth" />
+
+		<property value="2020" name="expirationYear" />
+
+		<property value="999" name="cvv" />
+
+		<property value="4308543581357191" name="number" />
+
+	</bean>
+	
+	<bean id="audit00" class="domain.Audit">
+		<property name="draft" value="false" />
+		<property name="score" value="8" />
+		<property name="moment" value="12/31/2199" />
+		<property name="text" value="Las condiciones laborales son bastantes buenas, aunque hay un par de detalles que se pueden mejorar" />
+		<property name="position" ref="position32" />
+		
+	</bean>
+	
+	<bean id="audit01" class="domain.Audit">
+		<property name="draft" value="false" />
+		<property name="score" value="7" />
+		<property name="moment" value="12/31/2199" />
+		<property name="text" value="Es un puesto que tiene mucha demanda y el salario es la media que se suele ofrecer" />
+		<property name="position" ref="position32" />
+		
+	</bean>
+	
+	<bean id="audit02" class="domain.Audit">
+		<property name="draft" value="true" />
+		<property name="score" value="3" />
+		<property name="moment" value="12/31/2199" />
+		<property name="text" value="Según los recientes acontecimientos en el mercado, este sector está en declive" />
+		<property name="position" ref="position32" />
+		
+	</bean>
+	
+	<bean class="domain.Position" id="position33">
+		<property value="Desarrollo y diseño de metodologías aplicabales a FPGAs" name="title" />
+		<property value="Esta posicion contiene algunas auditorias"
+			name="description" />
+		<property value="12/31/2020" name="deadline" />
+		<property value="Desarrollador" name="profileRequired" />
+
+		<property name="skillsRequired">
+			<list>
+				<value>Ser autodidacta</value>
+			</list>
+		</property>
+
+		<property name="technologiesRequired">
+			<list>
+				<value>Conocimientos en arduino</value>
+			</list>
+		</property>
+
+		<property value="4500" name="salaryOffered" />
+		<property value="false" name="draft" />
+		<property value="false" name="cancelled" />
+
+		<property name="company" ref="company1" />
+		<property name="ticker" ref="ticker33" />
+		
+		<property name="auditor" ref="auditor1"/>
+	</bean>
+
+	<bean class="domain.Ticker" id="ticker33">
+		<property name="identifier" value="HPXX-6817" />
+	</bean>
+
+	<bean class="domain.Problem" id="problem46">
+		<property value="Programa en arduino" name="title" />
+		<property value="Desarrollar un programa que encienda 2 leds si la temperatura de la habitacion es superior a 25ºC" name="statement" />
+		
+		<property name="attachments">
+			<list>
+				
+				<value>https://www.arduino.cc/</value>
+			</list>
+		</property>
+		
+		<property value="false" name="draft" />
+		<property name="position" ref="position33" />
+		
+	</bean>
+	<bean class="domain.Problem" id="problem47">
+		<property value="Programa en arduino" name="title" />
+		<property value="Desarrollar un programa en arduino que use los un panel de 7 segmentos" name="statement" />
+		<property value="Puede ser tan creativo como quiera. Se valorará positivamente." name="hint" />
+		
+		<property name="attachments">
+			<list>
+				<value>https://www.arduino.cc/</value>
+			</list>
+		</property>
+		
+		<property value="false" name="draft" />
+		<property name="position" ref="position33" />
+	</bean>
+
+	
+	<bean class="domain.Auditor" id="auditor1">
+
+		<!-- Valores de Actor -->
+
+		<property value="Cristobal" name="name" />
+
+		<property name="surnames">
+			<list>
+				<value>Soria</value>
+			</list>
+		</property>
+
+		<property value="00000000050-A" name="vatNumber" />
+
+		<property value="soriaCristobalSoria@gmail.com" name="email" />
+
+		<property value="+00 000-1234567" name="phoneNumber" />
+
+		<property value="Av. Main Principal" name="address" />
+
+		<property value="false" name="spammer" />
+
+		<property value="false" name="banned" />
+		
+		<property name="creditCard" ref="creditCard58" />
+
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox095" />
+				<ref bean="messageBox096" />
+				<ref bean="messageBox097" />
+				<ref bean="messageBox098" />
+				<ref bean="messageBox099" />
+			</list>
+		</property>
+
+		<property name="userAccount" ref="userAccount60" />
+
+	</bean>
+
+	<bean id="messageBox095" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox096" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox097" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox098" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox099" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount60" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.CreditCard" id="creditCard58">
+
+		<property value="auditor1" name="holder" />
+
+		<property value="VISA" name="make" />
+
+		<property value="12" name="expirationMonth" />
+
+		<property value="2020" name="expirationYear" />
+
+		<property value="999" name="cvv" />
+
+		<property value="4308543581357191" name="number" />
+
+	</bean>
+	
+	<bean id="audit03" class="domain.Audit">
+		<property name="draft" value="false" />
+		<property name="score" value="6" />
+		<property name="moment" value="12/31/2199" />
+		<property name="text" value="El puesto de trabajo no está lo suficientemente bien pagado" />
+		<property name="position" ref="position33" />
+		
+	</bean>
+	
+	<bean id="audit04" class="domain.Audit">
+		<property name="draft" value="false" />
+		<property name="score" value="5" />
+		<property name="moment" value="12/31/2199" />
+		<property name="text" value="Los problemas no son lo suficientemente específicos" />
+		<property name="position" ref="position33" />
+		
+	</bean>
+	
+	<!-- Provider -->
+	
+	<bean class="domain.Provider" id="provider0">
+
+		<!-- Valores de Actor -->
+
+		<property value="Salvador" name="name" />
+
+		<property name="surnames">
+			<list>
+				<value>Raya</value>
+			</list>
+		</property>
+
+		<property value="00000000050-A" name="vatNumber" />
+
+		<property value="DonSalvador@gmail.com" name="email" />
+
+		<property value="+00 000-1234567" name="phoneNumber" />
+
+		<property value="Av. Main Principal" name="address" />
+
+		<property value="false" name="spammer" />
+
+		<property value="false" name="banned" />
+		
+		<property name="creditCard" ref="creditCard59" />
+
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox100" />
+				<ref bean="messageBox101" />
+				<ref bean="messageBox102" />
+				<ref bean="messageBox103" />
+				<ref bean="messageBox104" />
+			</list>
+		</property>
+
+		<property name="userAccount" ref="userAccount61" />
+		<property value="Coca-Cola" name="providerMake" />
+
+	</bean>
+
+	<bean id="messageBox100" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox101" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox102" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox103" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox104" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount61" class="security.UserAccount">
+		<property name="username" value="provider0" />
+		<property name="password" value="a2558ea734039e55a1dbddec372b0dc8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.CreditCard" id="creditCard59">
+
+		<property value="provider0" name="holder" />
+
+		<property value="VISA" name="make" />
+
+		<property value="12" name="expirationMonth" />
+
+		<property value="2020" name="expirationYear" />
+
+		<property value="999" name="cvv" />
+
+		<property value="4308543581357191" name="number" />
+
+	</bean>
+	
+	<bean id="item00" class="domain.Item">
+		<property name="name" value="Destapa la felicidad con Coca-Cola zero" />
+		<property name="description" value="Con la nueva Coca-Cola zero, tu bebida favorita con 0% azúcar y 100% felicidad" />
+		<property name="links">
+			<list>
+			<value>https://www.cocacolaespana.es/productos-marcas/coca-cola/coca-cola-zero</value>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+			<value>https://www.cocacolaespana.es/content/dam/journey/es/es/private/marken/Product-Images-75x191/FullRed30_ZeroPet500ml_75191.png</value>
+			</list>
+		</property>
+		<property name="provider" ref="provider0" />
+	</bean>
+	
+	<bean id="item01" class="domain.Item">
+		<property name="name" value="Siente el sabor con Coca-Cola sin cafeína" />
+		<property name="description" value="Coca-Cola sin cafeína es la nueva variedad para que todos podamos disfrutar de la felicidad" />
+		<property name="links">
+			<list>
+			<value>https://www.cocacolaespana.es/productos-marcas/coca-cola/coca-cola-sin-cafeina</value>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+			<value>https://www.cocacolaespana.es/content/dam/journey/es/es/private/marken/Product-Images-75x191/FullRedOriginalSinCafeina_Pet15L_75191.png</value>
+			</list>
+		</property>
+		<property name="provider" ref="provider0" />
+	</bean>
+	
+
+	<bean class="domain.Provider" id="provider1">
+
+		<!-- Valores de Actor -->
+
+		<property value="Enrique" name="name" />
+
+		<property name="surnames">
+			<list>
+				<value>Setién</value>
+			</list>
+		</property>
+
+		<property value="00000000050-A" name="vatNumber" />
+
+		<property value="QuiqueDestituido@gmail.com" name="email" />
+
+		<property value="+00 000-1234567" name="phoneNumber" />
+
+		<property value="Av. Main Principal" name="address" />
+
+		<property value="false" name="spammer" />
+
+		<property value="false" name="banned" />
+		
+		<property name="creditCard" ref="creditCard60" />
+
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox105" />
+				<ref bean="messageBox106" />
+				<ref bean="messageBox107" />
+				<ref bean="messageBox108" />
+				<ref bean="messageBox109" />
+			</list>
+		</property>
+
+		<property name="userAccount" ref="userAccount62" />
+		<property value="Decathlon" name="providerMake" />
+
+	</bean>
+	
+	<bean id="messageBox105" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox106" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox107" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox108" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox109" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	
+	<bean id="userAccount62" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.CreditCard" id="creditCard60">
+
+		<property value="provider1" name="holder" />
+
+		<property value="VISA" name="make" />
+
+		<property value="12" name="expirationMonth" />
+
+		<property value="2020" name="expirationYear" />
+
+		<property value="999" name="cvv" />
+
+		<property value="4308543581357191" name="number" />
+
+	</bean>
+	
+	<bean id="item02" class="domain.Item">
+		<property name="name" value="Balón de goma" />
+		<property name="description" value="Perfecto para dejar el sedentarismo a un lado" />
+		<property name="links">
+			<list>
+			<value>https://www.decathlon.es/es/p/balon-de-futbol-nike-strike-replica-oficial-de-la-liga-espanola-18-19/_/R-p-X8517532?mc=8517532</value>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+			<value>https://contents.mediadecathlon.com/p323290/k$3d900569ca19b644f14adeca81f3d251/sq/Bal+n+de+F+tbol+Kipsta+de+espuma+Wizzy+talla+4+naranja+y+negro.webp?f=500x500</value>
+			</list>
+		</property>
+		<property name="provider" ref="provider1" />
+	</bean>
+	
+	<bean id="item03" class="domain.Item">
+		<property name="name" value="Camiseta de deporte" />
+		<property name="description" value="Hacer deporte con un outfit formal pero informal" />
+		<property name="links">
+			<list>
+			<value>https://www.decathlon.es/es/p/camiseta-tenis-hombre-manga-corta-soft-100-blanco/_/R-p-123190?mc=8372249</value>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+			<value>https://contents.mediadecathlon.com/p1651681/k$4071eb97d1600d7aaea794e3c728a66d/sq/Camiseta+de+manga+corta+gimnasia+infantil+100+gris.webp?f=1000x1000</value>
+			</list>
+		</property>
+		<property name="provider" ref="provider1" />
+	</bean>
+	
+	<bean id="sponsorship01" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard60" />
+		<property name="bannerURL" value="https://contents.mediadecathlon.com/s719549/k$fd3f50b8bd18127fbbe9659a4f091c94/s48_CONT_02_encuentra-tu-tienda.jpg?f=650x650" />
+		<property name="targetPageURL" value="https://www.decathlon.es/es/store-locator" />
+		<property name="flatRateApplied" value="5000" />
+		
+		<property name="provider" ref="provider1" />
+		<property name="positions" >
+		<list>
+			<ref bean="position33"/>
+			<ref bean="position00"/>
+		</list>
+		</property>
+		
+	</bean>
+	
+	<bean id="sponsorship02" class="domain.Sponsorship">
+		<property name="creditCard" ref="creditCard59" />
+		<property name="bannerURL" value="https://www.cocacola.es/content/dam/GO/CokeZone/Spain/highlights/coca-cola-800x654px.jpg" />
+		<property name="targetPageURL" value="https://www.cocacola.es/es/productos-coca-cola/#cocacola/" />
+		<property name="flatRateApplied" value="6000" />
+		
+		<property name="provider" ref="provider0" />
+		<property name="positions" >
+		<list>
+			<ref bean="position33"/>
+			<ref bean="position32"/>
+		</list>
+		</property>
+		
+	</bean>
+	
 </beans>
 

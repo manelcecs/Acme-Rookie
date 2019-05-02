@@ -12,18 +12,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.PositionService;
 import services.ProblemService;
+import services.SponsorshipService;
 import domain.Position;
 import domain.Problem;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/position")
 public class PositionController extends AbstractController {
 
 	@Autowired
-	private PositionService	positionService;
+	private PositionService		positionService;
 
 	@Autowired
-	private ProblemService	problemService;
+	private ProblemService		problemService;
+
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -57,6 +62,8 @@ public class PositionController extends AbstractController {
 			result.addObject("position", position);
 			final Collection<Problem> problems = this.problemService.getProblemsOfPositionFinal(position.getId());
 			result.addObject("problems", problems);
+			final Sponsorship sponsorshipRandom = this.sponsorshipService.getRandomOfAPosition(idPosition);
+			result.addObject("sponsorshipRandom", sponsorshipRandom);
 			result.addObject("requestURI", "position/display.do?idPosition=" + idPosition);
 		}
 

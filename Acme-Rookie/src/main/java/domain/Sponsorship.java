@@ -12,7 +12,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
+
+import forms.SponsorshipForm;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -24,7 +27,7 @@ public class Sponsorship extends DomainEntity {
 	private Double					flatRateApplied;
 
 	private Provider				provider;
-	private Collection<Position>	position;
+	private Collection<Position>	positions;
 
 
 	@Valid
@@ -38,6 +41,7 @@ public class Sponsorship extends DomainEntity {
 	}
 
 	@URL
+	@NotBlank
 	public String getBannerURL() {
 		return this.bannerURL;
 	}
@@ -45,7 +49,9 @@ public class Sponsorship extends DomainEntity {
 	public void setBannerURL(final String bannerURL) {
 		this.bannerURL = bannerURL;
 	}
+
 	@URL
+	@NotBlank
 	public String getTargetPageURL() {
 		return this.targetPageURL;
 	}
@@ -55,6 +61,7 @@ public class Sponsorship extends DomainEntity {
 	}
 
 	@Min(0)
+	@NotNull
 	public Double getFlatRateApplied() {
 		return this.flatRateApplied;
 	}
@@ -72,14 +79,28 @@ public class Sponsorship extends DomainEntity {
 	public void setProvider(final Provider provider) {
 		this.provider = provider;
 	}
+
 	@Valid
 	@ManyToMany
-	public Collection<Position> getPosition() {
-		return this.position;
+	@NotNull
+	public Collection<Position> getPositions() {
+		return this.positions;
 	}
 
-	public void setPosition(final Collection<Position> position) {
-		this.position = position;
+	public void setPositions(final Collection<Position> positions) {
+		this.positions = positions;
 	}
 
+	public SponsorshipForm castToForm() {
+		final SponsorshipForm sponsorshipForm = new SponsorshipForm();
+
+		sponsorshipForm.setId(this.getId());
+		sponsorshipForm.setBannerURL(this.getBannerURL());
+		sponsorshipForm.setPositions(this.getPositions());
+		sponsorshipForm.setTargetPageURL(this.getTargetPageURL());
+		sponsorshipForm.setCreditCard(this.getCreditCard());
+
+		return sponsorshipForm;
+
+	}
 }
