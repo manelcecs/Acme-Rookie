@@ -16,8 +16,20 @@ public class AuditService {
 	AuditRepository	auditRepository;
 
 
-//	public Integer maxScoreOfCompanies() {
-//		return this.auditRepository.maxScoreOfCompanies();
-//	}
+	public Integer getNumberOfACompany(final int idCompany) {
+		return this.auditRepository.getNumberOfACompany(idCompany);
+	}
+
+	public Double averageScoreOfCompany(final int idCompany) {
+		return this.auditRepository.averageScoreOfCompany(idCompany);
+	}
+
+	public Double maxScoreOfCompanies() {
+		return this.auditRepository.maxScoreOfCompanies().get(0);
+	}
+
+	public Double minScoreOfCompanies() {
+		return this.auditRepository.minScoreOfCompanies().get(0);
+	}
 
 }

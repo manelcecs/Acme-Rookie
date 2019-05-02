@@ -10,9 +10,9 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<hr>
 
 <jstl:if test="${nameChanged}">
+<hr>
 	<h3>
 		<spring:message code="administrator.process.notifyRebranding" />
 	</h3>

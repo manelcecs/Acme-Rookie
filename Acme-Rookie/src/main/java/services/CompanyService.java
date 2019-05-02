@@ -194,11 +194,33 @@ public class CompanyService {
 		return valid;
 	}
 
-//	public void computeScore() {
-//		final Integer max = this.auditService.maxScoreOfCompanies();
-//		Integer min = this.auditService.minScoreOfCompanies();
-//		
-//		
-//
-//	}
+	public void computeScore() {
+		//TODO INTENTAR SACAR EL MAXIMO DIRECTAMETE POR CONSULTA CUANDO SAQUE EL MAXIMO Y EL MINIMO POR CONSULTA
+		final Double max = this.auditService.maxScoreOfCompanies();
+		final Double min = this.auditService.minScoreOfCompanies();
+
+		final Double maxMinusMin = max - min;
+		Integer audits;
+		Double scoreResult = null;
+
+		final Collection<Company> companies = this.findAllNonEliminated();
+
+		for (final Company company : companies) {
+			audits = this.auditService.getNumberOfACompany(company.getId());
+			if (audits > 0) {
+				final Double puntuacion = this.auditService.averageScoreOfCompany(company.getId());
+				scoreResult = (puntuacion - min) / maxMinusMin;
+			} else
+				scoreResult = null;
+
+			if (company.getScore() != scoreResult) {
+				company.setScore(scoreResult);
+				this.companyRepository.save(company);
+			}
+
+		}
+	}
+	private Collection<Company> findAllNonEliminated() {
+		return this.companyRepository.findAllNonEliminated();
+	}
 }

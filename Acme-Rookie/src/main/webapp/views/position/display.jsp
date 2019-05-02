@@ -8,7 +8,10 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <security:authorize access="hasRole('COMPANY')"><acme:button code="position.seeMore.back" type="button" url="/position/company/list.do"/></security:authorize>
-<security:authorize access="not hasRole('COMPANY')"><acme:button code="position.seeMore.back" type="button" url="/position/list.do"/></security:authorize>
+<%-- <security:authorize access="not hasRole('COMPANY')"><acme:button code="position.seeMore.back" type="button" url="/position/list.do"/></security:authorize> --%>
+<security:authorize access="not hasRole('COMPANY')"><button onclick="window.location.href=document.referrer"><spring:message code="position.seeMore.back" /></button></security:authorize>
+
+
 
 <acme:text label="position.seeMore.title" value="${position.title}"/>
 <acme:text label="position.seeMore.description" value="${position.description}"/>
@@ -61,6 +64,13 @@
    		 </display:column>
 
 </display:table>
+
+
+<hr>
+
+<div id="sponsor" style="width: 50px;">
+	<a target="_blank" href="${sponsorshipRandom.targetPageURL}" ><img style="width: 200px;" src="${sponsorshipRandom.bannerURL}" alt="${sponsorshipRandom.targetPageURL}"/></a>
+</div>
 
 
 

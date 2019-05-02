@@ -128,7 +128,7 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd "
 		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="VAT" value="21.0" />
 		<property name="nameChanged" value="true" />
-		<property name="flagRate" value="10000" />
+		<property name="flatRate" value="10000.0" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>
