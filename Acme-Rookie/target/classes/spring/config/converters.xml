@@ -43,6 +43,9 @@
 		<bean class="converters.CurriculaToStringConverter"/>
 		<bean class="converters.StringToCurriculaConverter"/>
 		
+		<bean class="converters.ItemToStringConverter"/>
+		<bean class="converters.StringToItemConverter"/>
+		
 	</util:list>
 	
 </beans>

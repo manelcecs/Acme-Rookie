@@ -153,7 +153,7 @@ public class AdminConfig extends DomainEntity {
 		adminConfigForm.setSystemName(this.getSystemName());
 		adminConfigForm.setWelcomeMessageEN(this.getWelcomeMessageEN());
 		adminConfigForm.setWelcomeMessageES(this.getWelcomeMessageES());
-		adminConfigForm.setFlatRate(this.getFlatRate());
+		adminConfigForm.setFlatRate(this.getflatRate());
 		adminConfigForm.setVAT(this.getVAT());
 
 		return adminConfigForm;

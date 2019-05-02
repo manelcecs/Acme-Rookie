@@ -67,7 +67,7 @@
 					<li><a href="position/company/list.do"><spring:message code="master.page.company.list" /></a></li>			
 				</ul>
 			</li>
-			
+		
 			<li>
 				<a class="fNiv" href="application/company/list.do"><spring:message code="master.page.list.application" /></a>
 			</li>
@@ -78,6 +78,10 @@
 					<li><a href="problem/company/list.do"><spring:message code="master.page.company.problem.list" /></a></li>			
 				</ul>
 			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('PROVIDER')">
+			<li><a class="fNiv" href="item/provider/list.do"><spring:message code="master.page.myItems" /></a></li>				
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
@@ -98,6 +102,14 @@
 			
 			<li>
 				<a class="fNiv" href="company/list.do"><spring:message code="master.page.list.company" /></a>
+			</li>
+			
+			<li>
+				<a class="fNiv" href="item/list.do"><spring:message code="master.page.list.item" /></a>
+			</li>
+			
+			<li>
+				<a class="fNiv" href="provider/list.do"><spring:message code="master.page.list.provider" /></a>
 			</li>
 		</security:authorize>
 		
@@ -135,6 +147,14 @@
 			
 			<li>
 				<a class="fNiv" href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a>
+			</li>
+			
+			<li>
+				<a class="fNiv" href="item/list.do"><spring:message code="master.page.list.item" /></a>
+			</li>
+			
+			<li>
+				<a class="fNiv" href="provider/list.do"><spring:message code="master.page.list.provider" /></a>
 			</li>
 		</security:authorize>
 		
