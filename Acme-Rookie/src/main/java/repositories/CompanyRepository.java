@@ -17,4 +17,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 	@Query("select c from Company c where (1*(Select count(p) from Position p where p.company.id =c.id and p.draft = false) = (select max(1*(select count(p) from Position p where p.company.id = c.id and p.draft = false)) from Company c))")
 	Collection<Company> getCompaniesWithMoreOffersOfPositions();
+
+	@Query("select c from Company c where c.userAccount.authorities.size > 0")
+	Collection<Company> findAllNonEliminated();
 }

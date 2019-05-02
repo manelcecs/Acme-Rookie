@@ -74,7 +74,6 @@ public class AdminConfigService {
 
 		return adminConfig;
 	}
-
 	public boolean existSpamWord(final String s) {
 		final String palabras[] = s.split("[.,:;()¿?" + " " + "\t!¡]");
 		final List<String> listaPalabras = Arrays.asList(palabras);

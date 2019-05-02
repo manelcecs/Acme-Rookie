@@ -2298,6 +2298,7 @@
 
 		<property name="company" ref="company2" />
 		<property name="ticker" ref="ticker20" />
+		<property name="auditor" ref="auditor0"/>
 	</bean>
 	<bean class="domain.Ticker" id="ticker20">
 		<property name="identifier" value="AINC-1099" />
@@ -3538,6 +3539,15 @@
 		<property name="moment" value="12/31/2199" />
 		<property name="text" value="Los problemas no son lo suficientemente específicos" />
 		<property name="position" ref="position33" />
+		
+	</bean>
+	
+	<bean id="audit05" class="domain.Audit">
+		<property name="draft" value="false" />
+		<property name="score" value="10" />
+		<property name="moment" value="12/31/2019" />
+		<property name="text" value="Es ambiguo" />
+		<property name="position" ref="position20" />
 		
 	</bean>
 	

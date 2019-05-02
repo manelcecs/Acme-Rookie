@@ -87,19 +87,19 @@ public class AdministratorController extends AbstractController {
 
 	}
 
-//	@RequestMapping(value = "/computeScore", method = RequestMethod.GET)
-//	public ModelAndView computeScore() {
-//		ModelAndView result;
-//		try {
-//			this.companyService.computeScore();
-//			result = this.processModelAndView();
-//		} catch (final Exception e) {
-//			result = this.processModelAndView("administrator.commit.error");
-//		}
-//		return result;
-//
-//	}
-	
+	@RequestMapping(value = "/computeScore", method = RequestMethod.GET)
+	public ModelAndView computeScore() {
+		ModelAndView result;
+		try {
+			this.companyService.computeScore();
+			result = this.processModelAndView();
+		} catch (final Exception e) {
+			result = this.processModelAndView("administrator.commit.error");
+		}
+		return result;
+
+	}
+
 	protected ModelAndView processModelAndView() {
 		return this.processModelAndView(null);
 	}

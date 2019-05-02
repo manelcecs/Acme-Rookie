@@ -28,4 +28,7 @@ public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	@Query("select a from Actor a where a.id = ?1")
 	Actor getActor(int idActor);
 
+	@Query("select a from Actor a join a.userAccount.authorities au where a.userAccount.authorities.size > 0 and  au.authority != 'ADMINISTRATOR'")
+	Collection<Actor> findNonEliminatedActorsLessAdmin();
+
 }

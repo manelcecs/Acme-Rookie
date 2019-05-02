@@ -56,7 +56,7 @@ public class MessageBoxController extends AbstractController {
 		} else
 			result = this.listModelAndView(boxToGo);
 
-		result.addObject("requestURI", "messageBox/show.do?idBox=" + idBox);
+		result.addObject("requestURI", "messageBox/display.do?idBox=" + idBox);
 		return result;
 	}
 

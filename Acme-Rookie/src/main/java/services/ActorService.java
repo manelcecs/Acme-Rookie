@@ -490,4 +490,7 @@ public class ActorService {
 		this.actorRepository.flush();
 	}
 
+	public Collection<Actor> findNonEliminatedActorsLessAdmin() {
+		return this.actorRepository.findNonEliminatedActorsLessAdmin();
+	}
 }

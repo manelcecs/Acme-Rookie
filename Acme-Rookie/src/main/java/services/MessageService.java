@@ -256,8 +256,7 @@ public class MessageService {
 		Assert.isTrue(config.getNameChanged());
 
 		final Actor sender = this.administratorService.getOne();
-		//FIXME: ¿ENVIAR NOTIFICACION A LOS ADMINS TAMBIEN?
-		final Collection<Actor> recipients = this.actorService.findNonEliminatedActors();
+		final Collection<Actor> recipients = this.actorService.findNonEliminatedActorsLessAdmin();
 		final String systemName = config.getSystemName();
 		//FIXME: CODIFICACION
 		final String body = "We inform you that the name of the system has been changed. Now we are: " + systemName + "! | Le informamos que el nombre del sistema ha cambiado. ¡Ahora somos: " + systemName + "!";
@@ -330,7 +329,8 @@ public class MessageService {
 
 	public boolean checkMessagePermissions(final Message message) {
 		final Actor actorPrincipal = this.actorService.findByUserAccount(LoginService.getPrincipal());
-		return message.getSender().equals(actorPrincipal) || message.getRecipients().contains(actorPrincipal);
+		final Collection<Actor> recipients = this.getRecipients(message.getId());
+		return message.getSender().equals(actorPrincipal) || recipients.contains(actorPrincipal);
 	}
 
 	public void flush() {
