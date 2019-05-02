@@ -82,7 +82,7 @@ public class AdministratorAdministratorController extends AbstractController {
 		} catch (final ValidationException oops) {
 			res = this.createModelAndViewEdit(administrator);
 		} catch (final Throwable oops) {
-			res = this.createModelAndViewEdit(administrator);
+			res = this.createModelAndViewEdit(administrator, "administrator.edit.commit.error");
 		}
 		return res;
 	}
