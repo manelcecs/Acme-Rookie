@@ -54,7 +54,7 @@ public class AdminConfigService {
 		adminConfig.setSystemName(adminConfigForm.getSystemName());
 		adminConfig.setWelcomeMessageEN(adminConfigForm.getWelcomeMessageEN());
 		adminConfig.setWelcomeMessageES(adminConfigForm.getWelcomeMessageES());
-		adminConfig.setflatRate(adminConfigForm.getFlatRate());
+		adminConfig.setFlatRate(adminConfigForm.getFlatRate());
 		adminConfig.setVAT(adminConfigForm.getVAT());
 
 		final Collection<String> spamWords = adminConfig.getSpamWords();

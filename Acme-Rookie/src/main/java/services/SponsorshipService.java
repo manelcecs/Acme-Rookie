@@ -18,6 +18,7 @@ import repositories.SponsorshipRepository;
 import security.LoginService;
 import utiles.ValidateCreditCard;
 import domain.AdminConfig;
+import domain.Position;
 import domain.Sponsorship;
 import forms.SponsorshipForm;
 
@@ -44,15 +45,23 @@ public class SponsorshipService {
 
 	public void save(final Sponsorship sponsorship) {
 		Assert.isTrue(LoginService.getPrincipal().equals(sponsorship.getProvider().getUserAccount()));
+		final Double flateRate = this.adminConfigService.getAdminConfig().getFlatRate();
+		if (sponsorship.getId() == 0)
+			Assert.isTrue(sponsorship.getFlatRateApplied().equals(flateRate));
+		for (final Position position : sponsorship.getPositions())
+			Assert.isTrue(!position.getDraft());
 
 		this.sponsorshipRepository.save(sponsorship);
 	}
 	public Collection<Sponsorship> findAllByProvider(final int idProvider) {
+		Assert.isTrue(this.providerService.findOne(idProvider).getUserAccount().equals(LoginService.getPrincipal()));
 		return this.sponsorshipRepository.findAllByProvider(idProvider);
 	}
 
 	public Sponsorship findOne(final int idSponsorship) {
-		return this.sponsorshipRepository.findOne(idSponsorship);
+		final Sponsorship sponsorship = this.sponsorshipRepository.findOne(idSponsorship);
+		Assert.isTrue(LoginService.getPrincipal().equals(sponsorship.getProvider().getUserAccount()));
+		return sponsorship;
 	}
 
 	public Sponsorship reconstruct(final SponsorshipForm sponsorshipForm, final BindingResult binding) {
@@ -60,8 +69,8 @@ public class SponsorshipService {
 
 		if (sponsorshipForm.getId() == 0) {
 			result = this.create();
-			result.setFlatRateApplied(this.adminConfigService.getAdminConfig().getFlatRate());
 			result.setProvider(this.providerService.findByPrincipal(LoginService.getPrincipal().getId()));
+			result.setFlatRateApplied(this.adminConfigService.getAdminConfig().getFlatRate());
 		} else
 			result = this.findOne(sponsorshipForm.getId());
 
@@ -113,5 +122,9 @@ public class SponsorshipService {
 		final Double flatRateWithVAT = flatRate + flatRate * (adminConfig.getVAT() / 100);
 
 		return flatRateWithVAT;
+	}
+
+	public void flush() {
+		this.sponsorshipRepository.flush();
 	}
 }
