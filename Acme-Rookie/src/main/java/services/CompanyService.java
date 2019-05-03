@@ -56,6 +56,8 @@ public class CompanyService {
 		res.setBanned(false);
 		res.setMessageBoxes(this.messageBoxService.initializeNewUserBoxes());
 
+		res.setScore(null);
+
 		return res;
 	}
 
@@ -185,6 +187,17 @@ public class CompanyService {
 			throw new ValidationException();
 
 		return result;
+	}
+
+	public Collection<Company> findAll() {
+		return this.companyRepository.findAll();
+	}
+
+	//DASHBOARD----------------------------------------------------
+
+	public Collection<Company> getCompaniesWithMoreOffersOfPositions() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.companyRepository.getCompaniesWithMoreOffersOfPositions();
 	}
 
 	public Boolean validateEmail(final String email) {

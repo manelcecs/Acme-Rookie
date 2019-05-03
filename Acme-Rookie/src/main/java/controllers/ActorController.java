@@ -19,6 +19,7 @@ import services.ActorService;
 import services.AdministratorService;
 import services.AnswerService;
 import services.ApplicationService;
+import services.AuditorService;
 import services.CompanyService;
 import services.CurriculaService;
 import services.EducationDataService;
@@ -28,6 +29,7 @@ import services.PersonalDataService;
 import services.PositionDataService;
 import services.PositionService;
 import services.ProblemService;
+import services.ProviderService;
 import services.RookieService;
 import services.SocialProfileService;
 import utiles.AuthorityMethods;
@@ -38,6 +40,8 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Answer;
 import domain.Application;
+import domain.Audit;
+import domain.Auditor;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
@@ -47,6 +51,7 @@ import domain.PersonalData;
 import domain.Position;
 import domain.PositionData;
 import domain.Problem;
+import domain.Provider;
 import domain.Rookie;
 import domain.SocialProfile;
 
@@ -98,6 +103,15 @@ public class ActorController extends AbstractController {
 
 	@Autowired
 	private ApplicationService			applicationService;
+
+	@Autowired
+	private ProviderService				providerService;
+
+	@Autowired
+	private AuditorService				auditorService;
+
+	@Autowired
+	private ItemService					itemService;
 
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -169,6 +183,21 @@ public class ActorController extends AbstractController {
 			final Company company = this.companyService.findOne(actor.getId());
 			result.addObject("company", company);
 			break;
+
+		case "AUDITOR":
+			final Auditor auditor = this.auditorService.findOne(actor.getId());
+			result.addObject("auditor", auditor);
+			final Collection<Audit> audits = this.auditService.findAllAuditor(actor.getId());//TODO: mirar bien el servicio
+			result.addObject("audits", audits);
+			break;
+
+		case "PROVIDER":
+			final Provider provider = this.providerService.findOne(actor.getId());
+			result.addObject("provider", provider);
+			//TODO: preguntar como añadir en enlace
+			//			final String itemsRef = this.itemService.findAllProvider(actor.getId());//TODO: mirar bien el servicio
+			//			result.addObject("itemsRef", itemsRef);
+			break;
 		}
 
 		result.addObject("socialProfiles", socialProfiles);
@@ -202,6 +231,20 @@ public class ActorController extends AbstractController {
 			final Company company = this.companyService.findByPrincipal(LoginService.getPrincipal());
 			result = new ModelAndView("company/edit");
 			result.addObject("company", company);
+			result.addObject("edit", true);
+			break;
+
+		case "AUDITOR":
+			final Auditor auditor = this.auditorService.findByPrincipal(LoginService.getPrincipal());
+			result = new ModelAndView("auditor/edit");
+			result.addObject("auditor", auditor);
+			result.addObject("edit", true);
+			break;
+
+		case "PROVIDER":
+			final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
+			result = new ModelAndView("provider/edit");
+			result.addObject("provider", provider);
 			result.addObject("edit", true);
 			break;
 		default:
@@ -282,6 +325,18 @@ public class ActorController extends AbstractController {
 			final Collection<Problem> problems = this.problemService.getProblemsOfCompany(company.getId());
 			result.addObject("problems", problems);
 
+			break;
+
+		case "AUDITOR"://TODO: preguntar por qué campos hay que rellenar
+			final Auditor auditor = this.auditorService.findByPrincipal(LoginService.getPrincipal());
+			result.addObject("auditor", auditor);
+			result.addObject("edit", true);
+			break;
+
+		case "PROVIDER":
+			final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
+			result.addObject("provider", provider);
+			result.addObject("edit", true);
 			break;
 		}
 		result.addObject("socialProfiles", socialProfiles);

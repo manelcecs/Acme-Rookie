@@ -27,7 +27,12 @@
 					<li>
 						<a href="adminConfig/administrator/display.do"><spring:message code="master.page.administrator.configuration" /></a>
 					</li>
-					<li><a href="administrator/administrator/register.do"><spring:message code="master.page.administrator.register" /></a></li>
+					<li>
+					<a href="administrator/administrator/register.do"><spring:message code="master.page.administrator.register" /></a>
+					</li>
+					<li>
+					<a href="auditor/administrator/register.do"><spring:message code="master.page.auditor.register" /></a>
+					</li>
 					<li>
 						<a href="administrator/process.do"><spring:message code="master.page.process.launch" /></a>
 					</li>					
@@ -89,7 +94,9 @@
 			<li><a class="fNIv"><spring:message code="master.page.register" /></a>
 				<ul><li class="arrow"></li>
 					<li><a href="company/register.do"><spring:message code="master.page.register.company" /></a></li>
-					<li><a href="rookie/register.do"><spring:message code="master.page.register.rookie" /></a></li></ul>
+					<li><a href="rookie/register.do"><spring:message code="master.page.register.rookie" /></a></li>
+					<li><a href="provider/register.do"><spring:message code="master.page.register.provider" /></a></li>
+					</ul>
 			</li>
 			
 			<li>
