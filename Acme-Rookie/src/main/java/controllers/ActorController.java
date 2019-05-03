@@ -19,10 +19,12 @@ import services.ActorService;
 import services.AdministratorService;
 import services.AnswerService;
 import services.ApplicationService;
+import services.AuditService;
 import services.AuditorService;
 import services.CompanyService;
 import services.CurriculaService;
 import services.EducationDataService;
+import services.ItemService;
 import services.MessageService;
 import services.MiscellaneousDataService;
 import services.PersonalDataService;
@@ -40,7 +42,6 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Answer;
 import domain.Application;
-import domain.Audit;
 import domain.Auditor;
 import domain.Company;
 import domain.Curricula;
@@ -109,6 +110,9 @@ public class ActorController extends AbstractController {
 
 	@Autowired
 	private AuditorService				auditorService;
+
+	@Autowired
+	private AuditService				auditService;
 
 	@Autowired
 	private ItemService					itemService;
@@ -187,8 +191,7 @@ public class ActorController extends AbstractController {
 		case "AUDITOR":
 			final Auditor auditor = this.auditorService.findOne(actor.getId());
 			result.addObject("auditor", auditor);
-			final Collection<Audit> audits = this.auditService.findAllAuditor(actor.getId());//TODO: mirar bien el servicio
-			result.addObject("audits", audits);
+
 			break;
 
 		case "PROVIDER":
