@@ -3151,7 +3151,7 @@
 				<value>ha sido seleccionado</value>
 			</list>
 		</property>
-		<property name="flatRate" value="3000" />
+		<property name="flatRate" value="3000.0" />
 		<property name="VAT" value="21" />
 	</bean>
 
