@@ -204,6 +204,7 @@ public class CompanyService {
 	}
 
 	public void computeScore() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		//TODO INTENTAR SACAR EL MAXIMO DIRECTAMETE POR CONSULTA CUANDO SAQUE EL MAXIMO Y EL MINIMO POR CONSULTA
 		final Double max = this.auditService.maxScoreOfCompanies();
 		final Double min = this.auditService.minScoreOfCompanies();
