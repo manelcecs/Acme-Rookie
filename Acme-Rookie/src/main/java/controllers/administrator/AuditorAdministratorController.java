@@ -18,7 +18,7 @@ import domain.Auditor;
 import forms.AuditorForm;
 
 @Controller
-@RequestMapping("/adminsitrator/provider")
+@RequestMapping("/auditor/administrator")
 public class AuditorAdministratorController extends AbstractController {
 
 	@Autowired
@@ -43,7 +43,7 @@ public class AuditorAdministratorController extends AbstractController {
 		try {
 			final Auditor auditor = this.auditorService.reconstruct(auditorForm, binding);
 			this.auditorService.save(auditor);
-			res = new ModelAndView("redirect:/actor/display.do");
+			res = new ModelAndView("redirect:/");
 		} catch (final ValidationException oops) {
 			res = this.createModelAndView(auditorForm);
 		} catch (final Throwable oops) {

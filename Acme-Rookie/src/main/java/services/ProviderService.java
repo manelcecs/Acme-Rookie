@@ -127,6 +127,7 @@ public class ProviderService {
 		result.setPhoneNumber(AddPhoneCC.addPhoneCC(this.adminConfigService.getAdminConfig().getCountryCode(), providerForm.getPhoneNumber()));
 		result.setPhoto(providerForm.getPhoto());
 		result.setSurnames(ValidatorCollection.deleteStringsBlanksInCollection(providerForm.getSurnames()));
+		result.setProviderMake(providerForm.getProviderMake());
 
 		result.setCreditCard(providerForm.getCreditCard());
 
@@ -158,6 +159,7 @@ public class ProviderService {
 		result.setPhoto(provider.getPhoto());
 		result.setVatNumber(provider.getVatNumber());
 		result.setSurnames(ValidatorCollection.deleteStringsBlanksInCollection(provider.getSurnames()));
+		result.setProviderMake(provider.getProviderMake());
 
 		result.setCreditCard(provider.getCreditCard());
 

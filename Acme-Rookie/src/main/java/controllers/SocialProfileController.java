@@ -18,13 +18,17 @@ import security.LoginService;
 import security.UserAccount;
 import services.ActorService;
 import services.AdministratorService;
+import services.AuditorService;
 import services.CompanyService;
+import services.ProviderService;
 import services.RookieService;
 import services.SocialProfileService;
 import utiles.AuthorityMethods;
 import domain.Actor;
 import domain.Administrator;
+import domain.Auditor;
 import domain.Company;
+import domain.Provider;
 import domain.Rookie;
 import domain.SocialProfile;
 
@@ -46,6 +50,12 @@ public class SocialProfileController extends AbstractController {
 
 	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private ProviderService			providerService;
+
+	@Autowired
+	private AuditorService			auditorService;
 
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -144,6 +154,16 @@ public class SocialProfileController extends AbstractController {
 		case "COMPANY":
 			final Company company = this.companyService.findOne(actor.getId());
 			result.addObject("company", company);
+			break;
+
+		case "AUDITOR":
+			final Auditor auditor = this.auditorService.findOne(actor.getId());
+			result.addObject("auditor", auditor);
+			break;
+
+		case "PROVIDER":
+			final Provider provider = this.providerService.findOne(actor.getId());
+			result.addObject("provider", provider);
 			break;
 		}
 

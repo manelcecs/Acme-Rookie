@@ -49,6 +49,10 @@
 		<value>/views/miscellaneousData/messages</value>
 		<value>/views/personalData/messages</value>
 		<value>/views/positionData/messages</value>
+		
+		<value>/views/provider/messages</value>
+		<value>/views/auditor/messages</value>
+		
 	</util:list>
 
 </beans>

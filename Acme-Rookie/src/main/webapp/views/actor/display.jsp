@@ -144,6 +144,85 @@
 		<br />
 
 	</jstl:when>
+	
+	<jstl:when test="${authority == 'PROVIDER'}">
+		<b><spring:message code="actor.name" /></b>:
+		<jstl:out value="${provider.name }" />
+		<br />
+		<b><spring:message code="actor.surname" /></b>:
+		<jstl:forEach items="${provider.surnames }" var="surname">
+			<jstl:out value="${surname }" />
+		</jstl:forEach>
+		<br />
+		<b><spring:message code="actor.provider.providerMake" /></b>:
+		<jstl:out value="${provider.providerMake }" />
+		<br />
+		<b><spring:message code="actor.photo" /></b>:
+		<jstl:out value="${provider.photo }" />
+		<br />
+		<b><spring:message code="actor.email" /></b>:
+		<jstl:out value="${provider.email }" />
+		<br />
+		<b><spring:message code="actor.address" /></b>:
+		<jstl:out value="${provider.address }" />
+		<br />
+		<b><spring:message code="actor.phoneNumber" /></b>:
+		<jstl:out value="${provider.phoneNumber }" />
+
+		<%-- <b><spring:message code="actor.provider.items" /></b>:
+		<a href='/item/list.do?providerId='"<jstl:out value="${itemsRef}" />" ><spring:message code="actor.provider.items" /></a>
+ --%>
+		<br />
+		<security:authorize access="hasRole('ADMINISTRATOR')">
+			<b><spring:message code="actor.spammer" /></b>
+			<jstl:if test="${ provider.spammer eq null}">
+				<jstl:out value="N/A" />
+			</jstl:if>
+			<jstl:if test="${ provider.spammer != null }">
+				<jstl:out value="${provider.spammer }" />
+			</jstl:if>
+		</security:authorize>
+
+		<br />
+
+	</jstl:when>
+	
+	<jstl:when test="${authority == 'AUDITOR'}">
+		<b><spring:message code="actor.name" /></b>:
+		<jstl:out value="${auditor.name }" />
+		<br />
+		<b><spring:message code="actor.surname" /></b>:
+		<jstl:forEach items="${auditor.surnames }" var="surname">
+			<jstl:out value="${surname }" />
+		</jstl:forEach>
+		<br />
+		<b><spring:message code="actor.photo" /></b>:
+		<jstl:out value="${auditor.photo }" />
+		<br />
+		<b><spring:message code="actor.email" /></b>:
+		<jstl:out value="${auditor.email }" />
+		<br />
+		<b><spring:message code="actor.address" /></b>:
+		<jstl:out value="${auditor.address }" />
+		<br />
+		<b><spring:message code="actor.phoneNumber" /></b>:
+		<jstl:out value="${auditor.phoneNumber }" />
+
+		<br />
+		<security:authorize access="hasRole('ADMINISTRATOR')">
+			<b><spring:message code="actor.spammer" /></b>
+			<jstl:if test="${ auditor.spammer eq null}">
+				<jstl:out value="N/A" />
+			</jstl:if>
+			<jstl:if test="${ auditor.spammer != null }">
+				<jstl:out value="${auditor.spammer }" />
+			</jstl:if>
+		</security:authorize>
+
+		<br />
+
+	</jstl:when>
+	
 </jstl:choose>
 
 <!-- Social profiles table -->
