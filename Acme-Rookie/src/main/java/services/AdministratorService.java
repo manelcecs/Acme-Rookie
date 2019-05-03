@@ -311,6 +311,11 @@ public class AdministratorService {
 		return this.adminRepository.getSDOfAuditScoreOfCompany();
 	}
 
+	public Integer getMaximumOfAuditScore() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfAuditScore();
+	}
+
 	public Double getAvgOfSponsorshipsPerProvider() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getAvgOfSponsorshipsPerProvider();
@@ -351,9 +356,9 @@ public class AdministratorService {
 		return this.adminRepository.getSDOfSponsorshipsPerPosition();
 	}
 
-	public Double getAvgSalaryOfPositionWithTheHighestAvgOfAuditScore() {
+	public Double getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.adminRepository.getAvgSalaryOfPositionWithTheHighestAvgOfAuditScore();
+		return this.adminRepository.getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore();
 	}
 
 	public Boolean validateEmail(final String email) {

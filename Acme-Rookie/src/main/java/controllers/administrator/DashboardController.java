@@ -12,10 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 import services.CompanyService;
 import services.PositionService;
+import services.ProviderService;
 import services.RookieService;
 import controllers.AbstractController;
 import domain.Company;
 import domain.Position;
+import domain.Provider;
 import domain.Rookie;
 
 @Controller
@@ -33,6 +35,9 @@ public class DashboardController extends AbstractController {
 
 	@Autowired
 	private RookieService			rookieService;
+
+	@Autowired
+	private ProviderService			providerService;
 
 
 	@RequestMapping(value = "/administrator/display", method = RequestMethod.GET)
@@ -176,6 +181,97 @@ public class DashboardController extends AbstractController {
 
 		final Collection<Company> companiesWithMoreOffersOfPositions = this.companyService.getCompaniesWithMoreOffersOfPositions();
 		result.addObject("companiesWithMoreOffersOfPositions", companiesWithMoreOffersOfPositions);
+		//ACME-ROOKIE-------------------------------------------------------
+
+		final Collection<Object[]> avgOfAuditScoreOfPosition = this.administratorService.getAvgOfAuditScoreOfPosition();
+		result.addObject("avgOfAuditScoreOfPosition", avgOfAuditScoreOfPosition);
+
+		final Collection<Object[]> minimumOfAuditScoreOfPosition = this.administratorService.getMinimumOfAuditScoreOfPosition();
+		result.addObject("minimumOfAuditScoreOfPosition", minimumOfAuditScoreOfPosition);
+
+		final Collection<Object[]> maximumOfAuditScoreOfPosition = this.administratorService.getMaximumOfAuditScoreOfPosition();
+		result.addObject("maximumOfAuditScoreOfPosition", maximumOfAuditScoreOfPosition);
+
+		final Collection<Object[]> sDOfAuditScoreOfPosition = this.administratorService.getSDOfAuditScoreOfPosition();
+		result.addObject("sDOfAuditScoreOfPosition", sDOfAuditScoreOfPosition);
+
+		final Collection<Object[]> avgOfAuditScoreOfCompany = this.administratorService.getAvgOfAuditScoreOfCompany();
+		result.addObject("avgOfAuditScoreOfCompany", avgOfAuditScoreOfCompany);
+
+		final Collection<Object[]> minimumOfAuditScoreOfCompany = this.administratorService.getMinimumOfAuditScoreOfCompany();
+		result.addObject("minimumOfAuditScoreOfCompany", minimumOfAuditScoreOfCompany);
+
+		final Collection<Object[]> maximumOfAuditScoreOfCompany = this.administratorService.getMaximumOfAuditScoreOfCompany();
+		result.addObject("maximumOfAuditScoreOfCompany", maximumOfAuditScoreOfCompany);
+
+		final Collection<Object[]> sDOfAuditScoreOfCompany = this.administratorService.getSDOfAuditScoreOfCompany();
+		result.addObject("sDOfAuditScoreOfCompany", sDOfAuditScoreOfCompany);
+
+		final Double avgOfSponsorshipsPerProvider = this.administratorService.getAvgOfSponsorshipsPerProvider();
+		if (avgOfSponsorshipsPerProvider != null)
+			result.addObject("avgOfSponsorshipsPerProvider", avgOfSponsorshipsPerProvider);
+		else
+			result.addObject("avgOfSponsorshipsPerProvider", 0.0);
+
+		final Integer minimumOfSponsorshipsPerProvider = this.administratorService.getMinimumOfSponsorshipsPerProvider();
+		if (minimumOfSponsorshipsPerProvider != null)
+			result.addObject("minimumOfSponsorshipsPerProvider", minimumOfSponsorshipsPerProvider);
+		else
+			result.addObject("minimumOfSponsorshipsPerProvider", 0);
+
+		final Integer maximumOfSponsorshipsPerProvider = this.administratorService.getMaximumOfSponsorshipsPerProvider();
+		if (maximumOfSponsorshipsPerProvider != null)
+			result.addObject("maximumOfSponsorshipsPerProvider", maximumOfSponsorshipsPerProvider);
+		else
+			result.addObject("maximumOfSponsorshipsPerProvider", 0);
+
+		final Double sDOfSponsorshipsPerProvider = this.administratorService.getSDOfSponsorshipsPerProvider();
+		if (sDOfSponsorshipsPerProvider != null)
+			result.addObject("sDOfSponsorshipsPerProvider", sDOfSponsorshipsPerProvider);
+		else
+			result.addObject("sDOfSponsorshipsPerProvider", 0.0);
+
+		final Double avgOfSponsorshipsPerPosition = this.administratorService.getAvgOfSponsorshipsPerPosition();
+		if (avgOfSponsorshipsPerPosition != null)
+			result.addObject("avgOfSponsorshipsPerPosition", avgOfSponsorshipsPerPosition);
+		else
+			result.addObject("avgOfSponsorshipsPerPosition", 0.0);
+
+		final Integer minimumOfSponsorshipsPerPosition = this.administratorService.getMinimumOfResultsInFinders();
+		if (minimumOfSponsorshipsPerPosition != null)
+			result.addObject("minimumOfSponsorshipsPerPosition", minimumOfSponsorshipsPerPosition);
+		else
+			result.addObject("minimumOfSponsorshipsPerPosition", 0);
+
+		final Integer maximumOfSponsorshipsPerPosition = this.administratorService.getMaximumOfSponsorshipsPerPosition();
+		if (maximumOfSponsorshipsPerPosition != null)
+			result.addObject("maximumOfSponsorshipsPerPosition", maximumOfSponsorshipsPerPosition);
+		else
+			result.addObject("maximumOfResultsInFinders", 0);
+
+		final Double sDOfSponsorshipsPerPosition = this.administratorService.getSDOfSponsorshipsPerPosition();
+		if (sDOfSponsorshipsPerPosition != null)
+			result.addObject("sDOfSponsorshipsPerPosition", sDOfSponsorshipsPerPosition);
+		else
+			result.addObject("sDOfSponsorshipsPerPosition", 0.0);
+
+		final Double avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore = this.administratorService.getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore();
+		if (avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore != null)
+			result.addObject("avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore", avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore);
+		else
+			result.addObject("avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore", 0.0);
+
+		final Collection<Company> companiesWithTheHighestAuditScore = this.companyService.getCompaniesWithTheHighestAuditScore();
+		result.addObject("companiesWithTheHighestAuditScore", companiesWithTheHighestAuditScore);
+
+		final Integer maximumOfAuditScore = this.administratorService.getMaximumOfAuditScore();
+		if (maximumOfAuditScore != null)
+			result.addObject("maximumOfAuditScore", maximumOfAuditScore);
+		else
+			result.addObject("maximumOfAuditScore", 0.0);
+
+		final Collection<Provider> providers10RateOfAvgOfSponsorships = this.providerService.getProviders10RateOfAvgOfSponsorships();
+		result.addObject("providers10RateOfAvgOfSponsorships", providers10RateOfAvgOfSponsorships);
 
 		result.addObject("requestURI", "dashboard/administrator/display.do");
 

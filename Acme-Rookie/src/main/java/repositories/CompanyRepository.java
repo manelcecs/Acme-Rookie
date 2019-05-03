@@ -19,6 +19,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	Collection<Company> getCompaniesWithMoreOffersOfPositions();
 
 	//ACME-ROOKIE-----------------------------------------------------------------
-	@Query("select c from Audit a join a.position p join p.company c where (a.score = 1*(select max(a.score), p from Audit a))")
+	@Query("select c from Audit a join a.position p join p.company c where (a.score = 1*(select max(a.score) from Audit a))")
 	Collection<Company> getCompaniesWithTheHighestAuditScore();
 }
