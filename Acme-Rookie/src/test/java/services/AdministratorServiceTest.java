@@ -19,6 +19,7 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.AbstractTest;
 import domain.Actor;
+import domain.AdminConfig;
 import domain.Administrator;
 import domain.CreditCard;
 
@@ -34,6 +35,15 @@ public class AdministratorServiceTest extends AbstractTest {
 
 	@Autowired
 	private ActorService			actorService;
+
+	@Autowired
+	private MessageService			messageService;
+
+	@Autowired
+	private AdminConfigService		adminConfigService;
+
+	@Autowired
+	private CompanyService			companyService;
 
 
 	/**
@@ -300,4 +310,182 @@ public class AdministratorServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
+	/*
+	 * This test reefer to requeriment 4.1
+	 * An actor who is authenticated as an administrator must be able to:
+	 * Run a procedure to notify the existing users of the rebranding. The system must
+	 * guarantee that the process is run only once
+	 * 1 positive
+	 * 6 negative
+	 */
+	@Test
+	public void notifyRebrandingDriver() {
+		final Object testingData[][] = {
+			{
+				/*
+				 * a)A admin notify rebranding
+				 * b)Positive
+				 * c)Sequence coverage: 100%
+				 * d)Data coverage: -
+				 */
+				"admin", true, null
+			}, {
+				/*
+				 * a)A admin notify rebranding (but no exists rebranding)
+				 * b)Negative
+				 * c)Sequence coverage: 12%
+				 * d)Data coverage: -
+				 */
+				"admin", false, IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A rookie notify rebranding
+				 * b)Negative
+				 * c)Sequence coverage: 4%
+				 * d)Data coverage: -
+				 */
+				"rookie0", true, IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A company notify rebranding
+				 * b)Negative
+				 * c)Sequence coverage: 4%
+				 * d)Data coverage: -
+				 */
+				"company0", true, IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A auditor notify rebranding
+				 * b)Negative
+				 * c)Sequence coverage: 4%
+				 * d)Data coverage: -
+				 */
+				"auditor0", true, IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A provider notify rebranding
+				 * b)Negative
+				 * c)Sequence coverage: 4%
+				 * d)Data coverage: -
+				 */
+				"provider0", true, IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A anonymous actor notify rebranding
+				 * b)Negative
+				 * c)Sequence coverage: 4%
+				 * d)Data coverage: -
+				 */
+				null, true, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.notifyRebrandingTemplate((String) testingData[i][0], (Boolean) testingData[i][1], (Class<?>) testingData[i][2]);
+	}
+	protected void notifyRebrandingTemplate(final String user, final Boolean nameChanged, final Class<?> expected) {
+		Class<?> caught;
+		caught = null;
+
+		try {
+			super.authenticate(user);
+
+			final AdminConfig adminConfig = this.adminConfigService.getAdminConfig();
+			adminConfig.setNameChanged(nameChanged);
+			this.adminConfigService.save(adminConfig);
+			this.adminConfigService.flush();
+
+			this.messageService.notificationRebranding();
+
+			super.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
+	/*
+	 * This test reefer to requeriment 4.3
+	 * Launch a process to compute an audit score for every company.
+	 * The audit score is computed as the average of the audit scores
+	 * that the positions offered by a company has got, but normalised
+	 * to range 0.00 up to +1.00 using a linear homothetic transformation.
+	 * Note that the audit score of a company that hasn't got any audits is not 0.00, but nil.
+	 * 1 positive
+	 * 6 negative
+	 */
+	@Test
+	public void computeScoreDriver() {
+		final Object testingData[][] = {
+			{
+				/*
+				 * a)A admin compute score
+				 * b)Positive
+				 * c)Sequence coverage: 100%
+				 * d)Data coverage: -
+				 */
+				"admin", null
+			}, {
+				/*
+				 * a)A rookie compute score
+				 * b)Negative
+				 * c)Sequence coverage: 8'3%
+				 * d)Data coverage: -
+				 */
+				"rookie0", IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A company actor compute score
+				 * b)Negative
+				 * c)Sequence coverage: 8'3%
+				 * d)Data coverage: -
+				 */
+				"company0", IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A provider actor compute score
+				 * b)Negative
+				 * c)Sequence coverage: 8'3%
+				 * d)Data coverage: -
+				 */
+				"provider0", IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A auditor actor compute score
+				 * b)Negative
+				 * c)Sequence coverage: 8'3%
+				 * d)Data coverage: -
+				 */
+				"auditor0", IllegalArgumentException.class
+			}, {
+				/*
+				 * a)A anonymous actor compute score
+				 * b)Negative
+				 * c)Sequence coverage: 8'3%
+				 * d)Data coverage: -
+				 */
+				null, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.computeScoreTemplate((String) testingData[i][0], (Class<?>) testingData[i][1]);
+	}
+	protected void computeScoreTemplate(final String user, final Class<?> expected) {
+		Class<?> caught;
+		caught = null;
+
+		try {
+			super.authenticate(user);
+
+			this.companyService.computeScore();
+
+			super.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
 }
