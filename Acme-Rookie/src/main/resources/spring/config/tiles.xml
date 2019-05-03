@@ -50,6 +50,8 @@
 		<value>/views/miscellaneousData/tiles.xml</value>
 		<value>/views/personalData/tiles.xml</value>
 		<value>/views/positionData/tiles.xml</value>
+		
+		<value>/views/audit/tiles.xml</value>
 		<value>/views/auditor/tiles.xml</value>
 		<value>/views/sponsorship/tiles.xml</value>
 		<value>/views/item/tiles.xml</value>

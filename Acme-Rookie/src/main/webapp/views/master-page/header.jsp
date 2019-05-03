@@ -188,6 +188,16 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('AUDITOR')">
+			<li>
+				<a class="fNiv" href="audit/auditor/list.do"><spring:message code="master.page.audit.list" /></a>
+			</li>
+			<li>
+				<a class="fNiv" href="position/auditor/list.do"><spring:message code="master.page.list.position" /></a>
+			</li>
+			
+		</security:authorize>
+		
 		
 	</ul>
 </div>

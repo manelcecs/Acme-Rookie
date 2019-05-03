@@ -11,6 +11,12 @@
 <jstl:if test="${owner}">
 	<acme:button url="position/company/create.do" type="button" code="position.list.create"/>
 </jstl:if>
+<security:authorize access="hasRole('AUDITOR')">
+	<acme:button url="position/auditor/list.do" type="button" code="position.list.auditor.list"/>
+	<acme:button url="position/auditor/listAssigned.do" type="button" code="position.list.auditor.listAssigned"/>
+	<acme:button url="position/auditor/listUnassigned.do" type="button" code="position.list.auditor.listUnassigned"/>	
+</security:authorize>
+
 
 <display:table pagesize="5" name="positions" id="position" requestURI="${requestURI}">
    		 <display:column titleKey="position.edit.title"><jstl:out value="${position.title}"/></display:column>
@@ -75,4 +81,11 @@
 
    		 
    		 </jstl:if>
+   		 <security:authorize access="hasRole('AUDITOR')">
+   		 	<display:column titleKey="position.list.assign">
+   		 	<jstl:if test="${position.auditor == null}">
+   					 <acme:button url="position/auditor/assign.do?idPosition=${position.id}" type="button" code="position.list.assign"/>   		 	
+   		 	</jstl:if>
+   			 </display:column>
+   		 </security:authorize>
 </display:table>

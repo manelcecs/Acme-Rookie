@@ -106,6 +106,10 @@
 		<security:intercept-url pattern="/problem/company/**" access="hasRole('COMPANY')" />
 		<security:intercept-url pattern="/item/provider/**" access="hasRole('PROVIDER')" />
 		
+		<!-- AUDITS  -->
+		<security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/position/auditor/**" access="hasRole('AUDITOR')" />
+		
 		
 		<security:intercept-url pattern="/actor/**"  access="isAuthenticated()"/>
 		<!-- ACTOR - DISPLAY/EDIT -->

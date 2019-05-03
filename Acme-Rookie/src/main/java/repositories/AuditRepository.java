@@ -1,6 +1,8 @@
 
 package repositories;
 
+import java.util.Collection;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +16,12 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 
 	@Query("select count(au) from Audit au where au.draft = false and au.position.draft = false and au.position.cancelled = false and au.position.company.banned = false and au.position.company.userAccount.authorities.size > 0 and au.position.company.id = ?1")
 	Integer getNumberOfACompany(int idCompany);
+
+	@Query("select a from Audit a where a.position.auditor.id = ?1")
+	Collection<Audit> getAuditsOfAnAuditor(int idAuditor);
+
+	@Query("select a from Audit a where a.position.id = ?1")
+	Collection<Audit> getAuditsOfPosition(int idPosition);
 
 	@Query("select avg(au.score) from Audit au where au.draft = false and au.position.draft = false and au.position.cancelled = false and au.position.company.banned = false and au.position.company.userAccount.authorities.size > 0 and au.position.company.id = ?1")
 	Double averageScoreOfCompany(int idCompany);
