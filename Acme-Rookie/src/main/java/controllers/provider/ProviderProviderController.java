@@ -19,45 +19,14 @@ import domain.Provider;
 import forms.ProviderForm;
 
 @Controller
-@RequestMapping("/provider")
-public class ProviderController extends AbstractController {
+@RequestMapping("/provider/provider")
+public class ProviderProviderController extends AbstractController {
 
 	@Autowired
 	private ProviderService	providerService;
 
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView register() {
-		ModelAndView res;
-
-		final ProviderForm providerForm = new ProviderForm();
-
-		res = this.createEditModelAndView(providerForm);
-
-		return res;
-	}
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(final ProviderForm providerForm, final BindingResult binding) {
-
-		ModelAndView res;
-
-		try {
-			final Provider providerRect = this.providerService.reconstruct(providerForm, binding);
-			this.providerService.save(providerRect);
-			res = new ModelAndView("redirect:/welcome/index.do");
-		} catch (final ValidationException oops) {
-			res = this.createEditModelAndView(providerForm);
-		} catch (final Throwable oops) {
-			res = this.createEditModelAndView(providerForm, "provider.edit.commit.error");
-
-		}
-
-		return res;
-
-	}
-
-	@RequestMapping(value = "/provider/save", method = RequestMethod.POST, params = "submit")
+	@RequestMapping(value = "/save", method = RequestMethod.POST, params = "submit")
 	public ModelAndView saveAdmin(final Provider provider, final BindingResult binding) {
 		ModelAndView res;
 

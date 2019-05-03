@@ -132,16 +132,16 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//-------------------------------------------------------------------
 
-	@Query("select avg(1*(select count(s) from Sponsorship s join s.position p where p.id = ps.id)) from Position ps")
+	@Query("select avg(1*(select count(s) from Sponsorship s join s.positions p where p.id = ps.id)) from Position ps")
 	Double getAvgOfSponsorshipsPerPosition();
 
-	@Query("select min(1*(select count(s) from Sponsorship s join s.position p where p.id = ps.id)) from Position ps")
+	@Query("select min(1*(select count(s) from Sponsorship s join s.positions p where p.id = ps.id)) from Position ps")
 	Integer getMinimumOfSponsorshipsPerPosition();
 
-	@Query("select max(1*(select count(s) from Sponsorship s join s.position p where p.id = ps.id)) from Position ps")
+	@Query("select max(1*(select count(s) from Sponsorship s join s.positions p where p.id = ps.id)) from Position ps")
 	Integer getMaximumOfSponsorshipsPerPosition();
 
-	@Query("select stddev(1*(select count(s) from Sponsorship s join s.position p where p.id = ps.id)) from Position ps")
+	@Query("select stddev(1*(select count(s) from Sponsorship s join s.positions p where p.id = ps.id)) from Position ps")
 	Double getSDOfSponsorshipsPerPosition();
 
 	//-------------------------------------------------------------------

@@ -69,7 +69,7 @@ public class SponsorshipService {
 
 		if (sponsorshipForm.getId() == 0) {
 			result = this.create();
-			result.setProvider(this.providerService.findByPrincipal(LoginService.getPrincipal().getId()));
+			result.setProvider(this.providerService.findByPrincipal(LoginService.getPrincipal()));
 			result.setFlatRateApplied(this.adminConfigService.getAdminConfig().getFlatRate());
 		} else
 			result = this.findOne(sponsorshipForm.getId());

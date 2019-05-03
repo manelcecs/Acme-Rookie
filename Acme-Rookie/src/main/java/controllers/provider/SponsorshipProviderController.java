@@ -133,7 +133,7 @@ public class SponsorshipProviderController extends AbstractController {
 	protected ModelAndView listModelAndView(final String messageCode) {
 		final ModelAndView result = new ModelAndView("sponsorship/list");
 
-		final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal().getId());
+		final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
 		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByProvider(provider.getId());
 
 		result.addObject("sponsorships", sponsorships);

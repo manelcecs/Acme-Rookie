@@ -141,16 +141,7 @@ public class CompanyService {
 		return result;
 	}
 
-	public Collection<Company> findAll() {
-		return this.companyRepository.findAll();
-	}
-
 	//DASHBOARD----------------------------------------------------
-
-	public Collection<Company> getCompaniesWithMoreOffersOfPositions() {
-		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.companyRepository.getCompaniesWithMoreOffersOfPositions();
-	}
 
 	public Collection<Company> getCompaniesWithTheHighestAuditScore() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
