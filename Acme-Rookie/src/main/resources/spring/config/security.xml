@@ -85,6 +85,10 @@
 		<security:intercept-url pattern="/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/problem/company/**" access="hasRole('COMPANY')" />
 		
+		<!-- AUDITS  -->
+		<security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/position/auditor/**" access="hasRole('AUDITOR')" />
+		
 		
 		<security:intercept-url pattern="/actor/**"  access="isAuthenticated()"/>
 		<!-- ACTOR - DISPLAY/EDIT -->

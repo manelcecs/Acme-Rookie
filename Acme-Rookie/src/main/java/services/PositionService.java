@@ -20,6 +20,7 @@ import security.LoginService;
 import security.UserAccount;
 import utiles.AuthorityMethods;
 import utiles.IntermediaryBetweenTransactions;
+import domain.Auditor;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
@@ -49,6 +50,9 @@ public class PositionService {
 
 	@Autowired(required = false)
 	private IntermediaryBetweenTransactions	intermediaryBetweenTransactions;
+
+	@Autowired
+	private AuditorService					auditorService;
 
 
 	public Position findOne(final int idPosition) {
@@ -229,5 +233,34 @@ public class PositionService {
 
 	public void flush() {
 		this.positionRepository.flush();
+	}
+
+	public Collection<Position> getPositionsByAuditor() {
+		Assert.isTrue(utiles.AuthorityMethods.chechAuthorityLogged("AUDITOR"));
+
+		final Auditor auditor = this.auditorService.findByPrincipal(LoginService.getPrincipal());
+
+		return this.positionRepository.getPositionsByAuditor(auditor.getId());
+	}
+
+	public Collection<Position> getPositionsWithoutAuditor() {
+		return this.positionRepository.getPositionsWithoutAuditor();
+	}
+
+	//Metodo de asignar una position a una auditor
+	public Position assignPosition(final int idPosition) {
+		Assert.isTrue(utiles.AuthorityMethods.chechAuthorityLogged("AUDITOR"));
+
+		final Position position = this.findOne(idPosition);
+
+		Assert.isTrue(position.getAuditor() == null);
+		Assert.isTrue(position.getDraft() == false && position.getCancelled() == false);
+
+		final Auditor auditor = this.auditorService.findByPrincipal(LoginService.getPrincipal());
+
+		position.setAuditor(auditor);
+
+		return this.positionRepository.save(position);
+
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AuditService;
 import services.PositionService;
 import services.ProblemService;
 import domain.Position;
@@ -24,6 +25,9 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	private ProblemService	problemService;
+
+	@Autowired
+	private AuditService	auditService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -58,6 +62,7 @@ public class PositionController extends AbstractController {
 			final Collection<Problem> problems = this.problemService.getProblemsOfPositionFinal(position.getId());
 			result.addObject("problems", problems);
 			result.addObject("requestURI", "position/display.do?idPosition=" + idPosition);
+			result.addObject("audits", this.auditService.getAuditsOfPosition(idPosition));
 		}
 
 		this.configValues(result);

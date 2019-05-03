@@ -44,6 +44,15 @@
 		<br />
 		<b><spring:message code="company.companyName" /></b>:
 		<jstl:out value="${company.companyName }" />
+<br />
+		<b><spring:message code="company.score" /></b>
+		<jstl:if test="${ company.score eq null}">
+			<jstl:out value="N/A" />
+		</jstl:if>
+		<jstl:if test="${ company.score != null }">
+			<jstl:out value="${company.score }" />
+		</jstl:if>
+
 
 		<br />
 		<security:authorize access="hasRole('ADMINISTRATOR')">
@@ -55,9 +64,9 @@
 				<jstl:out value="${company.spammer }" />
 			</jstl:if>
 
+		<br />
 		</security:authorize>
 
-		<br />
 
 	</jstl:when>
 

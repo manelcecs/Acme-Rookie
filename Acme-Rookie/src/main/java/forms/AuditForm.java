@@ -1,30 +1,21 @@
 
-package domain;
+package forms;
 
-import java.util.Date;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Access(AccessType.PROPERTY)
-public class Audit extends DomainEntity {
+import domain.DomainEntity;
+import domain.Position;
+
+public class AuditForm extends DomainEntity {
 
 	private boolean		draft;
 	private Integer		score;
-	private Date		moment;
 	private String		text;
 
 	private Position	position;
@@ -48,18 +39,6 @@ public class Audit extends DomainEntity {
 		this.score = score;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@NotNull
-	@Past
-	public Date getMoment() {
-		return this.moment;
-	}
-
-	public void setMoment(final Date moment) {
-		this.moment = moment;
-	}
-
 	@NotBlank
 	@SafeHtml
 	public String getText() {
@@ -72,6 +51,7 @@ public class Audit extends DomainEntity {
 
 	@Valid
 	@ManyToOne(optional = false)
+	@NotNull
 	public Position getPosition() {
 		return this.position;
 	}

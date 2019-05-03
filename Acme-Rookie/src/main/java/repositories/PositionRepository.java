@@ -49,4 +49,10 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select f.positions from Finder f where f.id = ?1")
 	Collection<Position> getPositionsByFinder(int idFinder);
 
+	@Query("select p from Position p where p.auditor.id = ?1")
+	Collection<Position> getPositionsByAuditor(int idAuditor);
+
+	@Query("select p from Position p where p.auditor = null and p.draft = false and p.cancelled = false")
+	Collection<Position> getPositionsWithoutAuditor();
+
 }

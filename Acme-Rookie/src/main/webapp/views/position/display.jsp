@@ -62,6 +62,13 @@
 
 </display:table>
 
+<h3><spring:message code="position.display.audit.title"/></h3>
+<display:table pagesize="5" name="audits" id="audit" requestURI="position/display.do?idPosition=${position.id}">
+   		 <display:column titleKey="position.display.audit.score"><jstl:out value="${audit.score}"/>/10</display:column>
+   		 <display:column titleKey="position.display.audit.moment"><jstl:out value="${audit.moment}"/></display:column>
+   		 <display:column titleKey="position.display.audit.text"><jstl:out value="${audit.text}"/></display:column>
+</display:table>
+
 
 
 
