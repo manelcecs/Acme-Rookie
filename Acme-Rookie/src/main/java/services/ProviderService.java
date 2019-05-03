@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.ProviderRepository;
 import security.UserAccount;
@@ -32,4 +33,15 @@ public class ProviderService {
 	public Provider findByPrincipal(final int idPrincipal) {
 		return this.providerRepository.findByPrincipal(idPrincipal);
 	}
+
+	public Collection<Provider> findAll() {
+		return this.providerRepository.findAll();
+	}
+
+	public Collection<Provider> getProviders10RateOfAvgOfSponsorships() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.providerRepository.getProviders10RateOfAvgOfSponsorships();
+
+	}
+
 }

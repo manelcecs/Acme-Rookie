@@ -150,6 +150,11 @@ public class CompanyService {
 		return this.companyRepository.getCompaniesWithMoreOffersOfPositions();
 	}
 
+	public Collection<Company> getCompaniesWithTheHighestAuditScore() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.companyRepository.getCompaniesWithTheHighestAuditScore();
+	}
+
 	public Company reconstruct(final Company company, final BindingResult binding) {
 
 		if (!this.validateEmail(company.getEmail()))

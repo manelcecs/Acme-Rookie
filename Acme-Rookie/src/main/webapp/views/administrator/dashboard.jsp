@@ -67,12 +67,15 @@
 		<th> <spring:message code='administrator.dashboard.minimumOfSalariesOffered'/> </th>
 		<th> <spring:message code='administrator.dashboard.maximumOfSalariesOffered'/> </th>
 		<th> <spring:message code='administrator.dashboard.sDOfSalariesOffered'/> 	  </th>
+		<th> <spring:message code="administrator.dashboard.avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore"/> </th>
 	</tr>
 	<tr>
 		<td> <jstl:out value="${avgOfSalariesOffered}"/>	</td>
 		<td> <jstl:out value="${minimumOfSalariesOffered}"/>	</td>
 		<td> <jstl:out value="${maximumOfSalariesOffered}"/>	</td>
 		<td> <jstl:out value="${sDOfSalariesOffered}"/>	</td>
+		<td> <jstl:out value="${avgOfSalaryOfPositionWithTheHighestAvgOfAuditScore}"/>	</td>
+		
 	</tr>
 </table>
 
@@ -127,5 +130,126 @@
 		<td> <jstl:out value="${ratioOfEmptyVsNotEmptyFinders}"/>	</td>
 	</tr>
 </table>
+
+<hr>
+
+<h3 id="auditScore"><spring:message code="administrator.dashboard.audit.score" /> </h3>
+
+<table>
+	<tr>
+		<th> <spring:message code="administrator.dashboard.avgOfAuditScoreOfPosition"/> </th>
+		<th> <spring:message code='administrator.dashboard.minimumOfAuditScoreOfPosition'/> </th>
+		<th> <spring:message code='administrator.dashboard.maximumOfAuditScoreOfPosition'/> </th>
+		<th> <spring:message code='administrator.dashboard.sDOfAuditScoreOfPosition'/> 	  </th>
+	</tr>
+	<tr>
+		<td>
+			<jstl:forEach var="var" items="${avgOfAuditScoreOfPosition}" >
+				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/> </li>
+				<br/>
+			</jstl:forEach>
+		</td>
+		<td>	
+			<jstl:forEach var="var" items="${minimumOfAuditScoreOfPosition}" >
+				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
+				<br/>	
+		</jstl:forEach>	
+		</td>
+		<td>
+			<jstl:forEach var="var" items="${maximumOfAuditScoreOfPosition}" >
+				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
+				<br/>	
+			</jstl:forEach>
+		</td>
+		<td>	
+			<jstl:forEach var="var" items="${sDOfAuditScoreOfPosition}" >
+				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
+				<br/>	
+			</jstl:forEach>	
+		</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<th> <spring:message code="administrator.dashboard.avgOfAuditScoreOfCompany"/> </th>
+		<th> <spring:message code='administrator.dashboard.minimumOfAuditScoreOfCompany'/> </th>
+		<th> <spring:message code='administrator.dashboard.maximumOfAuditScoreOfCompany'/> </th>
+		<th> <spring:message code='administrator.dashboard.sDOfAuditScoreOfCompany'/> 	  </th>
+	</tr>
+	<tr>
+		<td>
+			<jstl:forEach var="var" items="${avgOfAuditScoreOfCompany}" >
+				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
+				<br/>
+			</jstl:forEach>	
+		</td>
+		<td>
+			<jstl:forEach var="var" items="${minimumOfAuditScoreOfCompany}" >
+				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
+				<br/>
+			</jstl:forEach>	
+		</td>
+		<td>
+			<jstl:forEach var="var" items="${maximumOfAuditScoreOfCompany}" >
+				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
+				<br/>
+			</jstl:forEach>
+		</td>
+		<td>	
+			<jstl:forEach var="var" items="${sDOfAuditScoreOfCompany}" >
+				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
+				<br/>
+			</jstl:forEach>
+		</td>	
+	</tr>
+</table>
+
+<display:table pagesize="5" name="companiesWithTheHighestAuditScore" id="companyWithTheHighestAuditScore" requestURI="${requestURI}">
+	<display:column titleKey="administrator.dashboard.companiesWithTheHighestAuditScore">- <jstl:out value="${companyWithTheHighestAuditScore.companyName}"/>
+		<jstl:out value="(${companyWithTheHighestAuditScore.id}) : ${maximumOfAuditScore}"/></display:column>
+</display:table>
+
+<hr>
+
+<h3 id="sponsorship"><spring:message code="administrator.dashboard.sponsorship" /> </h3>
+
+<table>
+	<tr>
+		<th> <spring:message code="administrator.dashboard.avgOfSponsorshipsPerProvider"/> </th>
+		<th> <spring:message code='administrator.dashboard.minimumOfSponsorshipsPerProvider'/> </th>
+		<th> <spring:message code='administrator.dashboard.maximumOfSponsorshipsPerProvider'/> </th>
+		<th> <spring:message code='administrator.dashboard.sDOfSponsorshipsPerProvider'/> 	  </th>
+	</tr>
+	<tr>
+		<td> <jstl:out value="${avgOfSponsorshipsPerProvider}"/>	</td>
+		<td> <jstl:out value="${minimumOfSponsorshipsPerProvider}"/>	</td>
+		<td> <jstl:out value="${maximumOfSponsorshipsPerProvider}"/>	</td>
+		<td> <jstl:out value="${sDOfSponsorshipsPerProvider}"/>	</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<th> <spring:message code="administrator.dashboard.avgOfSponsorshipsPerPosition"/> </th>
+		<th> <spring:message code='administrator.dashboard.minimumOfSponsorshipsPerPosition'/> </th>
+		<th> <spring:message code='administrator.dashboard.maximumOfSponsorshipsPerPosition'/> </th>
+		<th> <spring:message code='administrator.dashboard.sDOfSponsorshipsPerPosition'/> 	  </th>
+	</tr>
+	<tr>
+		<td> <jstl:out value="${avgOfSponsorshipsPerPosition}"/>	</td>
+		<td> <jstl:out value="${minimumOfSponsorshipsPerPosition}"/>	</td>
+		<td> <jstl:out value="${maximumOfSponsorshipsPerPosition}"/>	</td>
+		<td> <jstl:out value="${sDOfSponsorshipsPerPosition}"/>	</td>
+	</tr>
+</table>
+
+<display:table pagesize="5" name="providers10RateOfAvgOfSponsorships" id="provider10RateOfAvgOfSponsorships" requestURI="${requestURI}">
+	<display:column titleKey="administrator.dashboard.providers10RateOfAvgOfSponsorships">- <jstl:out value="${provider10RateOfAvgOfSponsorships.name}"/>
+				<jstl:forEach var="surname" items="${provider10RateOfAvgOfSponsorships.surnames}" >
+					<jstl:out value=" ${surname}"/>
+				</jstl:forEach>
+				<jstl:out value="(${provider10RateOfAvgOfSponsorships.id}): ${maximumOfSponsorshipsPerPosition}"/></display:column>
+</display:table>
 
 

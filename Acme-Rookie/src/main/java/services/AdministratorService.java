@@ -270,6 +270,96 @@ public class AdministratorService {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getSDOfResultsInFinders();
 	}
+	//ACME-ROOKIE---------------------------------------------
+	public Collection<Object[]> getAvgOfAuditScoreOfPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfAuditScoreOfPosition();
+	}
+
+	public Collection<Object[]> getMinimumOfAuditScoreOfPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMinimumOfAuditScoreOfPosition();
+	}
+
+	public Collection<Object[]> getMaximumOfAuditScoreOfPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfAuditScoreOfPosition();
+	}
+
+	public Collection<Object[]> getSDOfAuditScoreOfPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getSDOfAuditScoreOfPosition();
+	}
+
+	public Collection<Object[]> getAvgOfAuditScoreOfCompany() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfAuditScoreOfCompany();
+	}
+
+	public Collection<Object[]> getMinimumOfAuditScoreOfCompany() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMinimumOfAuditScoreOfCompany();
+	}
+
+	public Collection<Object[]> getMaximumOfAuditScoreOfCompany() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfAuditScoreOfCompany();
+	}
+
+	public Collection<Object[]> getSDOfAuditScoreOfCompany() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getSDOfAuditScoreOfCompany();
+	}
+
+	public Integer getMaximumOfAuditScore() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfAuditScore();
+	}
+
+	public Double getAvgOfSponsorshipsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfSponsorshipsPerProvider();
+	}
+
+	public Integer getMinimumOfSponsorshipsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMinimumOfSponsorshipsPerProvider();
+	}
+
+	public Integer getMaximumOfSponsorshipsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfSponsorshipsPerProvider();
+	}
+
+	public Double getSDOfSponsorshipsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getSDOfSponsorshipsPerProvider();
+	}
+
+	public Double getAvgOfSponsorshipsPerPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfSponsorshipsPerPosition();
+	}
+
+	public Integer getMinimumOfSponsorshipsPerPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMinimumOfSponsorshipsPerProvider();
+	}
+
+	public Integer getMaximumOfSponsorshipsPerPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfSponsorshipsPerProvider();
+	}
+
+	public Double getSDOfSponsorshipsPerPosition() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getSDOfSponsorshipsPerPosition();
+	}
+
+	public Double getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore();
+	}
 
 	public Boolean validateEmail(final String email) {
 
