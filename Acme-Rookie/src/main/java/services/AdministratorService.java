@@ -361,6 +361,26 @@ public class AdministratorService {
 		return this.adminRepository.getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore();
 	}
 
+	public Double getAvgOfItemsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getAvgOfItemsPerProvider();
+	}
+
+	public Integer getMinimumOfItemsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMinimumOfItemsPerProvider();
+	}
+
+	public Integer getMaximumOfItemsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getMaximumOfItemsPerProvider();
+	}
+
+	public Double getSDOfItemsPerProvider() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		return this.adminRepository.getSDOfItemsPerProvider();
+	}
+
 	public Boolean validateEmail(final String email) {
 
 		Boolean valid = false;
