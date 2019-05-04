@@ -252,4 +252,31 @@
 				<jstl:out value="(${provider10RateOfAvgOfSponsorships.id}): ${maximumOfSponsorshipsPerPosition}"/></display:column>
 </display:table>
 
+<hr>
+
+<h3 id="item"><spring:message code="administrator.dashboard.item" /> </h3>
+
+<table>
+	<tr>
+		<th> <spring:message code="administrator.dashboard.avgOfItemsPerProvider"/> </th>
+		<th> <spring:message code='administrator.dashboard.minimumOfItemsPerProvider'/> </th>
+		<th> <spring:message code='administrator.dashboard.maximumOfItemsPerProvider'/> </th>
+		<th> <spring:message code='administrator.dashboard.sDOfItemsPerProvider'/> 	  </th>
+	</tr>
+	<tr>
+		<td> <jstl:out value="${avgOfItemsPerProvider}"/>	</td>
+		<td> <jstl:out value="${minimumOfItemsPerProvider}"/>	</td>
+		<td> <jstl:out value="${maximumOfItemsPerProvider}"/>	</td>
+		<td> <jstl:out value="${sDOfItemsPerProvider}"/>	</td>
+	</tr>
+</table>
+
+<display:table pagesize="5" name="top5OfProvidersByItems" id="top5OfProviderByItems" requestURI="${requestURI}">
+	<display:column titleKey="administrator.dashboard.top5OfProvidersByItems">- <jstl:out value="${top5OfProviderByItems[0].name}"/>
+				<jstl:forEach var="surname" items="${top5OfProviderByItems[0].surnames}" >
+					<jstl:out value=" ${surname}"/>
+				</jstl:forEach>
+				<jstl:out value="(${top5OfProviderByItems[0].id}): ${top5OfProviderByItems[1]}"/></display:column>
+</display:table>
+
 

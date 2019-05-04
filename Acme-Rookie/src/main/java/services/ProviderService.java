@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
@@ -169,12 +170,24 @@ public class ProviderService {
 			throw new ValidationException();
 
 		return result;
-}
+	}
+
+	//dashboard-----------------------------------------------------------------------
 
 	public Collection<Provider> getProviders10RateOfAvgOfSponsorships() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.providerRepository.getProviders10RateOfAvgOfSponsorships();
 
+	}
+
+	public List<Object[]> getTop5OfProvidersByItems() {
+		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
+		List<Object[]> result = this.providerRepository.getTop5OfProvidersByItems();
+
+		if (result.size() > 5)
+			result = result.subList(0, 5);
+
+		return result;
 	}
 
 }

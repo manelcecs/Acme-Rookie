@@ -148,4 +148,18 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	@Query("select avg(pt.salaryOffered) from Position pt where ((select avg(a.score) from Audit a join a.position p where p.id = pt.id and a.draft = false) = (select max(1*(select avg(a.score) from Audit a join a.position p where p.id = pos.id and a.draft = false)) from Position pos))")
 	Double getAvgOfSalaryOfPositionWithTheHighestAvgOfAuditScore();
+
+	//-------------------------------------------------------------------
+
+	@Query("select avg(1*(select count(i) from Item i where i.provider.id = p.id)) from Provider p")
+	Double getAvgOfItemsPerProvider();
+
+	@Query("select min(1*(select count(i) from Item i where i.provider.id = p.id)) from Provider p")
+	Integer getMinimumOfItemsPerProvider();
+
+	@Query("select max(1*(select count(i) from Item i where i.provider.id = p.id)) from Provider p")
+	Integer getMaximumOfItemsPerProvider();
+
+	@Query("select stddev(1*(select count(i) from Item i where i.provider.id = p.id)) from Provider p")
+	Double getSDOfItemsPerProvider();
 }

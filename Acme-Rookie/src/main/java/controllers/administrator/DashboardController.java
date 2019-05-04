@@ -273,6 +273,33 @@ public class DashboardController extends AbstractController {
 		final Collection<Provider> providers10RateOfAvgOfSponsorships = this.providerService.getProviders10RateOfAvgOfSponsorships();
 		result.addObject("providers10RateOfAvgOfSponsorships", providers10RateOfAvgOfSponsorships);
 
+		final Double avgOfItemsPerProvider = this.administratorService.getAvgOfItemsPerProvider();
+		if (avgOfItemsPerProvider != null)
+			result.addObject("avgOfItemsPerProvider", avgOfItemsPerProvider);
+		else
+			result.addObject("avgOfItemsPerProvider", 0.0);
+
+		final Integer minimumOfItemsPerProvider = this.administratorService.getMinimumOfItemsPerProvider();
+		if (minimumOfItemsPerProvider != null)
+			result.addObject("minimumOfItemsPerProvider", minimumOfItemsPerProvider);
+		else
+			result.addObject("minimumOfItemsPerProvider", 0);
+
+		final Integer maximumOfItemsPerProvider = this.administratorService.getMaximumOfItemsPerProvider();
+		if (maximumOfItemsPerProvider != null)
+			result.addObject("maximumOfItemsPerProvider", maximumOfItemsPerProvider);
+		else
+			result.addObject("maximumOfItemsPerProvider", 0);
+
+		final Double sDOfItemsPerProvider = this.administratorService.getSDOfItemsPerProvider();
+		if (sDOfItemsPerProvider != null)
+			result.addObject("sDOfItemsPerProvider", sDOfItemsPerProvider);
+		else
+			result.addObject("sDOfItemsPerProvider", 0.0);
+
+		final Collection<Object[]> top5OfProvidersByItems = this.providerService.getTop5OfProvidersByItems();
+		result.addObject("top5OfProvidersByItems", top5OfProvidersByItems);
+
 		result.addObject("requestURI", "dashboard/administrator/display.do");
 
 		this.configValues(result);
