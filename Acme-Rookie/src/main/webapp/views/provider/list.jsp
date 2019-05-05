@@ -17,7 +17,7 @@
 			<display:column titleKey="provider.list.make"><jstl:out value="${provider.providerMake}"/></display:column>
 		
 				<display:column titleKey="provider.list.seeMore">
-					<acme:button url="item/provider/display.do?idItem=${item.id}" type="button" code="provider.list.seeMore"/>
+					<acme:button url="actor/displayProvider.do?providerId=${provider.id}" type="button" code="provider.list.seeMore"/>
 				</display:column>
 
 				<display:column titleKey="provider.list.items">

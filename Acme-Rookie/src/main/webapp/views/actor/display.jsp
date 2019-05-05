@@ -169,9 +169,9 @@
 		<b><spring:message code="actor.phoneNumber" /></b>:
 		<jstl:out value="${provider.phoneNumber }" />
 
-		<%-- <b><spring:message code="actor.provider.items" /></b>:
-		<a href='/item/list.do?providerId='"<jstl:out value="${itemsRef}" />" ><spring:message code="actor.provider.items" /></a>
- --%>
+		<br/>
+		<b><spring:message code="actor.provider.items" /></b>:
+		<a href='item/list.do?idProvider=${provider.id}'><spring:message code="actor.provider.items" /></a>
 		<br />
 		<security:authorize access="hasRole('ADMINISTRATOR')">
 			<b><spring:message code="actor.spammer" /></b>

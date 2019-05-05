@@ -32,6 +32,7 @@
 		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
 		<security:intercept-url pattern="/search/display.do" access="permitAll" /> 
 		<security:intercept-url pattern="/actor/displayCompany.do" access="permitAll" />
+		<security:intercept-url pattern="/actor/displayProvider.do"  access="permitAll"/>
 		<security:intercept-url pattern="/finder/rookie/edit.do" access="hasRole('ROOKIE')" /> 
 		<security:intercept-url pattern="/application/rookie/**" access="hasRole('ROOKIE')" /> 
 		<security:intercept-url pattern="/answer/rookie/**" access="hasRole('ROOKIE')" /> 
@@ -110,8 +111,7 @@
 		<security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/position/auditor/**" access="hasRole('AUDITOR')" />
 		
-		
-		<security:intercept-url pattern="/actor/**"  access="isAuthenticated()"/>
+
 		<!-- ACTOR - DISPLAY/EDIT -->
 		<security:intercept-url pattern="/actor/edit.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/actor/display.do" access="isAuthenticated()" /> 
