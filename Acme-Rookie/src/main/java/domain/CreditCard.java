@@ -46,6 +46,7 @@ public class CreditCard {
 
 	@NotBlank
 	@CreditCardNumber
+	//@Pattern("$(16)[0-9]")
 	@SafeHtml
 	public String getNumber() {
 		return this.number;
