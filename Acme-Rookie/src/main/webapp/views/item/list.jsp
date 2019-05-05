@@ -7,10 +7,6 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<jstl:if test="${idProvider != null}">
-	<acme:button code="item.list.back" type="button"  url="item/provider/create.do"/>
-</jstl:if>
-
 <jstl:if test="${provider}">
 	<acme:button code="item.list.create" type="button"  url="item/provider/create.do"/>
 </jstl:if>
@@ -37,8 +33,8 @@
 					<acme:button url="item/display.do?idItem=${item.id}" type="button" code="item.list.seeMore"/>
 				</display:column>
 				<jstl:if test="${idProvider == null}">
-					<display:column titleKey="item.list.provider">
-							<jstl:out value="${item.provider.name}"/>
+					<display:column titleKey="item.list.providerMake">
+							<jstl:out value="${item.provider.providerMake}"/>
 					</display:column>
 ¡				<display:column titleKey="item.list.provider">
    					 <acme:button url="actor/displayProvider.do?idProvider=${item.provider.id}" type="button" code="item.list.provider"/>

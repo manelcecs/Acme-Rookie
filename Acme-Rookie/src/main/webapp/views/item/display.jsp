@@ -8,9 +8,7 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-
-<security:authorize access="hasRole('PROVIDER')"><acme:button code="item.display.back" type="button" url="/item/provider/list.do"/></security:authorize>
-<security:authorize access="not hasRole('PROVIDER')"><acme:button code="item.display.back" type="button" url="/item/list.do"/></security:authorize>
+<acme:button code="item.display.back" type="button" url="/item/list.do"/>
 <acme:text label="item.display.name" value="${item.name}"/>
 <acme:text label="item.display.description" value="${item.description}"/>
 
