@@ -7,7 +7,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 
@@ -23,8 +24,9 @@
 
 		<display:table pagesize="5" name="sponsorships" id="sponsorship" requestURI="${requestURI}">
 			<display:column titleKey="sponsorship.list.target" ><jstl:out value="${sponsorship.targetPageURL}"/> </display:column>
-			<display:column titleKey="sponsorship.list.banner" ><jstl:out value="${sponsorship.bannerURL}"/></display:column>
+			<display:column titleKey="sponsorship.list.banner" ><a target="_blank" href="<jstl:out value="${sponsorship.bannerURL}"/>" ><jstl:out value="${sponsorship.bannerURL}"/></a></display:column>
 			<display:column titleKey="sponsorship.list.flatRateApplied" ><jstl:out value="${sponsorship.flatRateApplied}"/></display:column>
+			<display:column titleKey="sponsorship.list.lengthPositions" ><jstl:out value="${fn:length(sponsorship.positions)}"/> </display:column>
 			<display:column><acme:button url="sponsorship/provider/display.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.display"/></display:column>	
 			<display:column><acme:button url="sponsorship/provider/edit.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.update"/></display:column>
 			<display:column><acme:button url="sponsorship/provider/delete.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.delete"/></display:column>
