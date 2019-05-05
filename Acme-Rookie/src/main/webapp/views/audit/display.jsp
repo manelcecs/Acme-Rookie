@@ -7,7 +7,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
-<security:authorize access="hasRole('AUDITOR')"><acme:button code="audit.display.back" type="button" url="/audit/auditor/list.do"/></security:authorize>
+<security:authorize access="hasRole('AUDITOR')">
+	<jstl:if test="${audit.draft}">
+		<acme:button code="audit.display.back" type="button" url="/audit/auditor/list.do"/>
+	</jstl:if>
+</security:authorize>
 <acme:button url="audit/auditor/edit.do?idAudit=${audit.id}" type="button" code="audit.display.edit"/>
 
 <acme:text label="audit.display.position.title" value="${audit.position.title}"/>

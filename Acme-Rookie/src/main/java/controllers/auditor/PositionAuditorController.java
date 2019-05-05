@@ -36,7 +36,7 @@ public class PositionAuditorController extends AbstractController {
 			result = new ModelAndView("redirect:listAssigned.do");
 		} catch (final Throwable oops) {
 			final Collection<Position> positionsAssigned = this.positionService.getPositionsByAuditor();
-			result = this.listModelAndView(positionsAssigned, "position/auditor/listUnassigned.do", "cannot.assign.position");
+			result = this.listModelAndView(positionsAssigned, "position/auditor/listAssigned.do", "cannot.assign.position", "position.list.assigned.title");
 			oops.printStackTrace();
 		}
 
@@ -46,23 +46,24 @@ public class PositionAuditorController extends AbstractController {
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final Collection<Position> allPositions = this.positionService.getAllPositionsFiltered();
-		return this.listModelAndView(allPositions, "position/auditor/list.do", null);
+		return this.listModelAndView(allPositions, "position/auditor/list.do", null, null);
 	}
 
 	@RequestMapping(value = "/listAssigned.do", method = RequestMethod.GET)
 	public ModelAndView listAssigned() {
 		final Collection<Position> positionsAssigned = this.positionService.getPositionsByAuditor();
 
-		return this.listModelAndView(positionsAssigned, "position/auditor/listAssigned.do", null);
+		return this.listModelAndView(positionsAssigned, "position/auditor/listAssigned.do", null, "position.list.assigned.title");
 	}
 
 	@RequestMapping(value = "/listUnassigned.do", method = RequestMethod.GET)
 	public ModelAndView listUnassigned() {
 		final Collection<Position> positionsAssigned = this.positionService.getPositionsWithoutAuditor();
 
-		return this.listModelAndView(positionsAssigned, "position/auditor/listUnassigned.do", null);
+		return this.listModelAndView(positionsAssigned, "position/auditor/listUnassigned.do", null, "position.list.unassigned.title");
 	}
-	protected ModelAndView listModelAndView(final Collection<Position> positions, final String requestURI, final String message) {
+
+	protected ModelAndView listModelAndView(final Collection<Position> positions, final String requestURI, final String message, final String title) {
 		final ModelAndView result = new ModelAndView("position/list");
 
 		final Auditor auditorLogged = this.auditorService.findByPrincipal(LoginService.getPrincipal());
@@ -72,6 +73,7 @@ public class PositionAuditorController extends AbstractController {
 		result.addObject("viewAll", true);
 		result.addObject("requestURI", requestURI);
 		result.addObject("message", message);
+		result.addObject("title", title);
 
 		this.configValues(result);
 		return result;

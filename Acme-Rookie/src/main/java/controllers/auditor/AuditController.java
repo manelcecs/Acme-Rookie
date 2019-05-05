@@ -130,6 +130,21 @@ public class AuditController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/changeDraft", method = RequestMethod.GET)
+	public ModelAndView changeDraft(@RequestParam final int idAudit) {
+		ModelAndView result;
+
+		try {
+			this.auditService.changeDraft(idAudit);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			result = this.listModelAndView("cannot.changeDraft.audit");
+			oops.printStackTrace();
+		}
+
+		return result;
+	}
+
 	protected ModelAndView createEditModelAndView(final AuditForm auditForm) {
 		return this.createEditModelAndView(auditForm, null);
 	}
@@ -154,6 +169,7 @@ public class AuditController extends AbstractController {
 
 		result.addObject("audits", audits);
 		result.addObject("message", message);
+		result.addObject("requestURI", "audit/auditor/list.do");
 
 		this.configValues(result);
 		return result;
