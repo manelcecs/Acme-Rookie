@@ -8,7 +8,6 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<acme:button code="audit.edit.cancel" type="button" url="/audit/auditor/list.do"/>
 
 <form:form modelAttribute="auditForm" action="audit/auditor/save.do">
    	 <acme:hidden path="id"/>
@@ -29,3 +28,5 @@
    	 
    	 <acme:submit name="save" code="audit.edit.save"/>
     </form:form>
+
+<acme:button code="audit.edit.cancel" type="button" url="/audit/auditor/list.do"/>

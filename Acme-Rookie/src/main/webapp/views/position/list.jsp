@@ -11,6 +11,9 @@
 <jstl:if test="${owner}">
 	<acme:button url="position/company/create.do" type="button" code="position.list.create"/>
 </jstl:if>
+<jstl:if test="${title != null}">
+	<h3><spring:message code="${title}"/></h3>
+</jstl:if>
 <security:authorize access="hasRole('AUDITOR')">
 	<acme:button url="position/auditor/list.do" type="button" code="position.list.auditor.list"/>
 	<acme:button url="position/auditor/listAssigned.do" type="button" code="position.list.auditor.listAssigned"/>

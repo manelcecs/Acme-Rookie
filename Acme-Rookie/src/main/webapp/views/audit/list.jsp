@@ -20,6 +20,12 @@
    				 <acme:button url="audit/auditor/display.do?idAudit=${audit.id}" type="button" code="audit.list.display"/>
    			 </display:column>
 
+			<!-- Columna de edit -->
+   			 <display:column titleKey="audit.list.changeDraft">
+   				 <jstl:if test="${audit.draft}">
+   					 <acme:button url="audit/auditor/changeDraft.do?idAudit=${audit.id}" type="button" code="audit.list.changeDraft"/>
+   				 </jstl:if>
+   			 </display:column>
 
    			 <!-- Columna de edit -->
    			 <display:column titleKey="audit.list.edit">

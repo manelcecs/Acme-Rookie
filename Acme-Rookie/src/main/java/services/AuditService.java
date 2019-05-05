@@ -109,6 +109,21 @@ public class AuditService {
 
 	}
 
+	public Audit changeDraft(final int idAudit) {
+		Assert.isTrue(utiles.AuthorityMethods.chechAuthorityLogged("AUDITOR"));
+
+		final Audit audit = this.findOne(idAudit);
+
+		final Auditor auditorLogged = this.auditorService.findByPrincipal(LoginService.getPrincipal());
+
+		Assert.isTrue(audit.getPosition().getAuditor().equals(auditorLogged));
+
+		audit.setDraft(false);
+
+		return this.auditRepository.save(audit);
+
+	}
+
 	public Audit reconstruct(final AuditForm auditForm, final BindingResult bindingResult) {
 		final Audit audit = new Audit();
 
