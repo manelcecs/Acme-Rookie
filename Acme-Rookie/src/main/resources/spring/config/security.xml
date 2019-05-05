@@ -112,9 +112,8 @@
 		<security:intercept-url pattern="/position/auditor/**" access="hasRole('AUDITOR')" />
 		
 
-		<!-- ACTOR - DISPLAY/EDIT -->
-		<security:intercept-url pattern="/actor/edit.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/actor/display.do" access="isAuthenticated()" /> 
+		
+		<security:intercept-url pattern="/actor/**" access="isAuthenticated()" />  
 		
 		<security:intercept-url pattern="/socialProfile/create.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/socialProfile/edit.do" access="isAuthenticated()" />

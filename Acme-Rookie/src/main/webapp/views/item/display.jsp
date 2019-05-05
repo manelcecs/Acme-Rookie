@@ -15,12 +15,11 @@
 <p><strong><spring:message code="item.display.pictures" />:</strong> </p> 
 <ul>
 	<jstl:forEach var="picture" items="${item.pictures}">
-		
-		<li><a href="<jstl:out value="${picture}"/>" target="_blank"><jstl:out value="${picture}"/></a></li>
 		<br/>
-		<img  alt="" src="${picture}">
+		<img  alt="<jstl:out value="${picture}"/>" src="${picture}">
 		<br/>
 		<br/>
+	
 	</jstl:forEach>
 </ul>
 

@@ -27,9 +27,9 @@
 			<display:column titleKey="sponsorship.list.banner" ><a target="_blank" href="<jstl:out value="${sponsorship.bannerURL}"/>" ><jstl:out value="${sponsorship.bannerURL}"/></a></display:column>
 			<display:column titleKey="sponsorship.list.flatRateApplied" ><jstl:out value="${sponsorship.flatRateApplied}"/></display:column>
 			<display:column titleKey="sponsorship.list.lengthPositions" ><jstl:out value="${fn:length(sponsorship.positions)}"/> </display:column>
-			<display:column><acme:button url="sponsorship/provider/display.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.display"/></display:column>	
-			<display:column><acme:button url="sponsorship/provider/edit.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.update"/></display:column>
-			<display:column><acme:button url="sponsorship/provider/delete.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.delete"/></display:column>
+			<display:column titleKey="sponsorship.list.display"><acme:button url="sponsorship/provider/display.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.display"/></display:column>	
+			<display:column titleKey="sponsorship.list.update"><acme:button url="sponsorship/provider/edit.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.update"/></display:column>
+			<display:column titleKey="sponsorship.list.delete"><acme:button url="sponsorship/provider/delete.do?idSponsorship=${sponsorship.id}" type="button" code="sponsorship.list.delete"/></display:column>
 		</display:table>
 
 	</section>

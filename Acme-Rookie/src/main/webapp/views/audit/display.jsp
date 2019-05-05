@@ -9,10 +9,10 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <security:authorize access="hasRole('AUDITOR')">
 	<jstl:if test="${audit.draft}">
-		<acme:button code="audit.display.back" type="button" url="/audit/auditor/list.do"/>
+		<acme:button url="audit/auditor/edit.do?idAudit=${audit.id}" type="button" code="audit.display.edit"/>
 	</jstl:if>
 </security:authorize>
-<acme:button url="audit/auditor/edit.do?idAudit=${audit.id}" type="button" code="audit.display.edit"/>
+		<acme:button code="audit.display.back" type="button" url="/audit/auditor/list.do"/>
 
 <acme:text label="audit.display.position.title" value="${audit.position.title}"/>
 <acme:text label="audit.display.moment" value="${audit.moment}"/>

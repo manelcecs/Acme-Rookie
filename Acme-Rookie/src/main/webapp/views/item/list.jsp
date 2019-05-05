@@ -37,7 +37,7 @@
 							<jstl:out value="${item.provider.providerMake}"/>
 					</display:column>
 ¡				<display:column titleKey="item.list.provider">
-   					 <acme:button url="actor/displayProvider.do?idProvider=${item.provider.id}" type="button" code="item.list.provider"/>
+   					 <acme:button url="actor/displayProvider.do?providerId=${item.provider.id}" type="button" code="item.list.provider"/>
 				</display:column>
 				</jstl:if>				
 			</jstl:if>
