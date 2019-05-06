@@ -146,6 +146,25 @@ public class ActorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/displayProvider", method = RequestMethod.GET)
+	public ModelAndView displayProvider(@RequestParam(required = true) final int providerId) {
+		final ModelAndView result = new ModelAndView("actor/display");
+
+		final Provider provider = this.providerService.findOne(providerId);
+
+		result.addObject("authority", "PROVIDER");
+
+		final List<SocialProfile> socialProfiles = (List<SocialProfile>) this.socialProfileService.findAllSocialProfiles(provider.getId());
+
+		result.addObject("provider", provider);
+		result.addObject("userLogged", null);
+		result.addObject("actor", provider);
+
+		result.addObject("socialProfiles", socialProfiles);
+		this.configValues(result);
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
 

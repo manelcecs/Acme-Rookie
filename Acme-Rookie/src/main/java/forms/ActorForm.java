@@ -1,7 +1,7 @@
 
 package forms;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.validation.Valid;
@@ -16,20 +16,20 @@ import domain.CreditCard;
 
 public class ActorForm {
 
-	private String				name;
-	private Collection<String>	surnames;
-	private String				vatNumber;
-	private CreditCard			creditCard;
-	private String				photo;
-	private String				phoneNumber;
-	private String				address;
-	private boolean				banned;
-	private Boolean				spammer;
+	private String			name;
+	private List<String>	surnames;
+	private String			vatNumber;
+	private CreditCard		creditCard;
+	private String			photo;
+	private String			phoneNumber;
+	private String			address;
+	private boolean			banned;
+	private Boolean			spammer;
 
 	//Relationship
-	private UserAccount			userAccount;
-	private String				confirmPassword;
-	private boolean				termsAndConditions;
+	private UserAccount		userAccount;
+	private String			confirmPassword;
+	private boolean			termsAndConditions;
 
 
 	//Atributes getters and setters
@@ -44,11 +44,11 @@ public class ActorForm {
 	}
 
 	@ElementCollection
-	public Collection<String> getSurnames() {
+	public List<String> getSurnames() {
 		return this.surnames;
 	}
 
-	public void setSurnames(final Collection<String> surnames) {
+	public void setSurnames(final List<String> surnames) {
 		this.surnames = surnames;
 	}
 

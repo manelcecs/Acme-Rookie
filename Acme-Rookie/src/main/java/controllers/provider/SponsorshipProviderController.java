@@ -50,17 +50,18 @@ public class SponsorshipProviderController extends AbstractController {
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int idSponsorship) {
-		final ModelAndView result;
+		ModelAndView result;
 
-		final Sponsorship sponsorship = this.sponsorshipService.findOne(idSponsorship);
-		Assert.notNull(sponsorship);
-
-		if (sponsorship.getProvider().getUserAccount().equals(LoginService.getPrincipal())) {
+		try {
+			final Sponsorship sponsorship = this.sponsorshipService.findOne(idSponsorship);
+			Assert.notNull(sponsorship);
 			result = new ModelAndView("sponsorship/display");
 			result.addObject("sponsorship", sponsorship);
 			result.addObject("flatRateAppliedWithVAT", this.sponsorshipService.calculateFlateRateVAT(idSponsorship));
-		} else
+			result.addObject("requestURI", "/sponsorship/provider/display.do?idSponsorship=" + idSponsorship);
+		} catch (final Exception e) {
 			result = this.listModelAndView("security.error.accessDenied");
+		}
 
 		this.configValues(result);
 		return result;
@@ -70,7 +71,9 @@ public class SponsorshipProviderController extends AbstractController {
 	public ModelAndView create() {
 		final ModelAndView result;
 
-		result = this.createEditModelAndView(new SponsorshipForm());
+		final SponsorshipForm sponsorshipForm = this.sponsorshipService.initializateSponsorship();
+
+		result = this.createEditModelAndView(sponsorshipForm);
 
 		return result;
 	}
@@ -94,25 +97,23 @@ public class SponsorshipProviderController extends AbstractController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int idSponsorship) {
-		final ModelAndView result;
+		ModelAndView result;
 
-		final Sponsorship sponsorship = this.sponsorshipService.findOne(idSponsorship);
-		Assert.notNull(sponsorship);
-		final SponsorshipForm sponsorshipForm = sponsorship.castToForm();
-
-		if (sponsorship.getProvider().getUserAccount().equals(LoginService.getPrincipal()))
+		try {
+			final Sponsorship sponsorship = this.sponsorshipService.findOne(idSponsorship);
+			Assert.notNull(sponsorship);
+			final SponsorshipForm sponsorshipForm = sponsorship.castToForm();
 			result = this.createEditModelAndView(sponsorshipForm);
-		else
+		} catch (final Exception e) {
 			result = this.listModelAndView("security.error.accessDenied");
+		}
 
 		return result;
 	}
-
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(final SponsorshipForm sponsorshipForm, final BindingResult binding) {
 		ModelAndView result;
 
-		//FIXME providers con id 0 null pointer exception aunque falten cosas por enviar 
 		try {
 			final Sponsorship sponsorshipRect = this.sponsorshipService.reconstruct(sponsorshipForm, binding);
 			this.sponsorshipService.save(sponsorshipRect);

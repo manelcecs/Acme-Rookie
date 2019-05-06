@@ -19,6 +19,7 @@ import security.LoginService;
 import utiles.ValidateCreditCard;
 import domain.AdminConfig;
 import domain.Position;
+import domain.Provider;
 import domain.Sponsorship;
 import forms.SponsorshipForm;
 
@@ -126,5 +127,15 @@ public class SponsorshipService {
 
 	public void flush() {
 		this.sponsorshipRepository.flush();
+	}
+
+	public SponsorshipForm initializateSponsorship() {
+		final SponsorshipForm sponsorshipForm = new SponsorshipForm();
+
+		final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
+
+		sponsorshipForm.setCreditCard(provider.getCreditCard());
+
+		return sponsorshipForm;
 	}
 }

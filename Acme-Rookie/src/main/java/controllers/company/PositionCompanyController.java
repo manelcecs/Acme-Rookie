@@ -91,6 +91,7 @@ public class PositionCompanyController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				result = this.creadeEditModelAndView(positionForm, "cannot.save.position");
+				oops.printStackTrace();
 			}
 		return result;
 	}

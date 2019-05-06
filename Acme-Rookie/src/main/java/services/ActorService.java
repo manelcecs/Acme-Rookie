@@ -342,8 +342,8 @@ public class ActorService {
 		return userAccount;
 	}
 
-	private Collection<String> anonymizeSurnames() {
-		final Collection<String> surname = new ArrayList<>();
+	private List<String> anonymizeSurnames() {
+		final List<String> surname = new ArrayList<>();
 		surname.add("Anonymous");
 		return surname;
 	}
