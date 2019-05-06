@@ -135,7 +135,8 @@ public class MessageService {
 			result = this.messageRepository.findOne(message.getId());
 
 			final Collection<MessageBox> boxesBD = result.getMessageBoxes();
-			boxesBD.addAll(message.getMessageBoxes());
+			if (message.getMessageBoxes() != null)
+				boxesBD.addAll(message.getMessageBoxes());
 			result.setMessageBoxes(boxesBD);
 		}
 
