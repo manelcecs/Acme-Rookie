@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class ValidatorCollection {
 
@@ -19,6 +20,18 @@ public class ValidatorCollection {
 		}
 
 		return res;
+	}
+
+	public static List<String> deleteStringsBlanksInCollection(final List<String> collectionString) {
+		final List<String> strings = collectionString;
+		final List<String> stringsBlanks = new ArrayList<>();
+
+		for (final String s : strings)
+			if (s.isEmpty())
+				stringsBlanks.add(s);
+
+		strings.removeAll(stringsBlanks);
+		return strings;
 	}
 
 	public static Collection<String> deleteStringsBlanksInCollection(final Collection<String> collectionString) {

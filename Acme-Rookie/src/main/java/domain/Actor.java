@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -35,7 +36,7 @@ public abstract class Actor extends DomainEntity {
 
 	//Atributes
 	private String					name;
-	private Collection<String>		surnames;
+	private List<String>			surnames;
 	private String					vatNumber;
 	private CreditCard				creditCard;
 	private String					photo;
@@ -64,11 +65,11 @@ public abstract class Actor extends DomainEntity {
 
 	@ElementCollection
 	@NotEmpty
-	public Collection<String> getSurnames() {
+	public List<String> getSurnames() {
 		return this.surnames;
 	}
 
-	public void setSurnames(final Collection<String> surnames) {
+	public void setSurnames(final List<String> surnames) {
 		this.surnames = surnames;
 	}
 
