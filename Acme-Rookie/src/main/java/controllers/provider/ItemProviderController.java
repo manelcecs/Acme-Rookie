@@ -46,7 +46,7 @@ public class ItemProviderController extends AbstractController {
 		final Item item = this.itemService.findOne(idItem);
 		final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
 		if (item.getProvider().getId() != provider.getId())
-			result = new ModelAndView("redirect:list.do");
+			result = this.listModelAndView("item.cannot.edit");
 		else
 			result = this.createEditModelAndView(item);
 		this.configValues(result);
