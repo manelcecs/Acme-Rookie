@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -46,7 +47,7 @@ public class CreditCard {
 
 	@NotBlank
 	@CreditCardNumber
-	//@Pattern("$(16)[0-9]")
+	@Length(min = 16, max = 16)
 	@SafeHtml
 	public String getNumber() {
 		return this.number;
