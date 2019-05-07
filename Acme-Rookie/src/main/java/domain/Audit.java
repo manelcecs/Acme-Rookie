@@ -12,9 +12,6 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -37,8 +34,6 @@ public class Audit extends DomainEntity {
 		this.draft = draft;
 	}
 
-	@Range(min = 0, max = 10)
-	@NotNull
 	public Integer getScore() {
 		return this.score;
 	}
@@ -58,8 +53,6 @@ public class Audit extends DomainEntity {
 		this.moment = moment;
 	}
 
-	@NotBlank
-	@SafeHtml
 	public String getText() {
 		return this.text;
 	}
