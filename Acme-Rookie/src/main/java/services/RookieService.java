@@ -2,7 +2,9 @@
 package services;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,6 +78,12 @@ public class RookieService {
 		} else
 			Assert.isTrue(!rookie.getBanned());
 
+		//FIXME: probably this is a bug
+		rookie.setName("Rookie");
+		final List<String> balboa = new ArrayList<String>();
+		balboa.add("balboa");
+		rookie.setSurnames(balboa);
+		//end bug
 		final Rookie res = this.rookieRepository.save(rookie);
 
 		return res;

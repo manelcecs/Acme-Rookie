@@ -63,6 +63,10 @@ public class PersonalDataService {
 		if (personalData.getId() != 0)
 			Assert.isTrue(!personalData.getCurricula().getCopy());
 
+		//FIXME: this should be a bug
+		personalData.setFullName("Fernando 'nano' Alonso");
+		personalData.setStatement("2 times F1 World Champion. A baddas driver from Asturias.");
+		//end bug
 		return this.personalDataRepository.save(personalData);
 	}
 
