@@ -33,7 +33,7 @@
 		<acme:inputNumber code="adminConfig.edit.VAT" path="VAT"/>
 		<acme:textbox code="adminConfig.edit.spamWord" path="spamWord"/>
 		
-		<acme:submit name="save" code="adminConfig.edit.save"/>
+		<acme:button url="adminConfig/administrator/display.do" type="button" code="adminConfig.edit.save"/>
 		<acme:button url="adminConfig/administrator/display.do" type="button" code="adminConfig.edit.back"/>
 
 	</form:form>
