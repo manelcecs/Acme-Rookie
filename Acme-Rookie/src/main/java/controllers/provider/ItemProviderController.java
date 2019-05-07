@@ -56,30 +56,34 @@ public class ItemProviderController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Item item, final BindingResult binding) {
 		ModelAndView result;
-		if (item.getLinks() != null) {
-			final Collection<String> links = ValidateCollectionURL.deleteURLBlanksInCollection(item.getLinks());
-			item.setLinks(links);
-			if (ValidateCollectionURL.validateURLCollection(item.getLinks()) != true)
-				binding.rejectValue("links", "item.edit.links.error.url");
-		}
-
-		if (item.getPictures() != null) {
-			final Collection<String> pictures = ValidateCollectionURL.deleteURLBlanksInCollection(item.getPictures());
-			item.setPictures(pictures);
-			if (ValidateCollectionURL.validateURLCollection(item.getPictures()) != true)
-				binding.rejectValue("pictures", "item.edit.pictures.error.url");
-		}
-
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(item);
-		else
-			try {
-				final Item itemRec = this.itemService.reconstruct(item, binding);
-				this.itemService.save(itemRec);
-				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(item, "cannot.save.item");
+		if (item.getDescription().isEmpty() && item.getName().isEmpty() && item.getLinks().isEmpty())
+			result = new ModelAndView("redirect:list.do");
+		else {
+			if (item.getLinks() != null) {
+				final Collection<String> links = ValidateCollectionURL.deleteURLBlanksInCollection(item.getLinks());
+				item.setLinks(links);
+				if (ValidateCollectionURL.validateURLCollection(item.getLinks()) != true)
+					binding.rejectValue("links", "item.edit.links.error.url");
 			}
+
+			if (item.getPictures() != null) {
+				final Collection<String> pictures = ValidateCollectionURL.deleteURLBlanksInCollection(item.getPictures());
+				item.setPictures(pictures);
+				if (ValidateCollectionURL.validateURLCollection(item.getPictures()) != true)
+					binding.rejectValue("pictures", "item.edit.pictures.error.url");
+			}
+
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(item);
+			else
+				try {
+					final Item itemRec = this.itemService.reconstruct(item, binding);
+					this.itemService.save(itemRec);
+					result = new ModelAndView("redirect:list.do");
+				} catch (final Throwable oops) {
+					result = this.createEditModelAndView(item, "cannot.save.item");
+				}
+		}
 		return result;
 	}
 
