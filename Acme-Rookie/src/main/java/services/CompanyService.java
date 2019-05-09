@@ -41,6 +41,9 @@ public class CompanyService {
 	private AdminConfigService		adminConfigService;
 
 	@Autowired
+	private AdministratorService	administratorService;
+
+	@Autowired
 	private MessageBoxService		messageBoxService;
 
 	@Autowired
@@ -145,7 +148,7 @@ public class CompanyService {
 
 	public Collection<Company> getCompaniesWithTheHighestAuditScore() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.companyRepository.getCompaniesWithTheHighestAuditScore();
+		return this.companyRepository.getCompaniesWithTheHighestAuditScore(this.administratorService.getHighestAuditScore());
 	}
 
 	public Company reconstruct(final Company company, final BindingResult binding) {

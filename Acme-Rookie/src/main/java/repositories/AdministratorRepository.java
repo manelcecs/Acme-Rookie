@@ -114,8 +114,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select stddev(a.score), c from Audit a join a.position p join p.company c where a.draft = false group by c")
 	Collection<Object[]> getSDOfAuditScoreOfCompany();
 
-	@Query("select max(a.score) from Audit a")
-	Integer getMaximumOfAuditScore();
+	@Query("select avg(a.score) as x from Audit a join a.position p join p.company c where a.draft = false group by c order by x desc")
+	Collection<Double> getAvgsOfAuditScoreOfCompany();
 	//-------------------------------------------------------------------
 
 	@Query("select avg(1*(select count(s) from Sponsorship s where s.provider.id = p.id)) from Provider p")

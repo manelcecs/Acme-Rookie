@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -310,10 +312,12 @@ public class AdministratorService {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getSDOfAuditScoreOfCompany();
 	}
-
-	public Integer getMaximumOfAuditScore() {
+	public Double getHighestAuditScore() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.adminRepository.getMaximumOfAuditScore();
+		final List<Double> avgsOfAuditScoreOfCompany = new ArrayList<>();
+		avgsOfAuditScoreOfCompany.addAll(this.adminRepository.getAvgsOfAuditScoreOfCompany());
+		final Double highestAuditScore = avgsOfAuditScoreOfCompany.get(0);
+		return highestAuditScore;
 	}
 
 	public Double getAvgOfSponsorshipsPerProvider() {
