@@ -207,9 +207,8 @@
 
 <display:table pagesize="5" name="companiesWithTheHighestAuditScore" id="companyWithTheHighestAuditScore" requestURI="${requestURI}">
 	<display:column titleKey="administrator.dashboard.companiesWithTheHighestAuditScore">- <jstl:out value="${companyWithTheHighestAuditScore.companyName}"/>
-		<jstl:out value="(${companyWithTheHighestAuditScore.id}) : ${maximumOfAuditScore}"/></display:column>
-</display:table>
-
+		<jstl:out value="(${companyWithTheHighestAuditScore.id}) : ${highestAuditScore}"/></display:column>
+</display:table> 
 <hr>
 
 <h3 id="sponsorship"><spring:message code="administrator.dashboard.sponsorship" /> </h3>

@@ -264,11 +264,11 @@ public class DashboardController extends AbstractController {
 		final Collection<Company> companiesWithTheHighestAuditScore = this.companyService.getCompaniesWithTheHighestAuditScore();
 		result.addObject("companiesWithTheHighestAuditScore", companiesWithTheHighestAuditScore);
 
-		final Integer maximumOfAuditScore = this.administratorService.getMaximumOfAuditScore();
-		if (maximumOfAuditScore != null)
-			result.addObject("maximumOfAuditScore", maximumOfAuditScore);
+		final Double highestAuditScore = this.administratorService.getHighestAuditScore();
+		if (highestAuditScore != null)
+			result.addObject("highestAuditScore", highestAuditScore);
 		else
-			result.addObject("maximumOfAuditScore", 0.0);
+			result.addObject("highestAuditScore", 0.0);
 
 		final Collection<Provider> providers10RateOfAvgOfSponsorships = this.providerService.getProviders10RateOfAvgOfSponsorships();
 		result.addObject("providers10RateOfAvgOfSponsorships", providers10RateOfAvgOfSponsorships);
