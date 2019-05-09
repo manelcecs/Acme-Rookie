@@ -168,15 +168,17 @@ public class MessageBoxService {
 		} else
 			result = this.findOne(messageBox.getId());
 
+		
+		if (this.likeOriginalName(messageBox.getName()))
+			binding.rejectValue("name", "messageBox.error.OriginalName");
+		else if (this.likeOtherBox(messageBox.getName()))
+			binding.rejectValue("name", "messageBox.error.likeOtherBox");
+
 		result.setParent(messageBox.getParent());
 		result.setName(messageBox.getName());
 
 		this.validator.validate(result, binding);
 
-		if (this.likeOriginalName(messageBox.getName()))
-			binding.rejectValue("name", "messageBox.error.OriginalName");
-		else if (this.likeOtherBox(messageBox.getName()))
-			binding.rejectValue("name", "messageBox.error.likeOtherBox");
 
 		if (binding.hasErrors())
 			throw new ValidationException();
