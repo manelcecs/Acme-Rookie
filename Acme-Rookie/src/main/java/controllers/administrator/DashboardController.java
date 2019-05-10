@@ -183,29 +183,52 @@ public class DashboardController extends AbstractController {
 		result.addObject("companiesWithMoreOffersOfPositions", companiesWithMoreOffersOfPositions);
 		//ACME-ROOKIE-------------------------------------------------------
 
-		final Collection<Object[]> avgOfAuditScoreOfPosition = this.administratorService.getAvgOfAuditScoreOfPosition();
-		result.addObject("avgOfAuditScoreOfPosition", avgOfAuditScoreOfPosition);
+		final Double avgOfAuditScoreOfPosition = this.administratorService.getAvgOfAuditScoreOfPosition();
+		if (avgOfAuditScoreOfPosition != null)
+			result.addObject("avgOfAuditScoreOfPosition", avgOfAuditScoreOfPosition);
+		else
+			result.addObject("avgOfAuditScoreOfPosition", 0.0);
+		final Double minimumOfAuditScoreOfPosition = this.administratorService.getMinimumOfAuditScoreOfPosition();
+		if (minimumOfAuditScoreOfPosition != null)
+			result.addObject("minimumOfAuditScoreOfPosition", minimumOfAuditScoreOfPosition);
+		else
+			result.addObject("minimumOfAuditScoreOfPosition", 0.0);
 
-		final Collection<Object[]> minimumOfAuditScoreOfPosition = this.administratorService.getMinimumOfAuditScoreOfPosition();
-		result.addObject("minimumOfAuditScoreOfPosition", minimumOfAuditScoreOfPosition);
+		final Double maximumOfAuditScoreOfPosition = this.administratorService.getMaximumOfAuditScoreOfPosition();
+		if (maximumOfAuditScoreOfPosition != null)
+			result.addObject("maximumOfAuditScoreOfPosition", maximumOfAuditScoreOfPosition);
+		else
+			result.addObject("maximumOfAuditScoreOfPosition", 0.0);
 
-		final Collection<Object[]> maximumOfAuditScoreOfPosition = this.administratorService.getMaximumOfAuditScoreOfPosition();
-		result.addObject("maximumOfAuditScoreOfPosition", maximumOfAuditScoreOfPosition);
+		final Double sDOfAuditScoreOfPosition = this.administratorService.getSDOfAuditScoreOfPosition();
+		if (sDOfAuditScoreOfPosition != null)
+			result.addObject("sDOfAuditScoreOfPosition", sDOfAuditScoreOfPosition);
+		else
+			result.addObject("sDOfAuditScoreOfPosition", 0.0);
 
-		final Collection<Object[]> sDOfAuditScoreOfPosition = this.administratorService.getSDOfAuditScoreOfPosition();
-		result.addObject("sDOfAuditScoreOfPosition", sDOfAuditScoreOfPosition);
+		final Double avgOfAuditScoreOfCompany = this.administratorService.getAvgOfAuditScoreOfCompany();
+		if (avgOfAuditScoreOfCompany != null)
+			result.addObject("avgOfAuditScoreOfCompany", avgOfAuditScoreOfCompany);
+		else
+			result.addObject("avgOfAuditScoreOfCompany", 0.0);
 
-		final Collection<Object[]> avgOfAuditScoreOfCompany = this.administratorService.getAvgOfAuditScoreOfCompany();
-		result.addObject("avgOfAuditScoreOfCompany", avgOfAuditScoreOfCompany);
+		final Double minimumOfAuditScoreOfCompany = this.administratorService.getMinimumOfAuditScoreOfCompany();
+		if (minimumOfAuditScoreOfCompany != null)
+			result.addObject("minimumOfAuditScoreOfCompany", minimumOfAuditScoreOfCompany);
+		else
+			result.addObject("minimumOfAuditScoreOfCompany", 0.0);
 
-		final Collection<Object[]> minimumOfAuditScoreOfCompany = this.administratorService.getMinimumOfAuditScoreOfCompany();
-		result.addObject("minimumOfAuditScoreOfCompany", minimumOfAuditScoreOfCompany);
+		final Double maximumOfAuditScoreOfCompany = this.administratorService.getMaximumOfAuditScoreOfCompany();
+		if (maximumOfAuditScoreOfCompany != null)
+			result.addObject("maximumOfAuditScoreOfCompany", maximumOfAuditScoreOfCompany);
+		else
+			result.addObject("maximumOfAuditScoreOfCompany", 0.0);
 
-		final Collection<Object[]> maximumOfAuditScoreOfCompany = this.administratorService.getMaximumOfAuditScoreOfCompany();
-		result.addObject("maximumOfAuditScoreOfCompany", maximumOfAuditScoreOfCompany);
-
-		final Collection<Object[]> sDOfAuditScoreOfCompany = this.administratorService.getSDOfAuditScoreOfCompany();
-		result.addObject("sDOfAuditScoreOfCompany", sDOfAuditScoreOfCompany);
+		final Double sDOfAuditScoreOfCompany = this.administratorService.getSDOfAuditScoreOfCompany();
+		if (sDOfAuditScoreOfCompany != null)
+			result.addObject("sDOfAuditScoreOfCompany", sDOfAuditScoreOfCompany);
+		else
+			result.addObject("sDOfAuditScoreOfCompany", 0.0);
 
 		final Double avgOfSponsorshipsPerProvider = this.administratorService.getAvgOfSponsorshipsPerProvider();
 		if (avgOfSponsorshipsPerProvider != null)
@@ -263,12 +286,6 @@ public class DashboardController extends AbstractController {
 
 		final Collection<Company> companiesWithTheHighestAuditScore = this.companyService.getCompaniesWithTheHighestAuditScore();
 		result.addObject("companiesWithTheHighestAuditScore", companiesWithTheHighestAuditScore);
-
-		final Double highestAuditScore = this.administratorService.getHighestAuditScore();
-		if (highestAuditScore != null)
-			result.addObject("highestAuditScore", highestAuditScore);
-		else
-			result.addObject("highestAuditScore", 0.0);
 
 		final Collection<Provider> providers10RateOfAvgOfSponsorships = this.providerService.getProviders10RateOfAvgOfSponsorships();
 		result.addObject("providers10RateOfAvgOfSponsorships", providers10RateOfAvgOfSponsorships);

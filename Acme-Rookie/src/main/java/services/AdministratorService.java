@@ -1,9 +1,7 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -273,51 +271,43 @@ public class AdministratorService {
 		return this.adminRepository.getSDOfResultsInFinders();
 	}
 	//ACME-ROOKIE---------------------------------------------
-	public Collection<Object[]> getAvgOfAuditScoreOfPosition() {
+	public Double getAvgOfAuditScoreOfPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getAvgOfAuditScoreOfPosition();
 	}
 
-	public Collection<Object[]> getMinimumOfAuditScoreOfPosition() {
+	public Double getMinimumOfAuditScoreOfPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getMinimumOfAuditScoreOfPosition();
 	}
 
-	public Collection<Object[]> getMaximumOfAuditScoreOfPosition() {
+	public Double getMaximumOfAuditScoreOfPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getMaximumOfAuditScoreOfPosition();
 	}
 
-	public Collection<Object[]> getSDOfAuditScoreOfPosition() {
+	public Double getSDOfAuditScoreOfPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getSDOfAuditScoreOfPosition();
 	}
 
-	public Collection<Object[]> getAvgOfAuditScoreOfCompany() {
+	public Double getAvgOfAuditScoreOfCompany() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getAvgOfAuditScoreOfCompany();
 	}
 
-	public Collection<Object[]> getMinimumOfAuditScoreOfCompany() {
+	public Double getMinimumOfAuditScoreOfCompany() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getMinimumOfAuditScoreOfCompany();
 	}
 
-	public Collection<Object[]> getMaximumOfAuditScoreOfCompany() {
+	public Double getMaximumOfAuditScoreOfCompany() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getMaximumOfAuditScoreOfCompany();
 	}
-
-	public Collection<Object[]> getSDOfAuditScoreOfCompany() {
+	public Double getSDOfAuditScoreOfCompany() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
 		return this.adminRepository.getSDOfAuditScoreOfCompany();
-	}
-	public Double getHighestAuditScore() {
-		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		final List<Double> avgsOfAuditScoreOfCompany = new ArrayList<>();
-		avgsOfAuditScoreOfCompany.addAll(this.adminRepository.getAvgsOfAuditScoreOfCompany());
-		final Double highestAuditScore = avgsOfAuditScoreOfCompany.get(0);
-		return highestAuditScore;
 	}
 
 	public Double getAvgOfSponsorshipsPerProvider() {

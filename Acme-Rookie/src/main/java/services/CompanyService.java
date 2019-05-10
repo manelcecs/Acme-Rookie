@@ -148,7 +148,7 @@ public class CompanyService {
 
 	public Collection<Company> getCompaniesWithTheHighestAuditScore() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.companyRepository.getCompaniesWithTheHighestAuditScore(this.administratorService.getHighestAuditScore());
+		return this.companyRepository.getCompaniesWithTheHighestAuditScore(this.administratorService.getMaximumOfAuditScoreOfCompany());
 	}
 
 	public Company reconstruct(final Company company, final BindingResult binding) {
