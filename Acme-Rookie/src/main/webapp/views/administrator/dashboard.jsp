@@ -143,30 +143,10 @@
 		<th> <spring:message code='administrator.dashboard.sDOfAuditScoreOfPosition'/> 	  </th>
 	</tr>
 	<tr>
-		<td>
-			<jstl:forEach var="var" items="${avgOfAuditScoreOfPosition}" >
-				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/> </li>
-				<br/>
-			</jstl:forEach>
-		</td>
-		<td>	
-			<jstl:forEach var="var" items="${minimumOfAuditScoreOfPosition}" >
-				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
-				<br/>	
-		</jstl:forEach>	
-		</td>
-		<td>
-			<jstl:forEach var="var" items="${maximumOfAuditScoreOfPosition}" >
-				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
-				<br/>	
-			</jstl:forEach>
-		</td>
-		<td>	
-			<jstl:forEach var="var" items="${sDOfAuditScoreOfPosition}" >
-				<li> <jstl:out value="${var[1].title}(${var[1].id}) - ${var[0]}"/>	</li>
-				<br/>	
-			</jstl:forEach>	
-		</td>
+		<td> <jstl:out value="${avgOfAuditScoreOfPosition}"/>	</td>
+		<td> <jstl:out value="${minimumOfAuditScoreOfPosition}"/>	</td>
+		<td> <jstl:out value="${maximumOfAuditScoreOfPosition}"/>	</td>
+		<td> <jstl:out value="${sDOfAuditScoreOfPosition}"/>	</td>
 	</tr>
 </table>
 
@@ -178,36 +158,17 @@
 		<th> <spring:message code='administrator.dashboard.sDOfAuditScoreOfCompany'/> 	  </th>
 	</tr>
 	<tr>
-		<td>
-			<jstl:forEach var="var" items="${avgOfAuditScoreOfCompany}" >
-				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
-				<br/>
-			</jstl:forEach>	
-		</td>
-		<td>
-			<jstl:forEach var="var" items="${minimumOfAuditScoreOfCompany}" >
-				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
-				<br/>
-			</jstl:forEach>	
-		</td>
-		<td>
-			<jstl:forEach var="var" items="${maximumOfAuditScoreOfCompany}" >
-				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
-				<br/>
-			</jstl:forEach>
-		</td>
-		<td>	
-			<jstl:forEach var="var" items="${sDOfAuditScoreOfCompany}" >
-				<li> <jstl:out value="${var[1].companyName}(${var[1].id}) - ${var[0]}"/> </li>
-				<br/>
-			</jstl:forEach>
-		</td>	
+		<td> <jstl:out value="${avgOfAuditScoreOfCompany}"/>	</td>
+		<td> <jstl:out value="${minimumOfAuditScoreOfCompany}"/>	</td>
+		<td> <jstl:out value="${maximumOfAuditScoreOfCompany}"/>	</td>
+		<td> <jstl:out value="${sDOfAuditScoreOfCompany}"/>	</td>
+
 	</tr>
 </table>
 
 <display:table pagesize="5" name="companiesWithTheHighestAuditScore" id="companyWithTheHighestAuditScore" requestURI="${requestURI}">
 	<display:column titleKey="administrator.dashboard.companiesWithTheHighestAuditScore">- <jstl:out value="${companyWithTheHighestAuditScore.companyName}"/>
-		<jstl:out value="(${companyWithTheHighestAuditScore.id}) : ${highestAuditScore}"/></display:column>
+		<jstl:out value="(${companyWithTheHighestAuditScore.id}) : ${maximumOfAuditScoreOfCompany}"/></display:column>
 </display:table> 
 <hr>
 

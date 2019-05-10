@@ -1,8 +1,6 @@
 
 package repositories;
 
-import java.util.Collection;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -88,34 +86,32 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Double getRatioOfEmptyVsNotEmptyFinders();
 	//ACME-ROOKIE---------------------------------------------------------
 
-	@Query("select avg(a.score), p from Audit a join a.position p where a.draft = false group by p")
-	Collection<Object[]> getAvgOfAuditScoreOfPosition();
+	@Query("select avg(1.0*(select avg(a.score) from Audit a where a.position.id = p.id)) from Position p where p.draft = false")
+	Double getAvgOfAuditScoreOfPosition();
 
-	@Query("select min(a.score), p from Audit a join a.position p where a.draft = false group by p")
-	Collection<Object[]> getMinimumOfAuditScoreOfPosition();
+	@Query("select min(1.0*(select avg(a.score) from Audit a where a.position.id = p.id)) from Position p where p.draft = false")
+	Double getMinimumOfAuditScoreOfPosition();
 
-	@Query("select max(a.score), p from Audit a join a.position p where a.draft = false group by p")
-	Collection<Object[]> getMaximumOfAuditScoreOfPosition();
+	@Query("select max(1.0*(select avg(a.score) from Audit a where a.position.id = p.id)) from Position p where p.draft = false")
+	Double getMaximumOfAuditScoreOfPosition();
 
-	@Query("select stddev(a.score), p from Audit a join a.position p where a.draft = false group by p")
-	Collection<Object[]> getSDOfAuditScoreOfPosition();
+	@Query("select stddev(1.0*(select avg(a.score) from Audit a where a.position.id = p.id)) from Position p where p.draft = false")
+	Double getSDOfAuditScoreOfPosition();
 
 	//--------------------------------------------------------------------
 
-	@Query("select avg(a.score), c from Audit a join a.position p join p.company c where a.draft = false group by c")
-	Collection<Object[]> getAvgOfAuditScoreOfCompany();
+	@Query("select avg(1.0*(select avg(a.score) from Audit a where a.position.company.id = c.id and a.position.draft = false)) from Company c")
+	Double getAvgOfAuditScoreOfCompany();
 
-	@Query("select min(a.score), c from Audit a join a.position p join p.company c where a.draft = false group by c")
-	Collection<Object[]> getMinimumOfAuditScoreOfCompany();
+	@Query("select min(1.0*(select avg(a.score) from Audit a where a.position.company.id = c.id and a.position.draft = false)) from Company c")
+	Double getMinimumOfAuditScoreOfCompany();
 
-	@Query("select max(a.score), c from Audit a join a.position p join p.company c where a.draft = false group by c")
-	Collection<Object[]> getMaximumOfAuditScoreOfCompany();
+	@Query("select max(1.0*(select avg(a.score) from Audit a where a.position.company.id = c.id and a.position.draft = false)) from Company c")
+	Double getMaximumOfAuditScoreOfCompany();
 
-	@Query("select stddev(a.score), c from Audit a join a.position p join p.company c where a.draft = false group by c")
-	Collection<Object[]> getSDOfAuditScoreOfCompany();
+	@Query("select stddev(1.0*(select avg(a.score) from Audit a where a.position.company.id = c.id and a.position.draft = false)) from Company c")
+	Double getSDOfAuditScoreOfCompany();
 
-	@Query("select avg(a.score) as x from Audit a join a.position p join p.company c where a.draft = false group by c order by x desc")
-	Collection<Double> getAvgsOfAuditScoreOfCompany();
 	//-------------------------------------------------------------------
 
 	@Query("select avg(1*(select count(s) from Sponsorship s where s.provider.id = p.id)) from Provider p")
