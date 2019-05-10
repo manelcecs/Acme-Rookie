@@ -58,10 +58,6 @@ public class DashboardServiceTest extends AbstractTest {
 		final Collection<Company> companies = new ArrayList<Company>();
 		companies.add(this.companyService.findOne(this.getEntityId("company0")));
 		companies.add(this.companyService.findOne(this.getEntityId("company1")));
-		companies.add(this.companyService.findOne(this.getEntityId("company2")));
-		companies.add(this.companyService.findOne(this.getEntityId("company3")));
-		companies.add(this.companyService.findOne(this.getEntityId("company4")));
-		companies.add(this.companyService.findOne(this.getEntityId("company5")));
 
 		final Object testingData[][] = {
 			{
@@ -72,7 +68,7 @@ public class DashboardServiceTest extends AbstractTest {
 				 * d)
 				 * 
 				 */
-				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 1.8571, 2, 1, 0.3499, companies, IllegalArgumentException.class
+				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 2.1429, 3, 1, 0.6389, companies, IllegalArgumentException.class
 			}, {
 				/**
 				 * a) 11.2: show metrics as an Administrator
@@ -81,7 +77,7 @@ public class DashboardServiceTest extends AbstractTest {
 				 * d)
 				 * 
 				 */
-				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 1.8571, 2, 1, 0.3499, companies, IllegalArgumentException.class
+				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 2.1429, 3, 1, 0.6389, companies, IllegalArgumentException.class
 			}, {
 				/**
 				 * a) 11.2: show metrics as an Administrator
@@ -90,7 +86,7 @@ public class DashboardServiceTest extends AbstractTest {
 				 * d)
 				 * 
 				 */
-				null, 1.8571, 2, 1, 0.3499, companies, IllegalArgumentException.class
+				null, 2.1429, 3, 1, 0.6389, companies, IllegalArgumentException.class
 			}, {
 				/**
 				 * a) 11.2: show metrics as an Administrator
@@ -99,7 +95,7 @@ public class DashboardServiceTest extends AbstractTest {
 				 * d)
 				 * 
 				 */
-				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 1.8571, 2, 1, 0.3499, companies, null
+				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 2.1429, 3, 1, 0.6389, companies, null
 			}
 		};
 
@@ -218,7 +214,7 @@ public class DashboardServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * This test reefer to use case 11.2
+	 * This test reefer to use case 11.2 and the use case 4.4(Acme-Rookie)
 	 * here we're going to test the dashboard metrics related to applications for the administrator
 	 * One positive
 	 * Three negatives
@@ -246,40 +242,40 @@ public class DashboardServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				/**
-				 * a) 11.2: show metrics as an Administrator
+				 * a) 11.2 and 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(rookie)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 5514.923076923077, 7999, 3200, 2323.9076991315383, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
+				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 5379.6, 7999, 3200, 2190.777085876151, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 11.2: show metrics as an Administrator
+				 * a) 11.2 and 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(company)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 5514.923076923077, 7999, 3200, 2323.9076991315383, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
+				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 5379.6, 7999, 3200, 2190.777085876151, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 11.2: show metrics as an Administrator
+				 * a) 11.2 and 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(not logged)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				null, 5514.923076923077, 7999, 3200, 2323.9076991315383, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
+				null, 5379.6, 7999, 3200, 2190.777085876151, bestPositions, worstPositions, 7999.0, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 11.2: show metrics as an Administrator
+				 * a) 11.2 and 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Positive
 				 * c) 100%
 				 * d)
 				 * 
 				 */
-				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 5514.923076923077, 7999, 3200, 2323.9076991315383, bestPositions, worstPositions, 7999.0, null
+				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 5379.6, 7999, 3200, 2190.777085876151, bestPositions, worstPositions, 7999.0, null
 			}
 		};
 
@@ -468,8 +464,8 @@ public class DashboardServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * This test reefer to use case 18.1
-	 * here we're going to test the dashboard metrics related to finders for the administrator
+	 * This test reefer to use case 4.4(Acme-Rookie)
+	 * here we're going to test the dashboard metrics related to audits for the administrator
 	 * One positive
 	 * Three negatives
 	 */
@@ -482,7 +478,7 @@ public class DashboardServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(rookie)
 				 * c) 50%
 				 * d)
@@ -491,7 +487,7 @@ public class DashboardServiceTest extends AbstractTest {
 				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 7.166666667, 5.5, 10.0, 2.013840996, 7.166666667, 5.5, 10.0, 2.013840996, companiesWithTheHighestAuditScore, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(company)
 				 * c) 50%
 				 * d)
@@ -500,7 +496,7 @@ public class DashboardServiceTest extends AbstractTest {
 				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 7.166666667, 5.5, 10.0, 2.013840996, 7.166666667, 5.5, 10.0, 2.013840996, companiesWithTheHighestAuditScore, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(not logged)
 				 * c) 50%
 				 * d)
@@ -509,7 +505,7 @@ public class DashboardServiceTest extends AbstractTest {
 				null, 7.166666667, 5.5, 10.0, 2.013840996, 7.166666667, 5.5, 10.0, 2.013840996, companiesWithTheHighestAuditScore, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 4.4(Acme-Rookie): show metrics as an Administrator
 				 * b) Positive
 				 * c) 100%
 				 * d)
@@ -557,8 +553,8 @@ public class DashboardServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * This test reefer to use case 18.1
-	 * here we're going to test the dashboard metrics related to finders for the administrator
+	 * This test reefer to use case 14.1(Acme-Rookie)
+	 * here we're going to test the dashboard metrics related to sponsorships for the administrator
 	 * One positive
 	 * Three negatives
 	 */
@@ -568,40 +564,40 @@ public class DashboardServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 14.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(rookie)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 1, 0.5455, IllegalArgumentException.class
+				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 2, 0.5455, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 14.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(company)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 1, 0.5455, IllegalArgumentException.class
+				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 2, 0.5455, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 14.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(not logged)
 				 * c) 50%
 				 * d)
 				 * 
 				 */
-				null, 1.0, 1, 1, 0.0, 0.2353, 0, 1, 0.5455, IllegalArgumentException.class
+				null, 1.0, 1, 1, 0.0, 0.2353, 0, 2, 0.5455, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 14.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Positive
 				 * c) 100%
 				 * d)
 				 * 
 				 */
-				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 1, 0.5455, null
+				this.administratorService.findAll().iterator().next().getUserAccount().getUsername(), 1.0, 1, 1, 0.0, 0.2353, 0, 2, 0.5455, null
 			}
 		};
 
@@ -640,13 +636,13 @@ public class DashboardServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 	/**
-	 * This test reefer to use case 18.1
-	 * here we're going to test the dashboard metrics related to finders for the administrator
+	 * This test reefer to use case 11.1(Acme-Rookie)
+	 * here we're going to test the dashboard metrics related to items for the administrator
 	 * One positive
 	 * Three negatives
 	 */
 	@SuppressWarnings({
-		"unchecked", "null"
+		"unchecked"
 	})
 	@Test
 	public void dashboardItemDriver() {
@@ -659,7 +655,7 @@ public class DashboardServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 11.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(rookie)
 				 * c) 50%
 				 * d)
@@ -668,7 +664,7 @@ public class DashboardServiceTest extends AbstractTest {
 				this.rookieService.findAll().iterator().next().getUserAccount().getUsername(), 2.0, 2, 2, 0.0, top5OfProvidersWithMoreItems, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 11.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(company)
 				 * c) 50%
 				 * d)
@@ -677,7 +673,7 @@ public class DashboardServiceTest extends AbstractTest {
 				this.companyService.findAll().iterator().next().getUserAccount().getUsername(), 2.0, 2, 2, 0.0, top5OfProvidersWithMoreItems, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 11.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Must be an administrator(not logged)
 				 * c) 50%
 				 * d)
@@ -686,7 +682,7 @@ public class DashboardServiceTest extends AbstractTest {
 				null, 2.0, 2, 2, 0.0, top5OfProvidersWithMoreItems, IllegalArgumentException.class
 			}, {
 				/**
-				 * a) 18.1: show metrics as an Administrator
+				 * a) 11.1(Acme-Rookie): show metrics as an Administrator
 				 * b) Positive
 				 * c) 100%
 				 * d)

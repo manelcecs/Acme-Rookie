@@ -337,12 +337,12 @@ public class AdministratorService {
 
 	public Integer getMinimumOfSponsorshipsPerPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.adminRepository.getMinimumOfSponsorshipsPerProvider();
+		return this.adminRepository.getMinimumOfSponsorshipsPerPosition();
 	}
 
 	public Integer getMaximumOfSponsorshipsPerPosition() {
 		Assert.isTrue(AuthorityMethods.chechAuthorityLogged("ADMINISTRATOR"));
-		return this.adminRepository.getMaximumOfSponsorshipsPerProvider();
+		return this.adminRepository.getMaximumOfSponsorshipsPerPosition();
 	}
 
 	public Double getSDOfSponsorshipsPerPosition() {

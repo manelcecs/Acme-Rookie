@@ -260,7 +260,7 @@ public class DashboardController extends AbstractController {
 		else
 			result.addObject("avgOfSponsorshipsPerPosition", 0.0);
 
-		final Integer minimumOfSponsorshipsPerPosition = this.administratorService.getMinimumOfResultsInFinders();
+		final Integer minimumOfSponsorshipsPerPosition = this.administratorService.getMinimumOfSponsorshipsPerPosition();
 		if (minimumOfSponsorshipsPerPosition != null)
 			result.addObject("minimumOfSponsorshipsPerPosition", minimumOfSponsorshipsPerPosition);
 		else
@@ -270,7 +270,7 @@ public class DashboardController extends AbstractController {
 		if (maximumOfSponsorshipsPerPosition != null)
 			result.addObject("maximumOfSponsorshipsPerPosition", maximumOfSponsorshipsPerPosition);
 		else
-			result.addObject("maximumOfResultsInFinders", 0);
+			result.addObject("maximumOfSponsorshipsPerPosition", 0);
 
 		final Double sDOfSponsorshipsPerPosition = this.administratorService.getSDOfSponsorshipsPerPosition();
 		if (sDOfSponsorshipsPerPosition != null)
