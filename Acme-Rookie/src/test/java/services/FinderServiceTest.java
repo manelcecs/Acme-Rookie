@@ -53,11 +53,16 @@ public class FinderServiceTest extends AbstractTest {
 		final Collection<Position> position4 = new ArrayList<Position>();
 
 		position1.add(this.positionService.findOne(this.getEntityId("position00")));
-		position2.add(this.positionService.findOne(this.getEntityId("position10")));
+		position1.add(this.positionService.findOne(this.getEntityId("position32")));
 		position2.add(this.positionService.findOne(this.getEntityId("position00")));
+		position2.add(this.positionService.findOne(this.getEntityId("position10")));
+		position2.add(this.positionService.findOne(this.getEntityId("position32")));
+		position2.add(this.positionService.findOne(this.getEntityId("position33")));
 		position4.addAll(this.positionService.getAllPositionsFiltered());
 		position4.remove(this.positionService.findOne(this.getEntityId("position30")));
 		position4.remove(this.positionService.findOne(this.getEntityId("position31")));
+		position4.remove(this.positionService.findOne(this.getEntityId("position32")));
+		position4.remove(this.positionService.findOne(this.getEntityId("position33")));
 
 		final Date date1 = this.FORMAT.parse("1000/11/11 01:00:00");
 		final Date date2 = this.FORMAT.parse("3000/11/11 01:00:00");
@@ -206,6 +211,8 @@ public class FinderServiceTest extends AbstractTest {
 		position.addAll(this.positionService.getAllPositionsFiltered());
 		position.remove(this.positionService.findOne(this.getEntityId("position30")));
 		position.remove(this.positionService.findOne(this.getEntityId("position31")));
+		position.remove(this.positionService.findOne(this.getEntityId("position32")));
+		position.remove(this.positionService.findOne(this.getEntityId("position33")));
 
 		final Object testingData[][] = {
 

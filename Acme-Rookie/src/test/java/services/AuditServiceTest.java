@@ -173,7 +173,6 @@ public class AuditServiceTest extends AbstractTest {
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
-			oops.printStackTrace();
 		}
 
 		this.checkExceptions(expected, caught);
