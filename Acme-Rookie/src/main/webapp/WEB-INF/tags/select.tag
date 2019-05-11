@@ -40,8 +40,8 @@
 	<jstl:set var="onchange" value="javascript: return true;" />
 </jstl:if>
 
-<jstl:if test="${onchange == null}">
-	<jstl:set var="optional" value="false" />
+<jstl:if test="${optional == null}">
+	<jstl:set var="optional" value="true" />
 </jstl:if>
 
 <%-- Definition --%>
