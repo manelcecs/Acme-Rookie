@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2019 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://www.springframework.org/schema/util 
+http://www.springframework.org/schema/util/spring-util-3.0.xsd "
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+	
+	<!-- Administrator -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.CreditCard" id="creditcard0">
+
+		<property value="company" name="holder" />
+
+		<property value="VISA" name="make" />
+
+		<property value="12" name="expirationMonth" />
+
+		<property value="2020" name="expirationYear" />
+
+		<property value="999" name="cvv" />
+
+		<property value="4308543581357191" name="number" />
+
+	</bean>
+	
+	<bean class="domain.Administrator" id="admin">
+
+		<!-- Valores de Actor -->
+
+		<property value="admin" name="name" />
+
+		<property name="surnames">
+			<list>
+				<value>Boss</value>
+			</list>
+		</property>
+
+		<property value="00000000001-A" name="vatNumber" />
+
+		<property value="admin@" name="email" />
+
+		<property value="+00 000-1234567" name="phoneNumber" />
+
+		<property value="Av. Main Principal" name="address" />
+
+		<property value="false" name="spammer" />
+
+		<property value="false" name="banned" />
+
+		<property name="creditCard" ref="creditcard0" />
+
+		<property name="messageBoxes">
+			<list>
+				<ref bean="messageBox001" />
+				<ref bean="messageBox002" />
+				<ref bean="messageBox003" />
+				<ref bean="messageBox004" />
+				<ref bean="messageBox005" />
+			</list>
+		</property>
+
+		<property name="userAccount" ref="userAccount1" />
+
+	</bean>
+	
+	<bean id="messageBox001" class="domain.MessageBox">
+		<property name="name" value="In Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox002" class="domain.MessageBox">
+		<property name="name" value="Out Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox003" class="domain.MessageBox">
+		<property name="name" value="Spam Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="messageBox004" class="domain.MessageBox">
+		<property name="name" value="Trash Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="messageBox005" class="domain.MessageBox">
+		<property name="name" value="Notification Box" />
+		<property name="deleteable" value="false" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="adminConfig" class="domain.AdminConfig">
+		<property name="systemName" value="Acme Rookie" />
+		<property name="bannerURL" value="images/AcmeRookies.png" />
+		<property name="countryCode" value="+34" />
+		<property name="resultsFinder" value="10" />
+		<property name="cacheFinder" value="1" />
+		<property name="welcomeMessageEN" value="Welcome to Acme Rookie! We're IT rookie’s favourite job marketplace!" />
+		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="VAT" value="21.0" />
+		<property name="nameChanged" value="true" />
+		<property name="flatRate" value="10000.0" />
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>nigeria</value>
+				<value>sexo</value>
+				<value>un millón</value>
+				<value>ha sido seleccionado</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
