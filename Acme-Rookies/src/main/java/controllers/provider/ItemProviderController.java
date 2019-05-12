@@ -109,7 +109,7 @@ public class ItemProviderController extends AbstractController {
 		final Collection<Item> items = this.itemService.getItemsOfProvider(provider.getId());
 		result.addObject("items", items);
 		result.addObject("provider", true);
-		result.addObject("requestURI", "problem/company/list.do");
+		result.addObject("requestURI", "item/provider/list.do");
 		result.addObject("message", message);
 		this.configValues(result);
 		return result;
