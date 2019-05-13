@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -346,7 +347,14 @@ public class ActorService {
 			this.companyService.save(anonymousCompany);
 
 			break;
-
+		case "AUDITOR":
+			final Auditor anonymousAuditor = this.anonymizeAuditor(this.auditorService.findByPrincipal(principal));
+			this.auditorService.save(anonymousAuditor);
+			break;
+		case "PROVIDER":
+			final Provider anonymousProvider = this.anonymizeProvider(this.providerService.findByPrincipal(principal));
+			this.providerService.save(anonymousProvider);
+			break;
 		}
 	}
 
@@ -529,6 +537,64 @@ public class ActorService {
 		}
 
 		return company;
+	}
+
+	private Auditor anonymizeAuditor(final Auditor auditor) {
+		auditor.setUserAccount(this.anonymizeUserAccount(auditor.getUserAccount()));
+		auditor.setCreditCard(this.anonymizeCreditCard(auditor.getCreditCard()));
+
+		auditor.setName("anonymous");
+		auditor.setSurnames(this.anonymizeSurnames());
+		auditor.setVatNumber("----");
+		auditor.setPhoto(null);
+		auditor.setEmail("---");
+		auditor.setPhoneNumber("----");
+		auditor.setAddress("---");
+		auditor.setBanned(false);
+		auditor.setSpammer(null);
+
+		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findAllSocialProfiles(auditor.getId());
+		this.socialProfileService.delete(socialProfiles);
+
+		final Collection<Audit> audits = this.auditService.getAuditsOfAnAuditor(auditor.getId());
+
+		for (final Audit audit : audits) {
+
+			audit.setDraft(true);
+			audit.setMoment(new Date());
+			audit.setScore(null);
+			audit.setText("----------");
+
+			this.auditService.save(audit);
+		}
+
+		return auditor;
+	}
+
+	private Provider anonymizeProvider(final Provider provider) {
+		provider.setUserAccount(this.anonymizeUserAccount(provider.getUserAccount()));
+		provider.setCreditCard(this.anonymizeCreditCard(provider.getCreditCard()));
+
+		provider.setName("anonymous");
+		provider.setSurnames(this.anonymizeSurnames());
+		provider.setVatNumber("----");
+		provider.setPhoto(null);
+		provider.setEmail("---");
+		provider.setPhoneNumber("----");
+		provider.setAddress("---");
+		provider.setBanned(false);
+		provider.setSpammer(null);
+		provider.setProviderMake("anonymous");
+
+		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findAllSocialProfiles(provider.getId());
+		this.socialProfileService.delete(socialProfiles);
+
+		final Collection<Item> items = this.itemService.getItemsOfProvider(provider.getId());
+
+		for (final Item item : items)
+			this.itemService.delete(item);
+
+		return provider;
 	}
 
 	public void flush() {
