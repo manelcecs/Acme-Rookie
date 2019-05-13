@@ -42,10 +42,12 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Answer;
 import domain.Application;
+import domain.Audit;
 import domain.Auditor;
 import domain.Company;
 import domain.Curricula;
 import domain.EducationData;
+import domain.Item;
 import domain.Message;
 import domain.MiscellaneousData;
 import domain.PersonalData;
@@ -216,9 +218,6 @@ public class ActorController extends AbstractController {
 		case "PROVIDER":
 			final Provider provider = this.providerService.findOne(actor.getId());
 			result.addObject("provider", provider);
-			//TODO: preguntar como añadir en enlace
-			//			final String itemsRef = this.itemService.findAllProvider(actor.getId());//TODO: mirar bien el servicio
-			//			result.addObject("itemsRef", itemsRef);
 			break;
 		}
 
@@ -349,15 +348,23 @@ public class ActorController extends AbstractController {
 
 			break;
 
-		case "AUDITOR"://TODO: preguntar por qué campos hay que rellenar
+		case "AUDITOR":
 			final Auditor auditor = this.auditorService.findByPrincipal(LoginService.getPrincipal());
 			result.addObject("auditor", auditor);
+			messages = (List<Message>) this.messageService.findAllByActor(auditor.getId());
+			result.addObject("messages", messages);
+			final Collection<Audit> auditions = this.auditService.getAuditsOfAnAuditor(auditor.getId());
+			result.addObject("auditions", auditions);
 			result.addObject("edit", true);
 			break;
 
 		case "PROVIDER":
 			final Provider provider = this.providerService.findByPrincipal(LoginService.getPrincipal());
 			result.addObject("provider", provider);
+			messages = (List<Message>) this.messageService.findAllByActor(provider.getId());
+			result.addObject("messages", messages);
+			final Collection<Item> items = this.itemService.getItemsOfProvider(provider.getId());
+			result.addObject("items", items);
 			result.addObject("edit", true);
 			break;
 		}

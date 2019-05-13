@@ -257,6 +257,142 @@
 	
 	
 	</jstl:when>
+	
+	<jstl:when test="${authority == 'PROVIDER'}">
+		<acme:text value="${administrator.name}" label="actor.displayData.name"/>
+		<acme:text value="${administrator.userAccount.username}" label="actor.displayData.username"/>
+		<acme:text value="${administrator.surnames}" label="actor.displayData.surnames"/>
+		<acme:text value="${administrator.photo}" label="actor.displayData.photo"/>
+		<acme:text value="${administrator.email}" label="actor.displayData.email"/>
+		<acme:text value="${administrator.address}" label="actor.displayData.address"/>
+		<acme:text value="${administrator.phoneNumber}" label="actor.displayData.phoneNumber"/>
+		<acme:text value="${administrator.vatNumber}" label="actor.displayData.vatNumber"/>
+
+		
+		<b><spring:message code="provider.items" /></b>
+		<display:table name="items" id="item">
+			<display:column titleKey="provider.item.name">
+				<jstl:out value="${item.name}" />
+			</display:column>
+			<display:column titleKey="provider.item.description">
+				<jstl:out value="${item.description}" />
+			</display:column>
+			<display:column titleKey="provider.item.links">
+				<jstl:forEach var="link" items="${item.links}">
+					<a href='<jstl:out value="${link}" />'><jstl:out value="${link}" /></a>				
+					</jstl:forEach>
+			</display:column>
+			<display:column titleKey="provider.item.pictures">
+				<jstl:forEach var="pic" items="${item.pictures}">
+					<a href='<jstl:out value="${pic}" />'><jstl:out value="${pic}" /></a>				
+				</jstl:forEach>
+			</display:column>
+		</display:table>
+		
+		<br />
+		<!-- Social profiles table -->
+		<b><spring:message code="actor.displayData.socialProfile" /></b>
+		<display:table name="socialProfiles" id="profile">
+			<spring:message code="actor.displayData.socialProfilesName" var="name" />
+			<display:column title="${name }">
+				<jstl:out value="${ profile.nick}" />
+			</display:column>
+			<spring:message code="actor.displayData.socialProfilesNetwork" var="network" />
+			<display:column title="${network }">
+				<jstl:out value="${profile.nameSocialNetwork}" />
+			</display:column>
+			<spring:message code="actor.displayData.socialProfilesLink" var="link" />
+			<display:column title="${link }">
+				<jstl:out value="${ profile.link}" />
+			</display:column>
+		</display:table>
+		
+		<br>
+		
+		<!-- Table with messages -->
+		<b><spring:message code="actor.displayData.messages" /></b>
+		<display:table pagesize="5" name="messages" id="message" requestURI="actor/displayAllData.do">
+			<display:column titleKey="actor.displayData.messageSender"><jstl:out value="${message.sender.email}"/></display:column>
+			<display:column titleKey="actor.displayData.messageSubject"><jstl:out value="${message.subject}"/></display:column>
+			<display:column titleKey="actor.displayData.messageMoment"><jstl:out value="${message.moment}"/></display:column>
+			<display:column titleKey="actor.displayData.messageBody" ><jstl:out value="${message.body}"/></display:column>
+			<display:column titleKey="actor.displayData.messagePriority"><jstl:out value="${message.priority}"/></display:column>
+			<display:column titleKey="actor.displayData.messageTags">
+				<jstl:forEach var="tag" items="${message.tags}">
+					<jstl:out value="${tag}"/><br/>
+				</jstl:forEach>
+			</display:column>
+		</display:table><br/>
+	
+	
+	</jstl:when>
+	
+	<jstl:when test="${authority == 'AUDITOR'}">
+		<acme:text value="${auditor.name}" label="actor.displayData.name"/>
+		<acme:text value="${auditor.userAccount.username}" label="actor.displayData.username"/>
+		<acme:text value="${auditor.surnames}" label="actor.displayData.surnames"/>
+		<acme:text value="${auditor.photo}" label="actor.displayData.photo"/>
+		<acme:text value="${auditor.email}" label="actor.displayData.email"/>
+		<acme:text value="${auditor.address}" label="actor.displayData.address"/>
+		<acme:text value="${auditor.phoneNumber}" label="actor.displayData.phoneNumber"/>
+		<acme:text value="${auditor.vatNumber}" label="actor.displayData.vatNumber"/>
+
+		
+		<b><spring:message code="auditor.audits" /></b>
+		<display:table name="audits" id="audit">
+			<display:column titleKey="auditor.audit.position">
+				<jstl:out value="${audit.position}" />
+			</display:column>
+			<display:column titleKey="auditor.audit.draft">
+				<jstl:out value="${audit.draft }" />
+			</display:column>
+			<display:column titleKey="auditor.audit.score">
+				<jstl:out value="${audit.score }" />
+			</display:column>
+			<display:column titleKey="auditor.audit.moment">
+				<jstl:out value="${audit.moment }" />
+			</display:column>
+			<display:column titleKey="auditor.audit.text">
+				<jstl:out value="${audit.text }" />
+			</display:column>
+		</display:table>
+		<br/>
+		<!-- Social profiles table -->
+		<b><spring:message code="actor.displayData.socialProfile" /></b>
+		<display:table name="socialProfiles" id="profile">
+			<spring:message code="actor.displayData.socialProfilesName" var="name" />
+			<display:column title="${name }">
+				<jstl:out value="${ profile.nick}" />
+			</display:column>
+			<spring:message code="actor.displayData.socialProfilesNetwork" var="network" />
+			<display:column title="${network }">
+				<jstl:out value="${profile.nameSocialNetwork}" />
+			</display:column>
+			<spring:message code="actor.displayData.socialProfilesLink" var="link" />
+			<display:column title="${link }">
+				<jstl:out value="${ profile.link}" />
+			</display:column>
+		</display:table>
+		
+		<br>
+		
+		<!-- Table with messages -->
+		<b><spring:message code="actor.displayData.messages" /></b>
+		<display:table pagesize="5" name="messages" id="message" requestURI="actor/displayAllData.do">
+			<display:column titleKey="actor.displayData.messageSender"><jstl:out value="${message.sender.email}"/></display:column>
+			<display:column titleKey="actor.displayData.messageSubject"><jstl:out value="${message.subject}"/></display:column>
+			<display:column titleKey="actor.displayData.messageMoment"><jstl:out value="${message.moment}"/></display:column>
+			<display:column titleKey="actor.displayData.messageBody" ><jstl:out value="${message.body}"/></display:column>
+			<display:column titleKey="actor.displayData.messagePriority"><jstl:out value="${message.priority}"/></display:column>
+			<display:column titleKey="actor.displayData.messageTags">
+				<jstl:forEach var="tag" items="${message.tags}">
+					<jstl:out value="${tag}"/><br/>
+				</jstl:forEach>
+			</display:column>
+		</display:table><br/>
+	
+	
+	</jstl:when>
 
 
 </jstl:choose>

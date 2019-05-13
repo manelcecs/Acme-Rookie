@@ -58,10 +58,10 @@ public class AuditorService {
 
 	public Auditor save(final Auditor auditor) {
 		Assert.isTrue(AuthorityMethods.checkIsSomeoneLogged());
-		Assert.isTrue(AuthorityMethods.chechAuthorityLogged(Authority.ADMINISTRATOR));
 		Assert.isTrue(auditor != null);
 
 		if (auditor.getId() == 0) {
+			Assert.isTrue(AuthorityMethods.chechAuthorityLogged(Authority.ADMINISTRATOR));
 			Assert.isTrue(AuthorityMethods.checkIsSomeoneLogged());
 			final UserAccount userAccount = auditor.getUserAccount();
 
@@ -72,8 +72,10 @@ public class AuditorService {
 			final UserAccount finalAccount = this.accountRepository.save(userAccount);
 
 			auditor.setUserAccount(finalAccount);
-		} else
+		} else {
+			Assert.isTrue(AuthorityMethods.chechAuthorityLogged(Authority.AUDITOR));
 			Assert.isTrue(!auditor.getBanned());
+		}
 
 		final Auditor res = this.auditorRepository.save(auditor);
 
