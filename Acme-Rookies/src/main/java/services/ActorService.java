@@ -30,16 +30,20 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Answer;
 import domain.Application;
+import domain.Audit;
+import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
 import domain.Curricula;
 import domain.EducationData;
+import domain.Item;
 import domain.Message;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.Position;
 import domain.PositionData;
 import domain.Problem;
+import domain.Provider;
 import domain.Rookie;
 import domain.SocialProfile;
 
@@ -78,6 +82,9 @@ public class ActorService {
 	private PositionDataService			positionDataService;
 
 	@Autowired
+	private PositionService				positionService;
+
+	@Autowired
 	private AdministratorService		administratorService;
 
 	@Autowired
@@ -97,6 +104,18 @@ public class ActorService {
 
 	@Autowired
 	private ApplicationService			applicationService;
+
+	@Autowired
+	private AuditorService				auditorService;
+
+	@Autowired
+	private AuditService				auditService;
+
+	@Autowired
+	private ProviderService				providerService;
+
+	@Autowired
+	private ItemService					itemService;
 
 
 	public Actor save(final Actor actor) {
@@ -262,8 +281,35 @@ public class ActorService {
 			final Company company = this.companyService.findByPrincipal(principal);
 			messages = (List<Message>) this.messageService.findAllByActor(company.getId());
 			socialProfiles = (List<SocialProfile>) this.socialProfileService.findAllSocialProfiles(company.getId());
+			final List<Position> positions = (List<Position>) this.positionService.getAllPositionsFilteredOfCompany(company.getId());
 
 			json = json + mapper.writeValueAsString(company);
+			json = json + mapper.writeValueAsString(positions);
+			json = json + mapper.writeValueAsString(messages);
+			json = json + mapper.writeValueAsString(socialProfiles);
+
+			break;
+		case "AUDITOR":
+			final Auditor auditor = this.auditorService.findByPrincipal(principal);
+			messages = (List<Message>) this.messageService.findAllByActor(auditor.getId());
+			socialProfiles = (List<SocialProfile>) this.socialProfileService.findAllSocialProfiles(auditor.getId());
+			final List<Audit> audits = (List<Audit>) this.auditService.getAuditsOfAnAuditor(auditor.getId());
+
+			json = json + mapper.writeValueAsString(auditor);
+			json = json + mapper.writeValueAsString(audits);
+			json = json + mapper.writeValueAsString(messages);
+			json = json + mapper.writeValueAsString(socialProfiles);
+
+			break;
+		case "PROVIDER":
+
+			final Provider provider = this.providerService.findByPrincipal(principal);
+			messages = (List<Message>) this.messageService.findAllByActor(provider.getId());
+			socialProfiles = (List<SocialProfile>) this.socialProfileService.findAllSocialProfiles(provider.getId());
+			final List<Item> items = (List<Item>) this.itemService.getItemsOfProvider(provider.getId());
+
+			json = json + mapper.writeValueAsString(provider);
+			json = json + mapper.writeValueAsString(items);
 			json = json + mapper.writeValueAsString(messages);
 			json = json + mapper.writeValueAsString(socialProfiles);
 
@@ -271,7 +317,6 @@ public class ActorService {
 		}
 		return json;
 	}
-
 	public void deleteData() throws ParseException {
 
 		final UserAccount principal = LoginService.getPrincipal();
