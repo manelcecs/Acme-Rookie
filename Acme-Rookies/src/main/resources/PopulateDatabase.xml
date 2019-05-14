@@ -3132,12 +3132,12 @@
 
 <bean id="adminConfig" class="domain.AdminConfig">
 		<property name="systemName" value="Acme Rookie" />
-		<property name="bannerURL" value="images/AcmeRookies.png" />
+		<property name="bannerURL" value="https://imgur.com/ZGVPypx" />
 		<property name="countryCode" value="+34" />
 		<property name="resultsFinder" value="10" />
 		<property name="cacheFinder" value="1" />
-		<property name="welcomeMessageEN" value="Welcome to Acme rookie! We're IT rookie's favourite job marketplace!" />
-		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="welcomeMessageEN" value="Welcome to Acme rookies! We're IT rookie's favourite job marketplace!" />
+		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="spamWords">
 			<list>
 				<value>sex</value>

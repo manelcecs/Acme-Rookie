@@ -119,13 +119,13 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd "
 	</bean>
 	
 	<bean id="adminConfig" class="domain.AdminConfig">
-		<property name="systemName" value="Acme Rookie" />
-		<property name="bannerURL" value="images/AcmeRookies.png" />
+		<property name="systemName" value="Acme Rookies" />
+		<property name="bannerURL" value="https://imgur.com/ZGVPypx" />
 		<property name="countryCode" value="+34" />
 		<property name="resultsFinder" value="10" />
 		<property name="cacheFinder" value="1" />
-		<property name="welcomeMessageEN" value="Welcome to Acme Rookie! We're IT rookie’s favourite job marketplace!" />
-		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookie! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
+		<property name="welcomeMessageEN" value="Welcome to Acme Rookies! We're IT rookie’s favourite job marketplace!" />
+		<property name="welcomeMessageES" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="VAT" value="21.0" />
 		<property name="nameChanged" value="true" />
 		<property name="flatRate" value="10000.0" />
