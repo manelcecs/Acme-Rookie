@@ -120,7 +120,7 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd "
 	
 	<bean id="adminConfig" class="domain.AdminConfig">
 		<property name="systemName" value="Acme Rookies" />
-		<property name="bannerURL" value="https://imgur.com/ZGVPypx" />
+		<property name="bannerURL" value="https://imgur.com/ZGVPypx.png" />
 		<property name="countryCode" value="+34" />
 		<property name="resultsFinder" value="10" />
 		<property name="cacheFinder" value="1" />
