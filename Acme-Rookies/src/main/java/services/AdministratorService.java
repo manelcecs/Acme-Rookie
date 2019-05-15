@@ -102,7 +102,7 @@ public class AdministratorService {
 			binding.rejectValue("surnames", "administrator.edit.surnames.error");
 
 		adminForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(adminForm.getCreditCard()));
-		ValidateCreditCard.checkFecha(adminForm.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(adminForm.getCreditCard(), binding);
 
 		final Administrator result;
 		result = this.create();
@@ -140,7 +140,7 @@ public class AdministratorService {
 			binding.rejectValue("surnames", "administrator.edit.surnames.error");
 
 		admin.setCreditCard(ValidateCreditCard.checkNumeroAnno(admin.getCreditCard()));
-		ValidateCreditCard.checkFecha(admin.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(admin.getCreditCard(), binding);
 
 		final Administrator result;
 		result = this.findByPrincipal(LoginService.getPrincipal());

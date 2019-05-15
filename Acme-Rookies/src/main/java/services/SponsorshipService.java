@@ -76,11 +76,13 @@ public class SponsorshipService {
 			result = this.findOne(sponsorshipForm.getId());
 
 		result.setBannerURL(sponsorshipForm.getBannerURL());
-		result.setCreditCard(ValidateCreditCard.checkNumeroAnno(sponsorshipForm.getCreditCard()));
+
+		sponsorshipForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(sponsorshipForm.getCreditCard()));
+		ValidateCreditCard.checkGregorianDate(sponsorshipForm.getCreditCard(), binding);
+
+		result.setCreditCard(sponsorshipForm.getCreditCard());
 		result.setPositions(sponsorshipForm.getPositions());
 		result.setTargetPageURL(sponsorshipForm.getTargetPageURL());
-
-		ValidateCreditCard.checkFecha(result.getCreditCard(), binding);
 
 		this.validator.validate(result, binding);
 

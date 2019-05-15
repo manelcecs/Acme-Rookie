@@ -113,7 +113,8 @@ public class CompanyService {
 			binding.rejectValue("surnames", "company.edit.surnames.error");
 
 		companyForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(companyForm.getCreditCard()));
-		ValidateCreditCard.checkFecha(companyForm.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(companyForm.getCreditCard(), binding);
+		;
 
 		final Company result;
 		result = this.create();
@@ -159,7 +160,7 @@ public class CompanyService {
 			binding.rejectValue("surnames", "company.edit.surnames.error");
 
 		company.setCreditCard(ValidateCreditCard.checkNumeroAnno(company.getCreditCard()));
-		ValidateCreditCard.checkFecha(company.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(company.getCreditCard(), binding);
 
 		final Company result;
 		result = this.findByPrincipal(LoginService.getPrincipal());
