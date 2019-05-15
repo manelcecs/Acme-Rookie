@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
+import services.ApplicationService;
 import services.CurriculaService;
 import services.EducationDataService;
 import services.MiscellaneousDataService;
@@ -50,6 +51,9 @@ public class CurriculaRookieController extends AbstractController {
 
 	@Autowired
 	private EducationDataService		educationDataService;
+
+	@Autowired
+	private ApplicationService			applicationService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -138,6 +142,11 @@ public class CurriculaRookieController extends AbstractController {
 			res.addObject("educationsData", educationsData);
 			res.addObject("personalData", personalData);
 			res.addObject("miscellaneousData", miscellaneousData);
+
+			if (curricula.getCopy()) {
+				final int applicationId = this.applicationService.getApplicationOfCurricula(curriculaId).getId();
+				res.addObject("applicationId", applicationId);
+			}
 
 			res.addObject("show", true);
 
