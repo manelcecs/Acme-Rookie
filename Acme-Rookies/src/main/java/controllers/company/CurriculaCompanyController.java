@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ApplicationService;
 import services.CurriculaService;
 import services.EducationDataService;
 import services.MiscellaneousDataService;
@@ -39,6 +40,9 @@ public class CurriculaCompanyController extends AbstractController {
 	@Autowired
 	private EducationDataService		educationDataService;
 
+	@Autowired
+	private ApplicationService			applicationService;
+
 
 	@RequestMapping("/list")
 	public ModelAndView list(final Integer applicationId) {
@@ -69,6 +73,10 @@ public class CurriculaCompanyController extends AbstractController {
 			res.addObject("educationsData", educationsData);
 			res.addObject("personalData", personalData);
 			res.addObject("miscellaneousData", miscellaneousData);
+			if (curricula.getCopy()) {
+				final int applicationId = this.applicationService.getApplicationOfCurricula(curriculaId).getId();
+				res.addObject("applicationId", applicationId);
+			}
 
 			res.addObject("show", false);
 		} catch (final Throwable oops) {

@@ -1,76 +1,82 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"
-    uri="http://www.springframework.org/security/tags"%>
+	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <jstl:if test="${!curricula.copy }">
-    <jstl:if test="${!show}">
-   	 <acme:button url="/curricula/company/list.do" code="curricula.back"
-   		 type="button" />
-    </jstl:if>
+	<jstl:if test="${!show}">
+		<acme:button url="/curricula/company/list.do" code="curricula.back"
+			type="button" />
+	</jstl:if>
 </jstl:if>
 
 
-<h4><jstl:out value="${curricula.title}" /></h4>
+<h4>
+	<jstl:out value="${curricula.title}" />
+</h4>
 <hr>
 
 <jstl:if test="${personalData eq null }">
-    <jstl:if test="${!show}">
-   	 <acme:button url="/personalData/rookie/create.do" code="curricula.create"
-   		 type="button" />
-    </jstl:if>
-    <jstl:if test="${show}">
-   	 <b><spring:message code="curricula.display.nothing" /></b>
-    </jstl:if>
+	<jstl:if test="${!show}">
+		<acme:button url="/personalData/rookie/create.do"
+			code="curricula.create" type="button" />
+	</jstl:if>
+	<jstl:if test="${show}">
+		<b><spring:message code="curricula.display.nothing" /></b>
+	</jstl:if>
 </jstl:if>
 <jstl:if test="${personalData ne null }">
-<br />
-<b><spring:message code="curricula.personalData" /></b>
-<br />
-<b><spring:message code="curricula.personalData.fullName" />: </b>
-<jstl:out value="${personalData.fullName }" />
-<br />
-<b><spring:message code="curricula.personalData.statement" />: </b>
-<jstl:out value="${personalData.statement }" />
-<br />
-<b><spring:message code="curricula.personalData.phoneNumber" />: </b>
-<jstl:out value="${personalData.phoneNumber }" />
-<br />
-<b><spring:message code="curricula.personalData.gitHubProfile" />:
-</b>
-<a target="_blank" href="<jstl:out value="${personalData.gitHubProfile }" />" ><jstl:out value="${personalData.gitHubProfile }" /></a> 
-<br />
-<b><spring:message code="curricula.personalData.linkedinProfile" />:
-</b>
-	<a target="_blank" href="<jstl:out value="${personalData.linkedinProfile }" />"><jstl:out value="${personalData.linkedinProfile }" /></a>
-<br />
+	<br />
+	<b><spring:message code="curricula.personalData" /></b>
+	<br />
+	<b><spring:message code="curricula.personalData.fullName" />: </b>
+	<jstl:out value="${personalData.fullName }" />
+	<br />
+	<b><spring:message code="curricula.personalData.statement" />: </b>
+	<jstl:out value="${personalData.statement }" />
+	<br />
+	<b><spring:message code="curricula.personalData.phoneNumber" />: </b>
+	<jstl:out value="${personalData.phoneNumber }" />
+	<br />
+	<b><spring:message code="curricula.personalData.gitHubProfile" />:
+	</b>
+	<a target="_blank"
+		href="<jstl:out value="${personalData.gitHubProfile }" />"><jstl:out
+			value="${personalData.gitHubProfile }" /></a>
+	<br />
+	<b><spring:message code="curricula.personalData.linkedinProfile" />:
+	</b>
+	<a target="_blank"
+		href="<jstl:out value="${personalData.linkedinProfile }" />"><jstl:out
+			value="${personalData.linkedinProfile }" /></a>
+	<br />
 </jstl:if>
 
 <jstl:if test="${!curricula.copy }">
 
 
-    <jstl:if test="${show }">
-   	 <jstl:if test="${personalData eq null }">
-   		 <button
-   			 onClick="window.location.href='personalData/rookie/create.do?curriculaId=${curricula.id }'">
-   			 <spring:message code="curricula.create" />
-   		 </button>
-   	 </jstl:if>
+	<jstl:if test="${show }">
+		<jstl:if test="${personalData eq null }">
+			<button
+				onClick="window.location.href='personalData/rookie/create.do?curriculaId=${curricula.id }'">
+				<spring:message code="curricula.create" />
+			</button>
+		</jstl:if>
 
-   	 <jstl:if test="${personalData.id gt 0 }">
-   		 <button
-   			 onClick="window.location.href='personalData/rookie/edit.do?personalDataId=${personalData.id }'">
-   			 <spring:message code="curricula.edit" />
-   		 </button>
-   	 </jstl:if>
+		<jstl:if test="${personalData.id gt 0 }">
+			<button
+				onClick="window.location.href='personalData/rookie/edit.do?personalDataId=${personalData.id }'">
+				<spring:message code="curricula.edit" />
+			</button>
+		</jstl:if>
 
-    </jstl:if>
+	</jstl:if>
 </jstl:if>
 <br />
 <br />
@@ -78,145 +84,158 @@
 
 <b><spring:message code="curricula.educationData" /></b>
 <display:table name="${educationsData}" id="educationData">
-    <display:column titleKey="curricula.educationData.degree">
-   	 <jstl:out value="${educationData.degree }" />
-    </display:column>
-    <display:column titleKey="curricula.educationData.institution">
-   	 <jstl:out value="${educationData.institution}" />
-    </display:column>
-    <display:column titleKey="curricula.educationData.mark">
-   	 <jstl:out value="${educationData.mark}" />
-    </display:column>
-    <display:column titleKey="curricula.educationData.startDate">
-   	 <jstl:out value="${educationData.startDate}" />
-    </display:column>
-    <display:column titleKey="curricula.educationData.endDate">
-   	 <jstl:out value="${educationData.endDate}" />
-    </display:column>
-    <jstl:if test="${!curricula.copy }">
+	<display:column titleKey="curricula.educationData.degree">
+		<jstl:out value="${educationData.degree }" />
+	</display:column>
+	<display:column titleKey="curricula.educationData.institution">
+		<jstl:out value="${educationData.institution}" />
+	</display:column>
+	<display:column titleKey="curricula.educationData.mark">
+		<jstl:out value="${educationData.mark}" />
+	</display:column>
+	<display:column titleKey="curricula.educationData.startDate">
+		<jstl:out value="${educationData.startDate}" />
+	</display:column>
+	<display:column titleKey="curricula.educationData.endDate">
+		<jstl:out value="${educationData.endDate}" />
+	</display:column>
+	<jstl:if test="${!curricula.copy }">
 
 
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='educationData/rookie/edit.do?educationDataId=${educationData.id }'">
-   				 <spring:message code="curricula.edit" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='educationData/rookie/edit.do?educationDataId=${educationData.id }'">
+					<spring:message code="curricula.edit" />
+				</button>
+			</jstl:if>
+		</display:column>
 
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='educationData/rookie/delete.do?educationDataId=${educationData.id }'">
-   				 <spring:message code="curricula.delete" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
-    </jstl:if>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='educationData/rookie/delete.do?educationDataId=${educationData.id }'">
+					<spring:message code="curricula.delete" />
+				</button>
+			</jstl:if>
+		</display:column>
+	</jstl:if>
 </display:table>
 <jstl:if test="${!curricula.copy }">
 
 
-    <jstl:if test="${show }">
-   	 <button
-   		 onClick="window.location.href='educationData/rookie/create.do?curriculaId=${curricula.id}'">
-   		 <spring:message code="curricula.create" />
-   	 </button>
-    </jstl:if>
+	<jstl:if test="${show }">
+		<button
+			onClick="window.location.href='educationData/rookie/create.do?curriculaId=${curricula.id}'">
+			<spring:message code="curricula.create" />
+		</button>
+	</jstl:if>
 </jstl:if>
 <hr>
 <b><spring:message code="curricula.miscellaneousData" /></b>
 <display:table name="${miscellaneousData}" id="miscData">
-    <display:column titleKey="curricula.miscellaneousData.text">
-   	 <jstl:out value="${miscData.text }" />
-    </display:column>
-    <display:column titleKey="curricula.miscellaneousData.attachments">
-    	<ul>
-		   	 <jstl:forEach items="${miscData.attachments }" var="attachment">
-	   			<li><a target="_blank" href="<jstl:out value="${attachment}" />"><jstl:out value="${attachment}" /></a></li>
-	   		 </jstl:forEach>
-    	</ul>
-    </display:column>
-    <jstl:if test="${!curricula.copy }">
+	<display:column titleKey="curricula.miscellaneousData.text">
+		<jstl:out value="${miscData.text }" />
+	</display:column>
+	<display:column titleKey="curricula.miscellaneousData.attachments">
+		<ul>
+			<jstl:forEach items="${miscData.attachments }" var="attachment">
+				<li><a target="_blank"
+					href="<jstl:out value="${attachment}" />"><jstl:out
+							value="${attachment}" /></a></li>
+			</jstl:forEach>
+		</ul>
+	</display:column>
+	<jstl:if test="${!curricula.copy }">
 
 
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='miscellaneousData/rookie/edit.do?miscellaneousDataId=${miscData.id }'">
-   				 <spring:message code="curricula.edit" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='miscellaneousData/rookie/delete.do?miscellaneousDataId=${miscData.id }'">
-   				 <spring:message code="curricula.delete" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
-    </jstl:if>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='miscellaneousData/rookie/edit.do?miscellaneousDataId=${miscData.id }'">
+					<spring:message code="curricula.edit" />
+				</button>
+			</jstl:if>
+		</display:column>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='miscellaneousData/rookie/delete.do?miscellaneousDataId=${miscData.id }'">
+					<spring:message code="curricula.delete" />
+				</button>
+			</jstl:if>
+		</display:column>
+	</jstl:if>
 </display:table>
 <jstl:if test="${!curricula.copy }">
 
 
-    <jstl:if test="${show }">
-   	 <button
-   		 onClick="window.location.href='miscellaneousData/rookie/create.do?curriculaId=${curricula.id}'">
-   		 <spring:message code="curricula.create" />
-   	 </button>
-    </jstl:if>
+	<jstl:if test="${show }">
+		<button
+			onClick="window.location.href='miscellaneousData/rookie/create.do?curriculaId=${curricula.id}'">
+			<spring:message code="curricula.create" />
+		</button>
+	</jstl:if>
 </jstl:if>
 <hr>
 <b><spring:message code="curricula.positionData" /></b>
 <display:table name="${positionsData}" id="positionData">
-    <display:column titleKey="curricula.positionData.title">
-   	 <jstl:out value="${positionData.title }" />
-    </display:column>
-    <display:column titleKey="curricula.positionData.description">
-   	 <jstl:out value="${positionData.description }" />
-    </display:column>
-    <display:column titleKey="curricula.positionData.startDate">
-   	 <jstl:out value="${positionData.startDate }" />
-    </display:column>
-    <display:column titleKey="curricula.positionData.endDate">
-   	 <jstl:out value="${positionData.endDate }" />
-    </display:column>
-    <jstl:if test="${!curricula.copy }">
+	<display:column titleKey="curricula.positionData.title">
+		<jstl:out value="${positionData.title }" />
+	</display:column>
+	<display:column titleKey="curricula.positionData.description">
+		<jstl:out value="${positionData.description }" />
+	</display:column>
+	<display:column titleKey="curricula.positionData.startDate">
+		<jstl:out value="${positionData.startDate }" />
+	</display:column>
+	<display:column titleKey="curricula.positionData.endDate">
+		<jstl:out value="${positionData.endDate }" />
+	</display:column>
+	<jstl:if test="${!curricula.copy }">
 
 
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='positionData/rookie/edit.do?positionDataId=${positionData.id }'">
-   				 <spring:message code="curricula.edit" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
-   	 <display:column>
-   		 <jstl:if test="${show }">
-   			 <button
-   				 onClick="window.location.href='positionData/rookie/delete.do?positionDataId=${positionData.id }'">
-   				 <spring:message code="curricula.delete" />
-   			 </button>
-   		 </jstl:if>
-   	 </display:column>
-    </jstl:if>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='positionData/rookie/edit.do?positionDataId=${positionData.id }'">
+					<spring:message code="curricula.edit" />
+				</button>
+			</jstl:if>
+		</display:column>
+		<display:column>
+			<jstl:if test="${show }">
+				<button
+					onClick="window.location.href='positionData/rookie/delete.do?positionDataId=${positionData.id }'">
+					<spring:message code="curricula.delete" />
+				</button>
+			</jstl:if>
+		</display:column>
+	</jstl:if>
 </display:table>
 <jstl:if test="${!curricula.copy }">
 
 
-    <jstl:if test="${show }">
-   	 <button
-   		 onClick="window.location.href='positionData/rookie/create.do?curriculaId=${curricula.id}'">
-   		 <spring:message code="curricula.create" />
-   	 </button>
-    </jstl:if>
+	<jstl:if test="${show }">
+		<button
+			onClick="window.location.href='positionData/rookie/create.do?curriculaId=${curricula.id}'">
+			<spring:message code="curricula.create" />
+		</button>
+		<acme:button url="/curricula/rookie/list.do" type="button"
+			code="curricula.back" />
+	</jstl:if>
 </jstl:if>
 
-
+<jstl:if test="${curricula.copy}">
+	<jstl:if test="${show}">
+		<acme:button url="/application/rookie/display.do?idApplication=${applicationId}" type="button"
+			code="curricula.back" />
+	</jstl:if>
+	<jstl:if test="${!show}">
+		<acme:button url="/application/company/display.do?idApplication=${applicationId}" type="button"
+			code="curricula.back" />
+	</jstl:if>
+</jstl:if>
 
 
 

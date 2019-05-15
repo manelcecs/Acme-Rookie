@@ -133,6 +133,10 @@ public class ApplicationService {
 		return this.applicationRepository.getApplicationsAnswered(idRookie);
 	}
 
+	public Application getApplicationOfCurricula(final int curriculaId) {
+		return this.applicationRepository.getApplicationOfCurricula(curriculaId);
+	}
+
 	public void flush() {
 		this.applicationRepository.flush();
 	}
