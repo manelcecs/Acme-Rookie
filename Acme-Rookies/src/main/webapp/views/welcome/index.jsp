@@ -21,12 +21,11 @@
 		<h3><spring:message code="welcome.banned" /></h3>
 </security:authorize>
 
-<spring:message code="actualLanguage" var="actual"/>
-
 <security:authorize access="not(hasRole('BAN'))">
 	<p>
+		
 		<jstl:choose>
-			<jstl:when test="${actual}">
+			<jstl:when test="${cookie.language.value == 'es'}">
 				<jstl:out value="${welcomeMsgEs}"/> 
 			</jstl:when>
 			

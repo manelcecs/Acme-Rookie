@@ -109,7 +109,8 @@ public class ProviderService {
 			binding.rejectValue("surnames", "provider.edit.surnames.error");
 
 		providerForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(providerForm.getCreditCard()));
-		ValidateCreditCard.checkFecha(providerForm.getCreditCard(), binding);
+		//ValidateCreditCard.checkFecha(providerForm.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(providerForm.getCreditCard(), binding);
 
 		final Provider result;
 		result = this.create();
@@ -148,7 +149,8 @@ public class ProviderService {
 			binding.rejectValue("surnames", "provider.edit.surnames.error");
 
 		provider.setCreditCard(ValidateCreditCard.checkNumeroAnno(provider.getCreditCard()));
-		ValidateCreditCard.checkFecha(provider.getCreditCard(), binding);
+		//ValidateCreditCard.checkFecha(provider.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(provider.getCreditCard(), binding);
 
 		final Provider result;
 		result = this.findByPrincipal(LoginService.getPrincipal());

@@ -3132,7 +3132,7 @@
 
 <bean id="adminConfig" class="domain.AdminConfig">
 		<property name="systemName" value="Acme Rookie" />
-		<property name="bannerURL" value="https://imgur.com/ZGVPypx" />
+		<property name="bannerURL" value="https://imgur.com/ZGVPypx.png" />
 		<property name="countryCode" value="+34" />
 		<property name="resultsFinder" value="10" />
 		<property name="cacheFinder" value="1" />

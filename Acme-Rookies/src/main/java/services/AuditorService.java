@@ -112,7 +112,7 @@ public class AuditorService {
 			binding.rejectValue("surnames", "auditor.edit.surnames.error");
 
 		auditorForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(auditorForm.getCreditCard()));
-		ValidateCreditCard.checkFecha(auditorForm.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(auditorForm.getCreditCard(), binding);
 
 		final Auditor result;
 		result = this.create();
@@ -150,7 +150,7 @@ public class AuditorService {
 			binding.rejectValue("surnames", "auditor.edit.surnames.error");
 
 		auditor.setCreditCard(ValidateCreditCard.checkNumeroAnno(auditor.getCreditCard()));
-		ValidateCreditCard.checkFecha(auditor.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(auditor.getCreditCard(), binding);
 
 		final Auditor result;
 		result = this.findByPrincipal(LoginService.getPrincipal());

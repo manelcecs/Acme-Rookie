@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AdminConfigService;
 import services.AuditorService;
 import controllers.AbstractController;
 import domain.Auditor;
@@ -22,7 +23,10 @@ import forms.AuditorForm;
 public class AuditorAdministratorController extends AbstractController {
 
 	@Autowired
-	private AuditorService	auditorService;
+	private AuditorService		auditorService;
+
+	@Autowired
+	private AdminConfigService	adminConfigService;
 
 
 	@RequestMapping("/register")

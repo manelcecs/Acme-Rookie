@@ -108,7 +108,8 @@ public class RookieService {
 			binding.rejectValue("surnames", "rookie.edit.surnames.error");
 
 		rookieForm.setCreditCard(ValidateCreditCard.checkNumeroAnno(rookieForm.getCreditCard()));
-		ValidateCreditCard.checkFecha(rookieForm.getCreditCard(), binding);
+
+		ValidateCreditCard.checkGregorianDate(rookieForm.getCreditCard(), binding);
 
 		final Rookie result;
 		result = this.create();
@@ -152,7 +153,7 @@ public class RookieService {
 			binding.rejectValue("surnames", "rookie.edit.surnames.error");
 
 		rookie.setCreditCard(ValidateCreditCard.checkNumeroAnno(rookie.getCreditCard()));
-		ValidateCreditCard.checkFecha(rookie.getCreditCard(), binding);
+		ValidateCreditCard.checkGregorianDate(rookie.getCreditCard(), binding);
 
 		final Rookie result;
 		result = this.findByPrincipal(LoginService.getPrincipal());
